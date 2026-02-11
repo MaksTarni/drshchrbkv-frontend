@@ -1,42 +1,482 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* frontend/styles/globals.css */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
+html, body {
   padding: 0;
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+* { box-sizing: border-box; }
+
+:root {
+  --color-text: #161616;
+  --color-secondary: #7D7D7D;
+  --color-line: #E5E5E5;
+
+  --color-highlight: #FDFF45;
+
+  --page-padding: 20px;
+  --page-width: 1366px;
+
+  --h-font: "Times New Roman", serif;
+  --b-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --h-size: 50px;
+  --h-line: 48px;
+  --h-letter: -1px;
+
+  --t-size: 16px;
+  --t-line: 20px;
+  --t-letter: -0.48px;
+
+  /* HERO defaults (могут переопределяться инлайном из Strapi) */
+  --hero-height: 768px;
+  --hero-text-width: 653px;
+  --hero-intro-top: 60px;
+  --hero-highlight-top: 414px;
+  --hero-highlight-height: 334px;
+  --hero-highlight-padding-y: 26px;
+  --hero-highlight: var(--color-highlight);
+
+  /* COURSE defaults */
+  --course-height: 1100px;
+  --course-meta-top: 220px;
+  --course-title-top: 364px;
+  --course-cover-top: 455px;
+  --course-cover-height: 600px;
+  --course-bottomline-top: 1075px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+body {
+  background: #fff;
+  color: var(--color-text);
+  font-family: var(--b-font);
+}
+
+/* ====== контейнеры ====== */
+
+/* .frame — для “обычных” блоков, где нужен паддинг 20 */
+.frame {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+  position: relative;
+}
+
+/* .canvas — для абсолютной Figma-раскладки (БЕЗ padding!) */
+.canvas {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+/* alias если где-то используется frame-1366 */
+.frame-1366 {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+  position: relative;
+}
+
+/* Typography (Figma-like) */
+.figma-header {
+  font-family: var(--h-font);
+  font-weight: 500;
+  font-size: var(--h-size);
+  line-height: var(--h-line);
+  letter-spacing: var(--h-letter);
+  text-transform: lowercase;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.figma-text {
+  font-family: var(--b-font);
+  font-weight: 400;
+  font-size: var(--t-size);
+  line-height: var(--t-line);
+  letter-spacing: var(--t-letter);
+  text-transform: lowercase;
+  margin: 0;
+}
+
+.figma-text--secondary { color: var(--color-secondary); }
+
+/* HEADER */
+.header {
+  position: absolute;
+  top: var(--page-padding);
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+/* HERO (1366x768) */
+.hero {
+  position: relative;
+  height: var(--hero-height);
+  background: #fff;
+}
+
+.hero-layer { height: 100%; }
+
+/* absolute внутри canvas (координаты как в Figma) */
+.hero-intro {
+  position: absolute;
+  top: var(--hero-intro-top);
+  left: var(--page-padding);
+  width: var(--hero-text-width);
+}
+
+/* фон хайлайта на всю ширину hero */
+.hero-highlight {
+  position: absolute;
+  top: var(--hero-highlight-top);
+  left: 0;
+  right: 0;
+  height: var(--hero-highlight-height);
+  background: var(--hero-highlight);
+  padding: var(--hero-highlight-padding-y) 0;
+}
+
+.hero-highlight-row {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-highlight-inner { width: var(--hero-text-width); }
+
+/* PROJECTS header row (professional projects / 2021 — present) */
+.projects-meta {
+  margin-top: 60px;
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+/* COURSE (1366x1100) */
+.course {
+  position: relative;
+  height: var(--course-height);
+  background: #fff;
+}
+.course-layer { height: 100%; }
+
+.course-meta {
+  position: absolute;
+  top: var(--course-meta-top);
+  left: var(--page-padding);
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.course-title-wrap {
+  position: absolute;
+  top: var(--course-title-top);
+  left: var(--page-padding);
+  width: calc(var(--page-width) - (var(--page-padding) * 2));
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.course-cover {
+  position: absolute;
+  top: var(--course-cover-top);
+  left: var(--page-padding);
+  right: var(--page-padding);
+  height: var(--course-cover-height);
+  background: #f3f3f3;
+  overflow: hidden;
+}
+.course-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.course-bottomline {
+  position: absolute;
+  top: var(--course-bottomline-top);
+  left: var(--page-padding);
+  right: var(--page-padding);
+  border-top: 1px solid var(--color-line);
+  padding-top: 5px;
+}
+.course-bottomline-row {
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+/* COMPANY sections */
+.company {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  background: #fff;
+}
+
+.company-layer { position: relative; }
+
+/* title+subtitle */
+.company-title {
+  position: absolute;
+  left: var(--page-padding);
+  top: 124px;
+  width: 653px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* meta lines */
+.company-meta {
+  position: absolute;
+  height: 25px;
+  border-top: 1px solid var(--color-line);
+  padding-top: 5px;
+}
+.company-meta-row {
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+/* frames */
+.company-frame {
+  position: absolute;
+  overflow: hidden;
+}
+.company-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 2 FRAMES RULE: cover выключен */
+.company-frame--cover { display: none; }
+
+/* ============ EMEX (height 905) ============ */
+.company--emex { height: 905px; }
+.company--emex .company-meta--top {
+  width: 337px;
+  left: 20px;
+  top: 215px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+.company--emex .company-meta--bottom {
+  width: 337px;
+  left: 356.5px;
+  top: 570px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+.company--emex .company-frame--right {
+  width: 653px;
+  height: 690px;
+  left: 693px;
+  top: 215px;
+}
+.company--emex .company-frame--left {
+  width: 316.5px;
+  height: 335px;
+  left: 356.5px;
+  top: 215px;
+  background: #F3F3F3;
+}
+
+/* ============ SBERBANK (height 1029) ============ */
+.company--sberbank { height: 1029px; }
+.company--sberbank .company-title { width: 1326px; }
+.company--sberbank .company-meta--top {
+  width: 336px;
+  left: 673.5px;
+  top: 215px;
+  padding-left: 20px;
+}
+.company--sberbank .company-meta--bottom {
+  width: 336px;
+  left: 1010px;
+  top: 570px;
+  padding-left: 20px;
+}
+.company--sberbank .company-frame--left {
+  width: 653px;
+  height: 690px;
+  left: 20px;
+  top: 215px;
+  background: #F3F3F3;
+}
+.company--sberbank .company-frame--right {
+  width: 517.1px;
+  height: 1126px;
+  left: 424.5px;
+  top: 86px;
+}
+
+/* ============ CLOUDPAYMENTS (height 550) ============ */
+.company--cloudpayments { height: 550px; }
+.company--cloudpayments .company-title { width: 1326px; }
+.company--cloudpayments .company-meta--top {
+  width: 336px;
+  left: 20px;
+  top: 215px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+.company--cloudpayments .company-meta--bottom {
+  width: 336px;
+  left: 1010px;
+  top: 215px;
+  padding-left: 20px;
+}
+.company--cloudpayments .company-frame--left {
+  width: 653px;
+  height: 335px;
+  left: 20px;
+  top: 215px;
+  background: #0B1E46;
+}
+.company--cloudpayments .company-frame--right {
+  width: 653px;
+  height: 335px;
+  left: 693px;
+  top: 215px;
+  background: #E2E8EF;
+}
+
+/* CRAFT (height 950) */
+.craft {
+  position: relative;
+  height: 950px;
+  background: #fff;
+}
+.craft-layer { height: 100%; }
+
+.craft-meta {
+  position: absolute;
+  left: 20px;
+  top: 220px;
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+.craft-grid {
+  position: absolute;
+  left: 20px;
+  top: 260px;
+  display: grid;
+  grid-template-columns: repeat(3, 428.67px);
+  grid-auto-rows: 335px;
+  gap: 20px;
+}
+.craft-cell {
+  width: 428.67px;
+  height: 335px;
+  overflow: hidden;
+}
+.craft-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* FOOTER (height 291) */
+.footer {
+  position: relative;
+  height: 291px;
+  background: #fff;
+}
+.footer-layer {
+  padding-top: 124px;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* =========================
+   Tablet / Mobile
+   ========================= */
+@media (max-width: 1024px) {
+  .course, .craft, .company { height: auto !important; }
+
+  .course-meta,
+  .course-title-wrap,
+  .course-cover,
+  .course-bottomline,
+  .company-title,
+  .company-meta,
+  .company-frame,
+  .craft-meta,
+  .craft-grid {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
   }
+
+  .projects-meta { margin-top: 24px; }
+
+  .course { margin-top: 12px; }
+  .course-meta { margin-top: 16px; }
+  .course-title-wrap { margin-top: 8px; }
+  .course-cover { margin-top: 16px; overflow: hidden; }
+  .course-cover img { height: auto; }
+  .course-bottomline { margin-top: 16px; }
+
+  .company { margin-top: 60px; }
+  .company-title { margin-top: 24px; }
+  .company-meta { margin-top: 16px; border-top: 1px solid var(--color-line); padding-top: 8px; }
+  .company-frame { margin-top: 16px; }
+  .company-frame img { height: auto; }
+
+  .craft { margin-top: 60px; }
+  .craft-meta { margin-top: 16px; }
+  .craft-grid {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .craft-cell { width: 100%; height: auto; }
+  .craft-cell img { height: auto; }
+}
+
+@media (max-width: 640px) {
+  .craft-grid { grid-template-columns: 1fr; }
+  :root {
+    --h-size: 40px;
+    --h-line: 40px;
+    --t-size: 14px;
+    --t-line: 18px;
+  }
+  .hero-intro { width: 100%; }
+  .hero-highlight-inner { width: 100%; }
 }
