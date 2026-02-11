@@ -28,9 +28,9 @@ body {
 
 /* Коэффициенты сжатия (можно подогнать, если нужно ещё уже/шире) */
 :root{
-  --font-condense-body: 0.92;   /* основной текст */
-  --font-condense-head: 0.90;   /* заголовки */
-  --font-condense-ui:   0.93;   /* навигация/мета */
+  --font-condense-body: 0.86;   /* основной текст */
+  --font-condense-head: 0.82;   /* заголовки */
+  --font-condense-ui:   0.86;   /* навигация/мета */
 
   --color-text: #161616;
   --color-secondary: #7D7D7D;
