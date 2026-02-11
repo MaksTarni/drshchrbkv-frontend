@@ -1,32 +1,55 @@
 // frontend/components/Hero.js
-export default function Hero({ hero, accent }) {
-  const title = hero?.title || "";
-  const highlight =
-    // description в Strapi у тебя blocks — на фронте проще поддержать string fallback
-    (typeof hero?.description === "string" ? hero.description : "") || "";
+import Link from "next/link";
 
-  const bg = hero?.highlightColor || accent || "#FDFF45";
+function blocksToPlainText(blocks) {
+  // Strapi Blocks -> plain text (аккуратно, без падений)
+  if (!blocks) return "";
+  if (typeof blocks === "string") return blocks;
+  if (!Array.isArray(blocks)) return "";
+
+  const out = [];
+  for (const b of blocks) {
+    // Strapi blocks обычно: { type: 'paragraph', children:[{text:''}] }
+    const children = b?.children;
+    if (Array.isArray(children)) {
+      out.push(children.map((c) => c?.text || "").join(""));
+    } else if (typeof b?.text === "string") {
+      out.push(b.text);
+    }
+  }
+  return out.join("\n").trim();
+}
+
+export default function Hero({ navLeft, navRight, title, descriptionBlocks, highlightColor }) {
+  const highlightText = blocksToPlainText(descriptionBlocks);
 
   return (
-    <section id="index" className="hero">
-      {/* nav лежит в Header, тут только hero */}
-      <div className="hero-grid">
-        <div className="hero-top-left">{title}</div>
+    <section className="hero" id="index" style={{ "--hero-highlight": highlightColor || "#FDFF45" }}>
+      {/* nav */}
+      <div className="header">
+        <div className="frame nav">
+          <Link className="nav-link figma-text" href={navLeft?.href || "#index"}>
+            {navLeft?.label || "index"}
+          </Link>
 
-        {/* пустые ячейки сетки, чтобы повторить структуру figma */}
-        <div className="hero-top-right" />
+          <Link className="nav-link figma-text" href={navRight?.href || "#info"}>
+            {navRight?.label || "info"}
+          </Link>
+        </div>
+      </div>
 
-        <div className="hero-mid-left" />
-        <div className="hero-mid-right" />
+      {/* top text */}
+      <div className="hero-intro">
+        <h1 className="figma-header">{title || ""}</h1>
+      </div>
 
-        {/* нижний левый блок с желтым фоном */}
-        <div className="hero-bottom-left">
-          <div className="hero-yellow" style={{ background: bg }}>
-            <div className="hero-yellow-text">{highlight}</div>
+      {/* yellow highlight */}
+      <div className="hero-highlight">
+        <div className="frame hero-highlight-row">
+          <div className="hero-highlight-inner">
+            <h2 className="figma-header">{highlightText || ""}</h2>
           </div>
         </div>
-
-        <div className="hero-bottom-right" />
       </div>
     </section>
   );
