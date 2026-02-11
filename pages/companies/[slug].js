@@ -1,12 +1,6 @@
 // frontend/pages/companies/[slug].js
-import Header from "@/components/Header";
-import {
-  blocksToText,
-  getAllCompanySlugs,
-  getCompanyBySlug,
-  getSiteSetting,
-  getMediaUrl,
-} from "@/lib/api";
+import Link from "next/link";
+import { getAllCompanySlugs, getSiteSetting } from "@/lib/api";
 
 export async function getStaticPaths() {
   const slugs = await getAllCompanySlugs().catch(() => []);
@@ -17,61 +11,43 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const safe = async (fn, fallback) => {
-    try {
-      return await fn();
-    } catch {
-      return fallback;
-    }
+  // нам не нужен company-контент — это заглушка
+  const settings = await getSiteSetting().catch(() => null);
+
+  // если slug вообще не существует — можно всё равно показывать заглушку
+  return {
+    props: {
+      settings,
+      slug: params?.slug || "",
+    },
+    revalidate: 60,
   };
-
-  const [settings, company] = await Promise.all([
-    safe(getSiteSetting, null),
-    safe(() => getCompanyBySlug(params.slug), null),
-  ]);
-
-  if (!company) return { notFound: true };
-
-  return { props: { settings, company }, revalidate: 60 };
 }
 
-export default function CompanyPage({ settings, company }) {
-  const title = (company.title || company.name || "").trim();
-  const subtitle = (company.subtitle || "").trim();
-  const detail = blocksToText(company.detail);
-
-  const left = getMediaUrl(company.leftImage);
-  const right = getMediaUrl(company.rightImage);
+export default function ComingSoonPage({ settings }) {
+  const email = settings?.contactEmail || "dar.shcherbakova@gmail.com";
+  const linkedin = settings?.linkedinUrl || "#";
 
   return (
-    <>
-      <Header settings={settings} />
-      <main style={{ paddingTop: 120, paddingBottom: 80 }}>
-        <div className="frame">
-          {title ? <h1 className="figma-header">{title}</h1> : null}
-          {subtitle ? <div className="figma-text figma-text--secondary">{subtitle}</div> : null}
+    <main style={{ padding: "30px 20px" }}>
+      <div style={{ marginBottom: 40 }}>
+        <Link href="/" style={{ textDecoration: "none", color: "#000" }}>
+          back
+        </Link>
+      </div>
 
-          {(left || right) ? (
-            <div
-              style={{
-                marginTop: 30,
-                display: "grid",
-                gap: 20,
-                gridTemplateColumns: "1fr 1fr",
-              }}
-            >
-              {left ? <img src={left} alt={(company.leftAlt || "").trim()} style={{ width: "100%" }} /> : null}
-              {right ? <img src={right} alt={(company.rightAlt || "").trim()} style={{ width: "100%" }} /> : null}
-            </div>
-          ) : null}
+      <div style={{ fontFamily: "Times New Roman, serif", fontSize: 64, lineHeight: "64px", marginTop: 220 }}>
+        coming soon
+      </div>
 
-          {detail ? (
-            <div style={{ marginTop: 30, whiteSpace: "pre-line" }} className="figma-text">
-              {detail}
-            </div>
-          ) : null}
+      <div style={{ position: "fixed", left: 20, bottom: 30, fontSize: 14 }}>
+        <div>{email}</div>
+        <div>
+          <a href={linkedin} target="_blank" rel="noreferrer" style={{ color: "#000" }}>
+            linkedin
+          </a>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
