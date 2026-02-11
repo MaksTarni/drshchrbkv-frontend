@@ -3,11 +3,35 @@
 html, body {
   padding: 0;
   margin: 0;
+  background: #fff;
+  color: #161616;
+}
+
+/* Чтобы scaleX работал красиво и не ломал ширины блоков */
+body {
+  overflow-x: hidden;
 }
 
 * { box-sizing: border-box; }
 
-:root {
+/* =========================
+   FIGMA FONT SYSTEM
+   ========================= */
+
+/*
+  “Times New Roman Condensed” в вебе нет как стандартного шрифта.
+  Поэтому делаем максимально близко к Figma:
+  - базовый шрифт Times New Roman
+  - сжатие по X через scaleX
+  - letter-spacing как в макете
+*/
+
+/* Коэффициенты сжатия (можно подогнать, если нужно ещё уже/шире) */
+:root{
+  --font-condense-body: 0.92;   /* основной текст */
+  --font-condense-head: 0.90;   /* заголовки */
+  --font-condense-ui:   0.93;   /* навигация/мета */
+
   --color-text: #161616;
   --color-secondary: #7D7D7D;
   --color-line: #E5E5E5;
@@ -17,9 +41,11 @@ html, body {
   --page-padding: 20px;
   --page-width: 1366px;
 
-  --h-font: "Times New Roman", serif;
-  --b-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* ВЕЗДЕ Times */
+  --h-font: "Times New Roman", Times, serif;
+  --b-font: "Times New Roman", Times, serif;
 
+  /* типографика как у тебя */
   --h-size: 50px;
   --h-line: 48px;
   --h-letter: -1px;
@@ -28,7 +54,7 @@ html, body {
   --t-line: 20px;
   --t-letter: -0.48px;
 
-  /* HERO defaults (могут переопределяться инлайном из Strapi) */
+  /* HERO defaults */
   --hero-height: 768px;
   --hero-text-width: 653px;
   --hero-intro-top: 60px;
@@ -46,42 +72,51 @@ html, body {
   --course-bottomline-top: 1075px;
 }
 
+/* Глобально: весь текст — Times */
 body {
   background: #fff;
   color: var(--color-text);
   font-family: var(--b-font);
 }
 
-/* ====== контейнеры ====== */
-
-/* .frame — для “обычных” блоков, где нужен паддинг 20 */
-.frame {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
-  position: relative;
+/* Принудительное наследование шрифта */
+* {
+  font-family: inherit;
 }
 
-/* .canvas — для абсолютной Figma-раскладки (БЕЗ padding!) */
-.canvas {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
+/* Убираем стили ссылок */
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* =========================
+   CONDENSED EFFECT (Figma-like)
+   ========================= */
+
+/* Важно: scaleX влияет на ширину, поэтому задаём inline-block */
+.condensed {
+  display: inline-block;
+  transform: scaleX(var(--font-condense-body));
+  transform-origin: left center;
 }
 
-/* alias если где-то используется frame-1366 */
-.frame-1366 {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
-  position: relative;
+/* UI-текст чуть менее сжат */
+.condensed-ui {
+  display: inline-block;
+  transform: scaleX(var(--font-condense-ui));
+  transform-origin: left center;
 }
 
-/* Typography (Figma-like) */
+/* Заголовки сильнее сжаты */
+.condensed-head {
+  display: inline-block;
+  transform: scaleX(var(--font-condense-head));
+  transform-origin: left center;
+}
+
+/*
+  Автоматически применяем “condensed” к типовым Figma классам
+  (у тебя они уже используются в компонентах)
+*/
 .figma-header {
   font-family: var(--h-font);
   font-weight: 500;
@@ -91,6 +126,10 @@ body {
   text-transform: lowercase;
   margin: 0;
   white-space: pre-line;
+
+  display: inline-block;
+  transform: scaleX(var(--font-condense-head));
+  transform-origin: left center;
 }
 
 .figma-text {
@@ -101,9 +140,53 @@ body {
   letter-spacing: var(--t-letter);
   text-transform: lowercase;
   margin: 0;
+
+  display: inline-block;
+  transform: scaleX(var(--font-condense-body));
+  transform-origin: left center;
 }
 
 .figma-text--secondary { color: var(--color-secondary); }
+
+/* Навигация/мета — тоже condensed, но чуть мягче */
+.nav-link,
+.projects-meta,
+.course-meta,
+.company-meta,
+.craft-meta,
+.footer-links {
+  display: inline-block;
+  transform: scaleX(var(--font-condense-ui));
+  transform-origin: left center;
+}
+
+/* =========================
+   ====== контейнеры ======
+   ========================= */
+
+.frame {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+  position: relative;
+}
+
+.canvas {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+.frame-1366 {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+  position: relative;
+}
 
 /* HEADER */
 .header {
@@ -118,10 +201,6 @@ body {
   justify-content: space-between;
   align-items: flex-start;
 }
-.nav-link {
-  text-decoration: none;
-  color: var(--color-text);
-}
 
 /* HERO (1366x768) */
 .hero {
@@ -129,10 +208,8 @@ body {
   height: var(--hero-height);
   background: #fff;
 }
-
 .hero-layer { height: 100%; }
 
-/* absolute внутри canvas (координаты как в Figma) */
 .hero-intro {
   position: absolute;
   top: var(--hero-intro-top);
@@ -140,7 +217,6 @@ body {
   width: var(--hero-text-width);
 }
 
-/* фон хайлайта на всю ширину hero */
 .hero-highlight {
   position: absolute;
   top: var(--hero-highlight-top);
@@ -159,7 +235,7 @@ body {
 
 .hero-highlight-inner { width: var(--hero-text-width); }
 
-/* PROJECTS header row (professional projects / 2021 — present) */
+/* PROJECTS header row */
 .projects-meta {
   margin-top: 60px;
   display: flex;
@@ -167,7 +243,7 @@ body {
   align-items: flex-end;
 }
 
-/* COURSE (1366x1100) */
+/* COURSE */
 .course {
   position: relative;
   height: var(--course-height);
@@ -235,7 +311,6 @@ body {
 
 .company-layer { position: relative; }
 
-/* title+subtitle */
 .company-title {
   position: absolute;
   left: var(--page-padding);
@@ -246,7 +321,6 @@ body {
   gap: 3px;
 }
 
-/* meta lines */
 .company-meta {
   position: absolute;
   height: 25px;
@@ -259,7 +333,6 @@ body {
   align-items: flex-end;
 }
 
-/* frames */
 .company-frame {
   position: absolute;
   overflow: hidden;
@@ -271,10 +344,9 @@ body {
   display: block;
 }
 
-/* 2 FRAMES RULE: cover выключен */
 .company-frame--cover { display: none; }
 
-/* ============ EMEX (height 905) ============ */
+/* EMEX */
 .company--emex { height: 905px; }
 .company--emex .company-meta--top {
   width: 337px;
@@ -306,7 +378,7 @@ body {
   background: #F3F3F3;
 }
 
-/* ============ SBERBANK (height 1029) ============ */
+/* SBERBANK */
 .company--sberbank { height: 1029px; }
 .company--sberbank .company-title { width: 1326px; }
 .company--sberbank .company-meta--top {
@@ -335,7 +407,7 @@ body {
   top: 86px;
 }
 
-/* ============ CLOUDPAYMENTS (height 550) ============ */
+/* CLOUDPAYMENTS */
 .company--cloudpayments { height: 550px; }
 .company--cloudpayments .company-title { width: 1326px; }
 .company--cloudpayments .company-meta--top {
@@ -367,7 +439,7 @@ body {
   background: #E2E8EF;
 }
 
-/* CRAFT (height 950) */
+/* CRAFT */
 .craft {
   position: relative;
   height: 950px;
@@ -404,24 +476,20 @@ body {
   display: block;
 }
 
-/* FOOTER (height 291) */
+/* FOOTER */
 .footer {
   position: relative;
   height: 291px;
   background: #fff;
 }
-.footer-layer {
-  padding-top: 124px;
-}
+.footer-layer { padding-top: 124px; }
 .footer-links {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-/* =========================
-   Tablet / Mobile
-   ========================= */
+/* Tablet/Mobile */
 @media (max-width: 1024px) {
   .course, .craft, .company { height: auto !important; }
 
