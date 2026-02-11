@@ -1,63 +1,75 @@
 // frontend/components/Hero.js
 import { useEffect, useMemo, useState } from "react";
-import { blocksToText } from "../lib/api";
 
-function normalizeLocal(h) {
-  if (!h) return null;
-  return h.attributes ? { id: h.id, ...h.attributes } : h;
+function pickBreakpoint(w) {
+  if (w <= 640) return "mobile";
+  if (w <= 1024) return "tablet";
+  return "desktop";
 }
 
-function useIsMobile(breakpoint = 768) {
-  const [mounted, setMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const mq = window.matchMedia(`(max-width:${breakpoint}px)`);
-    const onChange = () => setIsMobile(mq.matches);
-    onChange();
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, [breakpoint]);
-
-  return mounted ? isMobile : false; // без hydration mismatch
+function blocksToText(blocks) {
+  // Strapi blocks -> plain text (минимально, чтобы “1 в 1” по переносу дальше править стилями)
+  if (!Array.isArray(blocks)) return "";
+  const walk = (node) => {
+    if (!node) return "";
+    if (typeof node === "string") return node;
+    if (Array.isArray(node)) return node.map(walk).join("");
+    if (node.type === "text") return node.text || "";
+    if (node.children) return walk(node.children);
+    return "";
+  };
+  return blocks.map(walk).join("\n").replace(/\n{3,}/g, "\n\n").trim();
 }
 
 export default function Hero({ heroes = [], settings }) {
-  const isMobile = useIsMobile(768);
+  const [bp, setBp] = useState("desktop");
 
-  const list = useMemo(() => (heroes || []).map(normalizeLocal).filter(Boolean), [heroes]);
+  useEffect(() => {
+    const apply = () => setBp(pickBreakpoint(window.innerWidth));
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
+  }, []);
 
   const hero = useMemo(() => {
-    const byDevice = list.find((h) => !!h.is_mobile === !!isMobile);
-    return byDevice || list.find((h) => h.is_mobile === false) || list[0] || null;
-  }, [list, isMobile]);
+    const byBp = heroes.find((h) => h?.breakpoint === bp);
+    return byBp || heroes.find((h) => h?.breakpoint === "desktop") || heroes[0] || null;
+  }, [heroes, bp]);
 
-  if (!hero) return null;
+  // тексты: верхний — из hero.title (string)
+  // жёлтый — из hero.description (blocks)
+  const introText = hero?.title || settings?.metaTitle || "";
+  const highlightText = blocksToText(hero?.description) || "";
 
-  const intro = hero.title || "";
-  const highlight = blocksToText(hero.description) || "";
+  // значения из Strapi (если нет — дефолты desktop)
+  const vars = {
+    "--hero-height": `${hero?.pageHeight ?? 768}px`,
+    "--hero-text-width": `${hero?.textWidth ?? 653}px`,
+    "--hero-intro-top": `${hero?.introTop ?? 60}px`,
+    "--hero-highlight-top": `${hero?.highlightTop ?? 414}px`,
+    "--hero-highlight-height": `${hero?.highlightHeight ?? 334}px`,
+    "--hero-highlight-padding-y": `${hero?.highlightPaddingY ?? 26}px`,
+    "--hero-pad": `${hero?.pagePadding ?? 20}px`,
+    "--hero-highlight": hero?.highlightColor || settings?.accentColor || "#FDFF45",
 
-  const accent = hero.highlightColor || settings?.accentColor || "#FDFF45";
-
-  const styleVars = {
-    "--hero-height": `${Number(hero.pageHeight ?? 768)}px`,
-    "--hero-text-width": `${Number(hero.textWidth ?? 653)}px`,
-    "--hero-intro-top": `${Number(hero.introTop ?? 60)}px`,
-    "--hero-highlight-top": `${Number(hero.highlightTop ?? 414)}px`,
-    "--hero-highlight-height": `${Number(hero.highlightHeight ?? 334)}px`,
-    "--hero-highlight-padding-y": `${Number(hero.highlightPaddingY ?? 26)}px`,
-    "--hero-highlight": accent,
+    // (не трогаю “глобальный шрифт”, но hero-типографику можно править тут)
+    "--hero-h-size": `${hero?.headerFontSize ?? 50}px`,
+    "--hero-h-line": `${hero?.headerLineHeight ?? 48}px`,
+    "--hero-h-letter": `${hero?.headerLetterSpacing ?? -1}px`,
   };
 
   return (
-    <section id="index" className="hero" style={styleVars}>
-      <div className="frame hero-layer">
-        <div className="hero-intro figma-header">{intro}</div>
+    <section className="hero" style={vars}>
+      <div className="hero-layer canvas">
+        <div className="hero-intro">
+          <h1 className="hero-h">{introText}</h1>
+        </div>
 
         <div className="hero-highlight">
-          <div className="frame hero-highlight-row">
-            <div className="hero-highlight-inner figma-header">{highlight}</div>
+          <div className="hero-highlight-row frame">
+            <div className="hero-highlight-inner">
+              <p className="hero-h">{highlightText}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -206,21 +206,24 @@ img { display: block; max-width: 100%; }
   align-items: flex-start;
 }
 
-/* HERO (1366x768) */
+/* HERO (desktop/tablet/mobile driven by CSS vars from Strapi) */
 .hero {
   position: relative;
   height: var(--hero-height);
   background: #fff;
 }
+
 .hero-layer { height: 100%; }
 
+/* absolute внутри canvas (координаты как в Figma) */
 .hero-intro {
   position: absolute;
   top: var(--hero-intro-top);
-  left: var(--page-padding);
+  left: var(--hero-pad);
   width: var(--hero-text-width);
 }
 
+/* жёлтый фон на всю ширину hero */
 .hero-highlight {
   position: absolute;
   top: var(--hero-highlight-top);
@@ -239,14 +242,17 @@ img { display: block; max-width: 100%; }
 
 .hero-highlight-inner { width: var(--hero-text-width); }
 
-/* PROJECTS header row */
-.projects-meta {
-  margin-top: 60px;
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
+/* hero typography (берём размеры из vars) */
+.hero-h {
+  font-family: var(--h-font);
+  font-weight: 500;
+  font-size: var(--hero-h-size);
+  line-height: var(--hero-h-line);
+  letter-spacing: var(--hero-h-letter);
+  text-transform: lowercase;
+  margin: 0;
+  white-space: pre-line;
 }
-
 /* COURSE */
 .course {
   position: relative;

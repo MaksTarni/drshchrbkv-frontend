@@ -1,62 +1,30 @@
-// pages/companies/[slug].js
+// frontend/pages/companies/[slug].js
 import Link from "next/link";
 
 export default function CompanyComingSoon() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#fff",
-        padding: "28px 20px 40px",
-        fontFamily: '"Times New Roman", serif',
-        color: "#161616",
-      }}
-    >
-      <div style={{ marginBottom: 80 }}>
-        <Link
-          href="/"
-          style={{
-            fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-            fontSize: 14,
-            color: "#161616",
-            textDecoration: "none",
-          }}
-        >
+    <div style={{ padding: 20 }}>
+      <div style={{ marginBottom: 40 }}>
+        <Link href="/" style={{ textDecoration: "none", color: "#161616" }}>
           back
         </Link>
       </div>
 
-      <div
-        style={{
-          fontSize: 64,
-          lineHeight: "0.95",
-          letterSpacing: "-1px",
-          marginTop: 180,
-          marginBottom: 24,
-        }}
-      >
-        coming soon
-      </div>
+      <h1 style={{ margin: 0 }}>coming soon</h1>
 
-      <div
-        style={{
-          height: 380,
-          background: "var(--color-highlight, #FDFF45)",
-          marginTop: 18,
-          marginBottom: 34,
-        }}
-      />
-
-      <div
-        style={{
-          fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
-          fontSize: 14,
-          lineHeight: "18px",
-        }}
-      >
+      <div style={{ marginTop: 40 }}>
         <div>dar.shcherbakova@gmail.com</div>
-        <div style={{ marginTop: 6 }}>linkedin</div>
+        <div>linkedin</div>
       </div>
-    </main>
+    </div>
   );
+}
+
+// чтобы Next не пытался генерить пути и не ходил в API
+export async function getStaticPaths() {
+  return { paths: [], fallback: false };
+}
+
+export async function getStaticProps() {
+  return { props: {} };
 }
