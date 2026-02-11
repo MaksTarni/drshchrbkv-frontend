@@ -77,6 +77,10 @@ body {
   background: #fff;
   color: var(--color-text);
   font-family: var(--b-font);
+  -webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+text-rendering: optimizeLegibility;
+
 }
 
 /* Принудительное наследование шрифта */
