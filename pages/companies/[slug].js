@@ -1,52 +1,61 @@
-// frontend/pages/companies/[slug].js
+// pages/companies/[slug].js
 import Link from "next/link";
-import { getAllCompanySlugs, getSiteSetting } from "@/lib/api";
 
-export async function getStaticPaths() {
-  const slugs = await getAllCompanySlugs().catch(() => []);
-  return {
-    paths: slugs.map(({ slug }) => ({ params: { slug } })),
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }) {
-  // нам не нужен company-контент — это заглушка
-  const settings = await getSiteSetting().catch(() => null);
-
-  // если slug вообще не существует — можно всё равно показывать заглушку
-  return {
-    props: {
-      settings,
-      slug: params?.slug || "",
-    },
-    revalidate: 60,
-  };
-}
-
-export default function ComingSoonPage({ settings }) {
-  const email = settings?.contactEmail || "dar.shcherbakova@gmail.com";
-  const linkedin = settings?.linkedinUrl || "#";
-
+export default function CompanyComingSoon() {
   return (
-    <main style={{ padding: "30px 20px" }}>
-      <div style={{ marginBottom: 40 }}>
-        <Link href="/" style={{ textDecoration: "none", color: "#000" }}>
+    <main
+      style={{
+        minHeight: "100vh",
+        background: "#fff",
+        padding: "28px 20px 40px",
+        fontFamily: '"Times New Roman", serif',
+        color: "#161616",
+      }}
+    >
+      <div style={{ marginBottom: 80 }}>
+        <Link
+          href="/"
+          style={{
+            fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+            fontSize: 14,
+            color: "#161616",
+            textDecoration: "none",
+          }}
+        >
           back
         </Link>
       </div>
 
-      <div style={{ fontFamily: "Times New Roman, serif", fontSize: 64, lineHeight: "64px", marginTop: 220 }}>
+      <div
+        style={{
+          fontSize: 64,
+          lineHeight: "0.95",
+          letterSpacing: "-1px",
+          marginTop: 180,
+          marginBottom: 24,
+        }}
+      >
         coming soon
       </div>
 
-      <div style={{ position: "fixed", left: 20, bottom: 30, fontSize: 14 }}>
-        <div>{email}</div>
-        <div>
-          <a href={linkedin} target="_blank" rel="noreferrer" style={{ color: "#000" }}>
-            linkedin
-          </a>
-        </div>
+      <div
+        style={{
+          height: 380,
+          background: "var(--color-highlight, #FDFF45)",
+          marginTop: 18,
+          marginBottom: 34,
+        }}
+      />
+
+      <div
+        style={{
+          fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+          fontSize: 14,
+          lineHeight: "18px",
+        }}
+      >
+        <div>dar.shcherbakova@gmail.com</div>
+        <div style={{ marginTop: 6 }}>linkedin</div>
       </div>
     </main>
   );
