@@ -1,4 +1,4 @@
-import { getSiteSettings, getCompanies } from "@/lib/api";
+import { getSiteSettings, getCompanies } from "../lib/api";
 
 export default function Home({ settings, companies }) {
   if (!settings) {
