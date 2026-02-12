@@ -13,27 +13,27 @@ export default function CourseSection({ course }) {
 
   return (
     <section className="course-grid" aria-label="course">
-      {/* accent + subtitle row */}
+      {/* row 1 (20px): meta */}
       <div className="course-meta">
         <div className="figma-text">{metaLeft}</div>
         <div className="figma-text figma-text--secondary">{metaRight}</div>
       </div>
 
-      {/* spacer row 84px (как в Figma) */}
-      <div />
+      {/* row 2 (84px): spacer */}
+      <div className="course-spacer" />
 
-      {/* title + subtitle (71px) */}
+      {/* row 3 (71px): title + subtitle */}
       <div className="course-titleblock">
         <div className="figma-header">{title}</div>
         <div className="figma-text figma-text--secondary">{subtitle}</div>
       </div>
 
-      {/* Frame (600px) */}
+      {/* row 4 (600px): frame */}
       <div className="course-frame">
         {frameUrl ? <img src={frameUrl} alt="Course frame" /> : null}
       </div>
 
-      {/* line row (25px) */}
+      {/* row 5 (25px): bottom line */}
       <div className="course-line" />
     </section>
   );

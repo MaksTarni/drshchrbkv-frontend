@@ -17,15 +17,22 @@ html, body {
 
 * { box-sizing: border-box; }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 :root{
   --color-text-primary: #161616;
   --color-text-secondary: #7D7D7D;
   --color-line: #E5E5E5;
   --color-highlight: #FDFF45;
 
-  --indent-m: 20px;
-  --indent-l: 124px;
-  --indent-xl: 220px;
+  /* Figma indents */
+  --indent-m: 20px;   /* left/right padding */
+  --indent-l: 124px;  /* section spacing */
+  --indent-xl: 220px; /* course/craft top padding */
 
   --font-family-header: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
   --font-family-text: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -38,7 +45,11 @@ html, body {
 body { overflow-x: hidden; }
 
 /* Typography */
-h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weight: 400; }
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  font-family: var(--font-family-header);
+  font-weight: 400;
+}
 
 .figma-header{
   color: var(--color-text-primary);
@@ -65,102 +76,7 @@ h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weigh
 
 .figma-text--secondary{ color: var(--color-text-secondary); }
 
-/* Common */
-.frame{
-  width: 100%;
-  padding-left: var(--indent-m);
-  padding-right: var(--indent-m);
-}
-
-/* HEADER (если используется) */
-.header{
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: #fff;
-}
-
-.nav{
-  display:flex;
-  justify-content: space-between;
-  align-items:flex-start;
-  padding-top: var(--indent-m);
-  padding-bottom: var(--indent-m);
-}
-
-.nav-link{
-  text-decoration: none;
-  color: var(--color-text-primary);
-}
-
-/* =========================
-   HERO — 1:1 по скрину Figma
-   width 1366, height 768
-   padding 20
-   row-gap 20, column-gap 20
-   rows: 20 / 334 / 334  (как на скрине 653×334)
-   ========================= */
-
-.hero-grid{
-  display: grid;
-  width: 100%;
-  height: 768px;
-
-  padding: var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 20px 334px 334px;
-  align-self: stretch;
-}
-
-/* row 1 */
-.hero-topline{
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  border-top: 1px solid var(--color-line);
-  height: 100%;
-}
-
-/* row 2 */
-.hero-title{
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-
-  display: flex;
-  align-items: flex-end; /* визуально ближе к макету */
-  min-width: 0;
-}
-
-.hero-empty{
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  min-width: 0;
-}
-
-/* row 3 — сплошная жёлтая полоса на всю ширину */
-.hero-highlight-row{
-  grid-column: 1 / -1;
-  grid-row: 3 / 4;
-
-  background: var(--color-highlight);
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--indent-m);
-
-  min-width: 0;
-}
-
-/* колонки внутри жёлтой зоны */
-.hero-highlight-col{ min-width: 0; }
-
-/* текст внутри (пока ставлю 20, чтобы не прилипал к краю) */
-.hero-highlight-inner{
-  padding: 20px;
-}
-
-/* ---- Tags ---- */
+/* Pills/tags */
 .company-tags{
   display:flex;
   gap: 10px;
@@ -180,5 +96,199 @@ h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weigh
   text-transform: lowercase;
 }
 
-/* Остальные секции оставляю как есть/нейтрально (не трогаю),
-   чтобы не ломать текущую верстку дальше по странице. */
+/* =========================
+   HERO (оставляю как было)
+   ========================= */
+
+.hero-grid{
+  display: grid;
+  width: 100%;
+  height: 768px;
+  padding: var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 20px 334px 334px;
+}
+
+.hero-topline{
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  border-top: 1px solid var(--color-line);
+  height: 100%;
+}
+
+.hero-title{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  display: flex;
+  align-items: flex-end;
+  min-width: 0;
+}
+
+.hero-empty{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  min-width: 0;
+}
+
+.hero-highlight-row{
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+  background: var(--color-highlight);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--indent-m);
+  min-width: 0;
+}
+
+.hero-highlight-col{ min-width: 0; }
+
+/* Важно: это padding ТЕКСТА, не отступ ЖЁЛТОГО. Жёлтый без отступов внутри hero-grid */
+.hero-highlight-inner{
+  padding: 20px;
+}
+
+/* =========================
+   COMPANIES (чтобы картинки не были огромные)
+   ========================= */
+
+.company-emex,
+.company-sberbank,
+.company-cloudpayments{
+  display: inline-grid;
+  width: 100%;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-self: stretch;
+}
+
+.company-title{ grid-column: 1 / 3; }
+.company-subtitle{ grid-column: 3 / 5; justify-self: end; text-align: right; }
+.company-tags{ grid-column: 1 / 3; }
+
+/* По макету карточки в компаниях: 690px (как твои 653×690) */
+.company-media{
+  width: 100%;
+  height: 690px;
+  overflow: hidden;
+  background: #F2F2F2;
+}
+
+.company-media img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
+/* =========================
+   COURSE — 1:1 ПО ТВОИМ СКРИНАМ FIGMA
+   padding-top: 220
+   padding-left/right: 20
+   row-gap/col-gap: 20
+   rows: 20 / 84 / 71 / 600 / 25
+   ========================= */
+
+.course-grid{
+  display: grid;
+  width: 100%;
+  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 20px 84px 71px 600px 25px;
+
+  align-self: stretch;
+}
+
+/* row 1 */
+.course-meta{
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 20px;
+}
+
+/* row 2 */
+.course-spacer{
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+}
+
+/* row 3 */
+.course-titleblock{
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+  height: 71px;
+}
+
+/* row 4 */
+.course-frame{
+  grid-column: 1 / -1;
+  grid-row: 4 / 5;
+
+  height: 600px;
+  overflow: hidden;
+  background: #F2F2F2;
+}
+
+.course-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* row 5 */
+.course-line{
+  grid-column: 1 / -1;
+  grid-row: 5 / 6;
+
+  height: 25px;
+  border-top: 1px solid var(--color-line);
+  padding-top: 5px;
+}
+
+/* =========================
+   CRAFT (минимально, чтобы не ломалось)
+   ========================= */
+
+.craft-wrap{
+  display: grid;
+  width: 100%;
+  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 335px;
+}
+
+.craft-meta{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.craft-cell{
+  width: 100%;
+  height: 335px;
+  overflow: hidden;
+  background: #F2F2F2;
+}
+
+.craft-cell img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
