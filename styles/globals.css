@@ -1,5 +1,13 @@
 /* frontend/styles/globals.css */
 
+@font-face {
+  font-family: "Times New Roman MT Condensed";
+  src: url("/fonts/times-new-roman-mt-condensed.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html, body {
   padding: 0;
   margin: 0;
@@ -7,30 +15,18 @@ html, body {
   color: #161616;
 }
 
-/* Чтобы scaleX работал красиво и не ломал ширины блоков */
-body {
-  overflow-x: hidden;
-}
+body { overflow-x: hidden; }
 
 * { box-sizing: border-box; }
 
 /* =========================
-   FIGMA FONT SYSTEM
+   TOKENS
    ========================= */
 
-/*
-  “Times New Roman Condensed” в вебе нет как стандартного шрифта.
-  Поэтому делаем максимально близко к Figma:
-  - базовый шрифт Times New Roman
-  - сжатие по X через scaleX
-  - letter-spacing как в макете
-*/
-
-/* Коэффициенты сжатия (можно подогнать, если нужно ещё уже/шире) */
 :root{
-  --font-condense-body: 0.86;   /* основной текст */
-  --font-condense-head: 0.82;   /* заголовки */
-  --font-condense-ui:   0.86;   /* навигация/мета */
+  --font-condense-body: 1;
+  --font-condense-head: 1;
+  --font-condense-ui:   1;
 
   --color-text: #161616;
   --color-secondary: #7D7D7D;
@@ -38,14 +34,13 @@ body {
 
   --color-highlight: #FDFF45;
 
+  /* ВАЖНО: фиксированные отступы, не зависят от ширины экрана */
   --page-padding: 20px;
   --page-width: 1366px;
 
-  /* ВЕЗДЕ Times */
-  --h-font: "Times New Roman", Times, serif;
-  --b-font: "Times New Roman", Times, serif;
+  --h-font: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
+  --b-font: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
 
-  /* типографика как у тебя */
   --h-size: 50px;
   --h-line: 48px;
   --h-letter: -1px;
@@ -61,500 +56,213 @@ body {
   --hero-highlight-top: 414px;
   --hero-highlight-height: 334px;
   --hero-highlight-padding-y: 26px;
-  --hero-highlight: var(--color-highlight);
+  --hero-highlight-padding-x: 20px;
 
-  /* COURSE defaults */
-  --course-height: 1100px;
-  --course-meta-top: 220px;
-  --course-title-top: 364px;
-  --course-cover-top: 455px;
-  --course-cover-height: 600px;
-  --course-bottomline-top: 1075px;
+  /* COURSE */
+  --course-height: 768px;
+
+  /* COMPANY */
+  --company-height: 768px;
+  --company-padding-top: 60px;
+
+  /* CRAFT */
+  --craft-height: 768px;
+  --craft-padding-top: 60px;
 }
 
-/* Глобально: весь текст — Times */
-body {
-  background: #fff;
-  color: var(--color-text);
-  font-family: var(--b-font);
-  -webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-rendering: optimizeLegibility;
+html, body { font-family: var(--b-font); }
 
-}
-
-/* Принудительное наследование шрифта */
-* {
-  font-family: inherit;
-}
-
-/* Убираем стили ссылок */
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-
-/* =========================
-   CONDENSED EFFECT (Figma-like)
-   ========================= */
-
-/* Важно: scaleX влияет на ширину, поэтому задаём inline-block */
-.condensed {
-  display: inline-block;
-  transform: scaleX(var(--font-condense-body));
-  transform-origin: left center;
-}
-
-/* UI-текст чуть менее сжат */
-.condensed-ui {
-  display: inline-block;
-  transform: scaleX(var(--font-condense-ui));
-  transform-origin: left center;
-}
-
-/* Заголовки сильнее сжаты */
-.condensed-head {
-  display: inline-block;
-  transform: scaleX(var(--font-condense-head));
-  transform-origin: left center;
-}
-
-/*
-  Автоматически применяем “condensed” к типовым Figma классам
-  (у тебя они уже используются в компонентах)
-*/
 .figma-header {
   font-family: var(--h-font);
-  font-weight: 500;
   font-size: var(--h-size);
   line-height: var(--h-line);
   letter-spacing: var(--h-letter);
-  text-transform: lowercase;
-  margin: 0;
-  white-space: pre-line;
-
-  display: inline-block;
   transform: scaleX(var(--font-condense-head));
   transform-origin: left center;
 }
 
 .figma-text {
   font-family: var(--b-font);
-  font-weight: 400;
   font-size: var(--t-size);
   line-height: var(--t-line);
   letter-spacing: var(--t-letter);
-  text-transform: lowercase;
-  margin: 0;
-
-  display: inline-block;
   transform: scaleX(var(--font-condense-body));
   transform-origin: left center;
 }
 
 .figma-text--secondary { color: var(--color-secondary); }
 
-/* Навигация/мета — тоже condensed, но чуть мягче */
-.nav-link,
-.projects-meta,
-.course-meta,
-.company-meta,
-.craft-meta,
-.footer-links {
-  display: inline-block;
+/* =========================
+   LAYOUT: единая рамка для всех секций
+   ========================= */
+
+.frame{
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+}
+
+/* секция может быть full-bleed по фону, но контент всегда внутри .frame */
+.section { width: 100%; }
+.section > .frame { position: relative; }
+
+/* =========================
+   HEADER / NAV
+   ========================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #fff;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px var(--page-padding);
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+.nav-link{
+  font-family: var(--b-font);
+  font-size: var(--t-size);
+  line-height: var(--t-line);
+  letter-spacing: var(--t-letter);
+  color: var(--color-text);
+  text-decoration: none;
   transform: scaleX(var(--font-condense-ui));
   transform-origin: left center;
 }
 
 /* =========================
-   ====== контейнеры ======
+   HERO (фикс отступов на широких экранах)
    ========================= */
 
-.frame {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
-  position: relative;
-}
-
-.canvas {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
-
-.frame-1366 {
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
-  position: relative;
-}
-
-/* HEADER */
-.header {
-  position: absolute;
-  top: var(--page-padding);
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-/* HERO (desktop/tablet/mobile driven by CSS vars from Strapi) */
-.hero {
+.hero{
   position: relative;
   height: var(--hero-height);
-  background: #fff;
 }
 
-.hero-layer { height: 100%; }
+/* координатная система hero — это .frame, а не окно */
+.hero > .frame{
+  position: relative;
+  height: 100%;
+}
 
-/* absolute внутри canvas (координаты как в Figma) */
-.hero-intro {
+.hero-intro{
   position: absolute;
   top: var(--hero-intro-top);
-  left: var(--hero-pad);
+  left: 0;
   width: var(--hero-text-width);
 }
 
-/* жёлтый фон на всю ширину hero */
-.hero-highlight {
+/* желтая плашка на всю ширину, но текст внутри frame */
+.hero-highlight{
   position: absolute;
   top: var(--hero-highlight-top);
   left: 0;
   right: 0;
   height: var(--hero-highlight-height);
-  background: var(--hero-highlight);
-  padding: var(--hero-highlight-padding-y) 0;
-}
-
-.hero-highlight-row {
-  height: 100%;
+  background: var(--color-highlight);
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
-.hero-highlight-inner { width: var(--hero-text-width); }
-
-/* hero typography (берём размеры из vars) */
-.hero-h {
-  font-family: var(--h-font);
-  font-weight: 500;
-  font-size: var(--hero-h-size);
-  line-height: var(--hero-h-line);
-  letter-spacing: var(--hero-h-letter);
-  text-transform: lowercase;
-  margin: 0;
-  white-space: pre-line;
+.hero-highlight > .frame{
+  height: 100%;
+  position: relative;
+  padding-top: var(--hero-highlight-padding-y);
+  padding-bottom: var(--hero-highlight-padding-y);
 }
-/* COURSE */
-.course {
+
+.hero-highlight-inner{
+  width: 100%;
+  height: 100%;
+  padding-left: var(--hero-highlight-padding-x);
+  padding-right: var(--hero-highlight-padding-x);
+}
+
+/* =========================
+   PROJECTS / META
+   ========================= */
+.projects { padding-bottom: 40px; }
+
+.projects-meta{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+/* =========================
+   COMPANY SECTION
+   ========================= */
+.company-section{
+  position: relative;
+  height: var(--company-height);
+  border-top: 1px solid var(--color-line);
+  margin-top: 16px;
+}
+
+.company-inner{
+  position: relative;
+  height: 100%;
+  padding-top: var(--company-padding-top);
+}
+
+.company-title{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.company-tags{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag{
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-family: var(--b-font);
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: -0.48px;
+  transform: scaleX(var(--font-condense-ui));
+  transform-origin: left center;
+}
+
+/* slots for PNG from Strapi */
+.frame-slot{
+  position: absolute;
+  overflow: hidden;
+}
+
+.frame-slot img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================
+   COURSE SECTION
+   ========================= */
+.course{
   position: relative;
   height: var(--course-height);
-  background: #fff;
-}
-.course-layer { height: 100%; }
-
-.course-meta {
-  position: absolute;
-  top: var(--course-meta-top);
-  left: var(--page-padding);
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
-}
-
-.course-title-wrap {
-  position: absolute;
-  top: var(--course-title-top);
-  left: var(--page-padding);
-  width: calc(var(--page-width) - (var(--page-padding) * 2));
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.course-cover {
-  position: absolute;
-  top: var(--course-cover-top);
-  left: var(--page-padding);
-  right: var(--page-padding);
-  height: var(--course-cover-height);
-  background: #f3f3f3;
-  overflow: hidden;
-}
-.course-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.course-bottomline {
-  position: absolute;
-  top: var(--course-bottomline-top);
-  left: var(--page-padding);
-  right: var(--page-padding);
   border-top: 1px solid var(--color-line);
-  padding-top: 5px;
-}
-.course-bottomline-row {
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
 }
 
-/* COMPANY sections */
-.company {
+.course-inner{
   position: relative;
-  width: 100%;
-  max-width: var(--page-width);
-  margin: 0 auto;
-  background: #fff;
-}
-
-.company-layer { position: relative; }
-
-.company-title {
-  position: absolute;
-  left: var(--page-padding);
-  top: 124px;
-  width: 653px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.company-meta {
-  position: absolute;
-  height: 25px;
-  border-top: 1px solid var(--color-line);
-  padding-top: 5px;
-}
-.company-meta-row {
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
-}
-
-.company-frame {
-  position: absolute;
-  overflow: hidden;
-}
-.company-frame img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
-.company-frame--cover { display: none; }
-
-/* EMEX */
-.company--emex { height: 905px; }
-.company--emex .company-meta--top {
-  width: 337px;
-  left: 20px;
-  top: 215px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-}
-.company--emex .company-meta--bottom {
-  width: 337px;
-  left: 356.5px;
-  top: 570px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-}
-.company--emex .company-frame--right {
-  width: 653px;
-  height: 690px;
-  left: 693px;
-  top: 215px;
-}
-.company--emex .company-frame--left {
-  width: 316.5px;
-  height: 335px;
-  left: 356.5px;
-  top: 215px;
-  background: #F3F3F3;
-}
-
-/* SBERBANK */
-.company--sberbank { height: 1029px; }
-.company--sberbank .company-title { width: 1326px; }
-.company--sberbank .company-meta--top {
-  width: 336px;
-  left: 673.5px;
-  top: 215px;
-  padding-left: 20px;
-}
-.company--sberbank .company-meta--bottom {
-  width: 336px;
-  left: 1010px;
-  top: 570px;
-  padding-left: 20px;
-}
-.company--sberbank .company-frame--left {
-  width: 653px;
-  height: 690px;
-  left: 20px;
-  top: 215px;
-  background: #F3F3F3;
-}
-.company--sberbank .company-frame--right {
-  width: 517.1px;
-  height: 1126px;
-  left: 424.5px;
-  top: 86px;
-}
-
-/* CLOUDPAYMENTS */
-.company--cloudpayments { height: 550px; }
-.company--cloudpayments .company-title { width: 1326px; }
-.company--cloudpayments .company-meta--top {
-  width: 336px;
-  left: 20px;
-  top: 215px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
-}
-.company--cloudpayments .company-meta--bottom {
-  width: 336px;
-  left: 1010px;
-  top: 215px;
-  padding-left: 20px;
-}
-.company--cloudpayments .company-frame--left {
-  width: 653px;
-  height: 335px;
-  left: 20px;
-  top: 215px;
-  background: #0B1E46;
-}
-.company--cloudpayments .company-frame--right {
-  width: 653px;
-  height: 335px;
-  left: 693px;
-  top: 215px;
-  background: #E2E8EF;
-}
-
-/* CRAFT */
-.craft {
-  position: relative;
-  height: 950px;
-  background: #fff;
-}
-.craft-layer { height: 100%; }
-
-.craft-meta {
-  position: absolute;
-  left: 20px;
-  top: 220px;
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
-}
-.craft-grid {
-  position: absolute;
-  left: 20px;
-  top: 260px;
-  display: grid;
-  grid-template-columns: repeat(3, 428.67px);
-  grid-auto-rows: 335px;
-  gap: 20px;
-}
-.craft-cell {
-  width: 428.67px;
-  height: 335px;
-  overflow: hidden;
-}
-.craft-cell img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* FOOTER */
-.footer {
-  position: relative;
-  height: 291px;
-  background: #fff;
-}
-.footer-layer { padding-top: 124px; }
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-/* Tablet/Mobile */
-@media (max-width: 1024px) {
-  .course, .craft, .company { height: auto !important; }
-
-  .course-meta,
-  .course-title-wrap,
-  .course-cover,
-  .course-bottomline,
-  .company-title,
-  .company-meta,
-  .company-frame,
-  .craft-meta,
-  .craft-grid {
-    position: static !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .projects-meta { margin-top: 24px; }
-
-  .course { margin-top: 12px; }
-  .course-meta { margin-top: 16px; }
-  .course-title-wrap { margin-top: 8px; }
-  .course-cover { margin-top: 16px; overflow: hidden; }
-  .course-cover img { height: auto; }
-  .course-bottomline { margin-top: 16px; }
-
-  .company { margin-top: 60px; }
-  .company-title { margin-top: 24px; }
-  .company-meta { margin-top: 16px; border-top: 1px solid var(--color-line); padding-top: 8px; }
-  .company-frame { margin-top: 16px; }
-  .company-frame img { height: auto; }
-
-  .craft { margin-top: 60px; }
-  .craft-meta { margin-top: 16px; }
-  .craft-grid {
-    margin-top: 16px;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-  .craft-cell { width: 100%; height: auto; }
-  .craft-cell img { height: auto; }
-}
-
-@media (max-width: 640px) {
-  .craft-grid { grid-template-columns: 1fr; }
-  :root {
-    --h-size: 40px;
-    --h-line: 40px;
-    --t-size: 14px;
-    --t-line: 18px;
-  }
-  .hero-intro { width: 100%; }
-  .hero-highlight-inner { width: 100%; }
-}
+/* =========================
+   CRAFT GR

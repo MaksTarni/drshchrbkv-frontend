@@ -1,24 +1,33 @@
-// frontend/pages/index.js
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import CompanySection from "../components/CompanySection";
+import CourseSection from "../components/CourseSection";
+import CraftGrid from "../components/CraftGrid";
 
-import { getSiteSettings, getCompanies, getHero } from "../lib/api";
+import {
+  getSiteSettings,
+  getCompanies,
+  getHero,
+  getCourse,
+  getCraftItems,
+} from "../lib/api";
 
-export default function Home({ settings, hero, companies, error }) {
+export default function Home({
+  settings,
+  hero,
+  companies,
+  course,
+  craftItems,
+  error,
+}) {
   const accent = settings?.accentColor || "#FDFF45";
 
   if (error) {
     return (
       <main style={{ padding: 24, fontFamily: "system-ui, sans-serif" }}>
-        <h1 style={{ fontSize: 18, marginBottom: 12 }}>Frontend is running ✅</h1>
+        <h1>Frontend is running ✅</h1>
         <pre style={{ whiteSpace: "pre-wrap" }}>{error}</pre>
-        <p style={{ marginTop: 12, opacity: 0.7 }}>
-          Проверь в Vercel: Project → Settings → Environment Variables
-          <br />
-          <b>NEXT_PUBLIC_STRAPI_URL</b> = https://cms.drshchrbkv.com
-        </p>
       </main>
     );
   }
@@ -29,7 +38,7 @@ export default function Home({ settings, hero, companies, error }) {
       <Hero hero={hero} accent={accent} />
 
       {/* projects */}
-      <section id="projects" className="projects">
+      <section id="projects" className="projects section">
         <div className="frame">
           <div className="projects-meta">
             <div className="figma-text">
@@ -40,11 +49,13 @@ export default function Home({ settings, hero, companies, error }) {
             </div>
           </div>
 
-          <div style={{ borderTop: "1px solid var(--color-line)", marginTop: 16 }} />
-
           {(companies || []).map((c) => (
             <CompanySection key={c.id} company={c} />
           ))}
+
+          <CourseSection course={course} />
+
+          <CraftGrid items={craftItems} />
         </div>
       </section>
 
@@ -55,32 +66,22 @@ export default function Home({ settings, hero, companies, error }) {
 
 export async function getServerSideProps() {
   try {
-    const [settings, hero, companies] = await Promise.all([
-      getSiteSettings(),
-      getHero(),
-      getCompanies(),
-    ]);
-
-    if (!settings) {
-      return {
-        props: {
-          settings: null,
-          hero: null,
-          companies: [],
-          error:
-            "No site-setting data from Strapi.\n" +
-            "1) Strapi должен быть доступен\n" +
-            "2) site-setting должен быть Published\n" +
-            "3) NEXT_PUBLIC_STRAPI_URL должен быть задан",
-        },
-      };
-    }
+    const [settings, hero, companies, course, craftItems] =
+      await Promise.all([
+        getSiteSettings(),
+        getHero(),
+        getCompanies(),
+        getCourse(),
+        getCraftItems(),
+      ]);
 
     return {
       props: {
         settings,
         hero,
-        companies: companies || [],
+        companies,
+        course,
+        craftItems,
         error: null,
       },
     };
@@ -90,7 +91,9 @@ export async function getServerSideProps() {
         settings: null,
         hero: null,
         companies: [],
-        error: `SSR error:\n${String(e?.message || e)}`,
+        course: null,
+        craftItems: [],
+        error: String(e?.message || e),
       },
     };
   }

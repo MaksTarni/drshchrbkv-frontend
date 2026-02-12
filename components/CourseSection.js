@@ -1,56 +1,69 @@
 // frontend/components/CourseSection.js
 import { getMediaUrl } from "../lib/api";
 
+const DEFAULT_FRAME = {
+  top: 455,
+  left: 20,
+  width: 1326,
+  height: 600,
+  zIndex: 2,
+  objectFit: "cover",
+};
+
+function resolveSlot(slot, defaults) {
+  if (!slot) return null;
+
+  return {
+    imageUrl: getMediaUrl(slot.image),
+    top: slot.top ?? defaults.top,
+    left: slot.left ?? defaults.left,
+    width: slot.width ?? defaults.width,
+    height: slot.height ?? defaults.height,
+    zIndex: slot.zIndex ?? defaults.zIndex ?? 1,
+    objectFit: slot.objectFit ?? defaults.objectFit ?? "cover",
+  };
+}
+
 export default function CourseSection({ course }) {
   if (!course) return null;
 
-  const metaLeft = (course.metaLeft || "").trim();
-  const metaRight = (course.metaRight || "").trim();
+  const metaLeft = course.metaLeft || "courses";
+  const metaRight = course.metaRight || "";
+  const title = course.title || "design mentor";
+  const subtitle = course.subtitle || "";
 
-  const title = (course.title || "").trim();
-  const subtitle = (course.subtitle || "").trim();
-
-  const bottomLeft = (course.bottomLeft || "").trim();
-  const bottomRight = (course.bottomRight || "").trim();
-
-  const cover = getMediaUrl(course.coverImage);
-
-  const vars = {
-    "--course-height": `${Number(course.sectionHeight ?? 1100)}px`,
-    "--course-meta-top": `${Number(course.metaTop ?? 220)}px`,
-    "--course-title-top": `${Number(course.titleTop ?? 364)}px`,
-    "--course-cover-top": `${Number(course.coverTop ?? 455)}px`,
-    "--course-cover-height": `${Number(course.coverHeight ?? 600)}px`,
-    "--course-bottomline-top": `${Number(course.bottomLineTop ?? 1075)}px`,
-  };
+  const frame = resolveSlot(course.courseFrame, DEFAULT_FRAME);
 
   return (
-    <section className="course" style={vars}>
-      <div className="canvas course-layer">
-        {(metaLeft || metaRight) ? (
-          <div className="course-meta">
-            {metaLeft ? <div className="figma-text">{metaLeft}</div> : null}
-            {metaRight ? (
-              <div className="figma-text figma-text--secondary">{metaRight}</div>
-            ) : null}
-          </div>
-        ) : null}
+    <section className="course">
+      <div className="course-inner">
+        <div className="projects-meta">
+          <div className="figma-text">{metaLeft}</div>
+          <div className="figma-text figma-text--secondary">{metaRight}</div>
+        </div>
 
-        <div className="course-title-wrap">
-          <div className="figma-header">{title}</div>
+        <div className="hero-intro" style={{ top: 60 }}>
+          <div className="figma-header" style={{ marginBottom: 18 }}>
+            {title}
+          </div>
           <div className="figma-text figma-text--secondary">{subtitle}</div>
         </div>
 
-        <div className="course-cover">
-          {cover ? <img src={cover} alt={title} /> : null}
-        </div>
-
-        <div className="course-bottomline">
-          <div className="course-bottomline-row">
-            <div className="figma-text">{bottomLeft}</div>
-            <div className="figma-text figma-text--secondary">{bottomRight}</div>
+        {/* PNG slot */}
+        {frame?.imageUrl ? (
+          <div
+            className="frame-slot"
+            style={{
+              top: frame.top,
+              left: frame.left,
+              width: frame.width,
+              height: frame.height,
+              zIndex: frame.zIndex,
+            }}
+          >
+            <img src={frame.imageUrl} alt="Course frame" style={{ objectFit: frame.objectFit }} />
           </div>
-        </div>
+        ) : null}
       </div>
     </section>
   );
