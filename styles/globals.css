@@ -24,27 +24,30 @@ html, body {
   --color-highlight: #FDFF45;
 
   --indent-m: 20px;
+  --indent-l: 124px;
+  --indent-xl: 220px;
 
   --font-family-header: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
   --font-size-header: 50px;
   --font-line-height-header: 48px;
   --font-tracking-header: -1px;
 
-  /* scale only PNG */
   --png-scale: 1;
 }
 
-html, body { font-family: var(--font-family-header); }
-body { overflow-x: hidden; }
-
-/* Убираем дефолтную жирность/маржины у заголовков */
-h1,h2,h3,h4,h5,h6{
-  margin: 0;
-  font-weight: 500;
+html, body {
   font-family: var(--font-family-header);
 }
 
-/* Перенос строк по словам (и для title string/text, и для blocks) */
+body { overflow-x: hidden; }
+
+/* Reset */
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  font-weight: 400; /* safer for this OTF */
+  font-family: var(--font-family-header);
+}
+
 .figma-header,
 .figma-text{
   white-space: normal;
@@ -52,120 +55,124 @@ h1,h2,h3,h4,h5,h6{
   overflow-wrap: anywhere;
 }
 
-/* Figma header style */
 .figma-header{
-  color: var(--color-text-primary);
-  font-family: var(--font-family-header);
   font-size: var(--font-size-header);
-  font-style: normal;
-  font-weight: 500;
   line-height: var(--font-line-height-header);
   letter-spacing: var(--font-tracking-header);
   text-transform: lowercase;
+  font-weight: 400;
 }
 
-/* базовый текст (пока оставляем таким же шрифтом, позже уточним body из Figma) */
 .figma-text{
-  color: var(--color-text-primary);
-  font-family: var(--font-family-header);
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 20px;
   letter-spacing: -0.48px;
+  text-transform: lowercase;
 }
 
 .figma-text--secondary { color: var(--color-text-secondary); }
 
-/* =========================
-   Full-width container
-   ========================= */
-.frame{
-  width: 100%;
-  padding-left: var(--indent-m);
-  padding-right: var(--indent-m);
-  margin: 0;
-}
-
-.section{ width: 100%; }
-
-/* =========================
-   Header
-   ========================= */
-.header{ position: sticky; top: 0; z-index: 20; background: #fff; }
-
-.nav{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding-top: var(--indent-m);
-  padding-bottom: var(--indent-m);
-}
-
-.nav-link{
-  color: var(--color-text-primary);
-  text-decoration: none;
-  text-transform: lowercase;
-}
-
-/* =========================
-   HERO (1:1 from Figma)
-   ========================= */
-.hero{
-  width: 100%;
-}
+/* ======================================================
+   HERO
+   ====================================================== */
 
 .hero-grid{
-  display: grid;
+  display: inline-grid;
   height: 768px;
-  padding: var(--indent-m, 20px);
-  row-gap: var(--indent-m, 20px);
-  column-gap: var(--indent-m, 20px);
-  align-self: stretch;
+  padding: var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
   grid-template-rows: fit-content(100%) minmax(0, 1fr) minmax(0, 1fr);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  background: #FFFFFF;
-}
-
-.hero-topline{
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  border-top: 1px solid var(--color-line);
-}
-
-.hero-title{
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  align-self: start;
-}
-
-.hero-empty{
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-}
-
-.hero-highlight-left{
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
-  background: var(--color-highlight);
-  display: flex;
-  align-items: flex-start;
-}
-
-.hero-highlight-right{
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-  background: var(--color-highlight);
-}
-
-.hero-highlight-inner{
-  padding: 26px 20px;
   width: 100%;
 }
 
-/* =========================
-   PNG slots (scaled)
-   ========================= */
+/* ======================================================
+   COMPANY — EMEX
+   ====================================================== */
+
+.company-emex{
+  display: inline-grid;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-rows: fit-content(100%) fit-content(100%) 335px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+/* ======================================================
+   COMPANY — SBERBANK
+   ====================================================== */
+
+.company-sberbank{
+  display: inline-grid;
+  padding: var(--indent-l) var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-rows: fit-content(100%) 335px fit-content(100%);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+/* ======================================================
+   COMPANY — CLOUDPAYMENTS
+   ====================================================== */
+
+.company-cloudpayments{
+  display: inline-grid;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-rows: repeat(2, fit-content(100%));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+/* ======================================================
+   COURSE
+   ====================================================== */
+
+.course-grid{
+  display: inline-grid;
+  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-rows: fit-content(100%) 84px fit-content(100%) fit-content(100%) fit-content(100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+
+/* ======================================================
+   CRAFT
+   ====================================================== */
+
+.craft-grid{
+  display: inline-grid;
+  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  grid-template-rows: fit-content(100%) 335px 335px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
+.footer{
+  display: flex;
+  padding: var(--indent-l) var(--indent-m);
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ======================================================
+   PNG scaling (unchanged)
+   ====================================================== */
+
 .frame-slot{
   position: absolute;
   overflow: hidden;
@@ -182,5 +189,4 @@ h1,h2,h3,h4,h5,h6{
   width: 100%;
   height: 100%;
   object-fit: var(--slot-fit, cover);
-  display: block;
 }
