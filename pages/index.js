@@ -2,9 +2,7 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
-import CompanySection from "../components/CompanySection";
-import CourseSection from "../components/CourseSection";
-import CraftGrid from "../components/CraftGrid";
+import ProjectsGrid from "../components/ProjectsGrid";
 
 import {
   getSiteSettings,
@@ -14,14 +12,7 @@ import {
   getCraftItems,
 } from "../lib/api";
 
-export default function Home({
-  settings,
-  hero,
-  companies,
-  course,
-  craftItems,
-  error,
-}) {
+export default function Home({ settings, hero, companies, course, craftItems, error }) {
   const accent = settings?.accentColor || "#FDFF45";
 
   if (error) {
@@ -37,31 +28,12 @@ export default function Home({
     <div style={{ "--color-highlight": accent }}>
       <Header settings={settings} />
       <Hero hero={hero} accent={accent} />
-
-      {/* projects */}
-      <section id="projects" className="projects section">
-        {/* Meta line (оставляем в frame только это) */}
-        <div className="frame">
-          <div className="projects-meta">
-            <div className="figma-text">
-              {settings?.projectsMetaLeft || "professional projects"}
-            </div>
-            <div className="figma-text figma-text--secondary">
-              {settings?.projectsMetaRight || ""}
-            </div>
-          </div>
-        </div>
-
-        {/* Companies / Course / Craft — каждая секция сама задаёт padding/top по Figma */}
-        {(companies || []).map((c) => (
-          <CompanySection key={c.id} company={c} />
-        ))}
-
-        <CourseSection course={course} />
-
-        <CraftGrid items={craftItems} />
-      </section>
-
+      <ProjectsGrid
+        settings={settings}
+        companies={companies}
+        course={course}
+        craftItems={craftItems}
+      />
       <Footer settings={settings} />
     </div>
   );
