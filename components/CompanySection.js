@@ -1,81 +1,65 @@
 // frontend/components/CompanySection.js
 import { getMediaUrl } from "../lib/api";
 
-const DEFAULTS = {
-  frameA: { top: 215, left: 20, width: 653, height: 690, zIndex: 2, objectFit: "cover" },
-  frameB: { top: 215, left: 693, width: 653, height: 690, zIndex: 2, objectFit: "cover" },
-};
-
-function resolveSlot(slot, defaults) {
-  if (!slot) return null;
-
-  return {
-    imageUrl: getMediaUrl(slot.image),
-    top: slot.top ?? defaults.top,
-    left: slot.left ?? defaults.left,
-    width: slot.width ?? defaults.width,
-    height: slot.height ?? defaults.height,
-    zIndex: slot.zIndex ?? defaults.zIndex ?? 1,
-    objectFit: slot.objectFit ?? defaults.objectFit ?? "cover",
-  };
+function getCompanyClass(company) {
+  const v = (company?.variant || "").toLowerCase();
+  if (v === "emex") return "company-emex";
+  if (v === "sberbank") return "company-sberbank";
+  if (v === "cloudpayments") return "company-cloudpayments";
+  // fallback
+  return "company-emex";
 }
 
 export default function CompanySection({ company }) {
+  if (!company) return null;
+
   const title = company?.title || "";
   const subtitle = company?.subtitle || "";
   const tagA = company?.tagA;
   const tagB = company?.tagB;
 
-  const a = resolveSlot(company?.frameA, DEFAULTS.frameA);
-  const b = resolveSlot(company?.frameB, DEFAULTS.frameB);
+  const frameAUrl = getMediaUrl(company?.frameA?.image);
+  const frameBUrl = getMediaUrl(company?.frameB?.image);
+
+  const cls = getCompanyClass(company);
 
   return (
-    <section className="company-section">
-      <div className="company-inner">
-        <div className="company-title">
-          <div className="figma-text">{title}</div>
-          <div className="figma-text figma-text--secondary">{subtitle}</div>
-        </div>
-
-        {(tagA || tagB) ? (
-          <div className="company-tags">
-            {tagA ? <span className="tag">{tagA}</span> : null}
-            {tagB ? <span className="tag">{tagB}</span> : null}
-          </div>
-        ) : null}
-
-        {a?.imageUrl ? (
-          <div
-            className="frame-slot"
-            style={{
-              "--slot-top": `${a.top}px`,
-              "--slot-left": `${a.left}px`,
-              "--slot-w": `${a.width}px`,
-              "--slot-h": `${a.height}px`,
-              "--slot-z": a.zIndex,
-              "--slot-fit": a.objectFit,
-            }}
-          >
-            <img src={a.imageUrl} alt={`${title} frame A`} />
-          </div>
-        ) : null}
-
-        {b?.imageUrl ? (
-          <div
-            className="frame-slot"
-            style={{
-              "--slot-top": `${b.top}px`,
-              "--slot-left": `${b.left}px`,
-              "--slot-w": `${b.width}px`,
-              "--slot-h": `${b.height}px`,
-              "--slot-z": b.zIndex,
-              "--slot-fit": b.objectFit,
-            }}
-          >
-            <img src={b.imageUrl} alt={`${title} frame B`} />
-          </div>
-        ) : null}
+    <section className={cls} aria-label={title || "company"}>
+      {/* row 1: title left, subtitle right */}
+      <div className="company-title">
+        <div className="figma-header">{title}</div>
       </div>
+
+      <div className="company-subtitle">
+        <div className="figma-text figma-text--secondary">{subtitle}</div>
+      </div>
+
+      {/* row 2: tags (как pills) */}
+      {(tagA || tagB) ? (
+        <div className="company-tags">
+          {tagA ? <span className="tag">{tagA}</span> : null}
+          {tagB ? <span className="tag">{tagB}</span> : null}
+        </div>
+      ) : (
+        <div />
+      )}
+
+      {/* row 3 (emex): media left (cols 1-2) and right (cols 3-4) */}
+      {frameAUrl ? (
+        <div className="company-media" style={{ gridColumn: "1 / 3" }}>
+          <img src={frameAUrl} alt={`${title} frame A`} />
+        </div>
+      ) : (
+        <div style={{ gridColumn: "1 / 3" }} />
+      )}
+
+      {frameBUrl ? (
+        <div className="company-media" style={{ gridColumn: "3 / 5" }}>
+          <img src={frameBUrl} alt={`${title} frame B`} />
+        </div>
+      ) : (
+        <div style={{ gridColumn: "3 / 5" }} />
+      )}
     </section>
   );
 }

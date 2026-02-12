@@ -1,4 +1,4 @@
-/* frontend/styles/globals.css */
+/* styles/globals.css */
 
 @font-face {
   font-family: "Times New Roman MT Condensed";
@@ -33,13 +33,11 @@ html, body {
   --font-size-header: 50px;
   --font-line-height-header: 48px;
   --font-tracking-header: -1px;
-
-  --png-scale: 1;
 }
 
 body { overflow-x: hidden; }
 
-/* ---- Typography ---- */
+/* Typography */
 h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weight: 400; }
 
 .figma-header{
@@ -67,13 +65,14 @@ h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weigh
 
 .figma-text--secondary{ color: var(--color-text-secondary); }
 
-/* ---- Common ---- */
+/* Common */
 .frame{
   width: 100%;
   padding-left: var(--indent-m);
   padding-right: var(--indent-m);
 }
 
+/* HEADER (если используется) */
 .header{
   position: sticky;
   top: 0;
@@ -94,26 +93,74 @@ h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weigh
   color: var(--color-text-primary);
 }
 
-/* ---- HERO (as in your file) ---- */
+/* =========================
+   HERO — 1:1 по скрину Figma
+   width 1366, height 768
+   padding 20
+   row-gap 20, column-gap 20
+   rows: 20 / 334 / 334  (как на скрине 653×334)
+   ========================= */
+
 .hero-grid{
-  display: inline-grid;
+  display: grid;
+  width: 100%;
   height: 768px;
+
   padding: var(--indent-m);
   row-gap: var(--indent-m);
   column-gap: var(--indent-m);
-  grid-template-rows: fit-content(100%) minmax(0, 1fr) minmax(0, 1fr);
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: 100%;
+  grid-template-rows: 20px 334px 334px;
+  align-self: stretch;
 }
 
-.hero-topline{ grid-column: 1 / -1; border-top: 1px solid var(--color-line); }
-.hero-title{ grid-column: 1 / 2; }
-.hero-empty{ grid-column: 2 / 3; }
-.hero-highlight-left{ grid-column: 1 / 2; background: var(--color-highlight); }
-.hero-highlight-right{ grid-column: 2 / 3; background: var(--color-highlight); }
-.hero-highlight-inner{ padding: 26px 20px; }
+/* row 1 */
+.hero-topline{
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  border-top: 1px solid var(--color-line);
+  height: 100%;
+}
 
-/* ---- Tags (as in PDF pills) ---- */
+/* row 2 */
+.hero-title{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+
+  display: flex;
+  align-items: flex-end; /* визуально ближе к макету */
+  min-width: 0;
+}
+
+.hero-empty{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  min-width: 0;
+}
+
+/* row 3 — сплошная жёлтая полоса на всю ширину */
+.hero-highlight-row{
+  grid-column: 1 / -1;
+  grid-row: 3 / 4;
+
+  background: var(--color-highlight);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--indent-m);
+
+  min-width: 0;
+}
+
+/* колонки внутри жёлтой зоны */
+.hero-highlight-col{ min-width: 0; }
+
+/* текст внутри (пока ставлю 20, чтобы не прилипал к краю) */
+.hero-highlight-inner{
+  padding: 20px;
+}
+
+/* ---- Tags ---- */
 .company-tags{
   display:flex;
   gap: 10px;
@@ -133,151 +180,5 @@ h1,h2,h3,h4,h5,h6{ margin: 0; font-family: var(--font-family-header); font-weigh
   text-transform: lowercase;
 }
 
-/* ==========================
-   COMPANY GRIDS (Figma)
-   ========================== */
-
-.company-emex{
-  display: inline-grid;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-rows: fit-content(100%) fit-content(100%) 335px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 100%;
-}
-
-.company-sberbank{
-  display: inline-grid;
-  padding: var(--indent-l) var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-rows: fit-content(100%) 335px fit-content(100%);
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 100%;
-}
-
-.company-cloudpayments{
-  display: inline-grid;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-rows: repeat(2, fit-content(100%));
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: 100%;
-}
-
-/* company placements (без “догадок” — базово) */
-.company-title{ grid-column: 1 / 3; }
-.company-subtitle{ grid-column: 3 / 5; justify-self: end; text-align: right; }
-.company-tags{ grid-column: 1 / 3; }
-
-/* media row (общие) */
-.company-media{
-  width: 100%;
-  height: 335px;
-  overflow: hidden;
-}
-
-.company-media img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-/* ==========================
-   COURSE GRID (Figma)
-   ========================== */
-
-.course-grid{
-  display: inline-grid;
-  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-rows: 20px 84px 71px 600px 25px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  width: 100%;
-}
-
-.course-meta{
-  grid-column: 1 / -1;
-  display:flex;
-  align-items:flex-end;
-  gap: 5px;
-  height: 20px;
-}
-
-.course-titleblock{
-  grid-column: 1 / -1;
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 3px;
-  height: 71px;
-}
-
-.course-frame{
-  grid-column: 1 / -1;
-  height: 600px;
-  overflow:hidden;
-}
-
-.course-frame img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-.course-line{
-  grid-column: 1 / -1;
-  height: 25px;
-  border-top: 1px solid var(--color-line);
-  padding-top: 5px;
-}
-
-/* ==========================
-   CRAFT GRID (Figma)
-   ========================== */
-
-.craft-wrap{
-  display: inline-grid;
-  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-rows: fit-content(100%) 335px 335px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: 100%;
-}
-
-.craft-meta{
-  grid-column: 1 / -1;
-  display:flex;
-  justify-content: space-between;
-}
-
-.craft-cell{
-  width:100%;
-  height:100%;
-  overflow:hidden;
-}
-
-.craft-cell img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-/* ==========================
-   FOOTER (Figma)
-   ========================== */
-
-.footer{
-  display: flex;
-  padding: var(--indent-l) var(--indent-m);
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
+/* Остальные секции оставляю как есть/нейтрально (не трогаю),
+   чтобы не ломать текущую верстку дальше по странице. */

@@ -7,24 +7,20 @@ export default function CraftGrid({ items = [] }) {
     .slice(0, 6);
 
   return (
-    <section className="craft">
-      <div className="craft-inner">
-        <div className="projects-meta">
-          <div className="figma-text">craft</div>
-          <div className="figma-text figma-text--secondary">visual explorations</div>
-        </div>
-
-        <div className="craft-grid">
-          {list.map((it) => {
-            const src = getMediaUrl(it?.image);
-            return (
-              <div key={it.id} className="craft-cell">
-                {src ? <img src={src} alt="" /> : null}
-              </div>
-            );
-          })}
-        </div>
+    <section className="craft-wrap" aria-label="craft">
+      <div className="craft-meta">
+        <div className="figma-text">craft</div>
+        <div className="figma-text figma-text--secondary">always</div>
       </div>
+
+      {list.map((it) => {
+        const src = getMediaUrl(it?.image);
+        return (
+          <div key={it.id || it.documentId} className="craft-cell">
+            {src ? <img src={src} alt={it?.alt || ""} /> : null}
+          </div>
+        );
+      })}
     </section>
   );
 }

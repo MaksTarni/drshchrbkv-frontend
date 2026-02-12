@@ -1,4 +1,4 @@
-// frontend/components/Hero.js
+// components/Hero.js
 
 function blocksToPlainText(blocks) {
   if (!blocks) return "";
@@ -21,7 +21,11 @@ export default function Hero({ hero, accent }) {
   const highlightColor = hero?.highlightColor || accent || "#FDFF45";
 
   return (
-    <section className="hero section" id="index" style={{ "--color-highlight": highlightColor }}>
+    <section
+      className="hero section"
+      id="index"
+      style={{ "--color-highlight": highlightColor }}
+    >
       <div className="hero-grid">
         <div className="hero-topline" />
 
@@ -31,13 +35,16 @@ export default function Hero({ hero, accent }) {
 
         <div className="hero-empty" />
 
-        <div className="hero-highlight-left">
-          <div className="hero-highlight-inner">
-            <h2 className="figma-header">{highlightText}</h2>
+        {/* solid yellow row (spans both columns) */}
+        <div className="hero-highlight-row">
+          <div className="hero-highlight-col hero-highlight-col--left">
+            <div className="hero-highlight-inner">
+              <h2 className="figma-header">{highlightText}</h2>
+            </div>
           </div>
-        </div>
 
-        <div className="hero-highlight-right" />
+          <div className="hero-highlight-col hero-highlight-col--right" />
+        </div>
       </div>
     </section>
   );
