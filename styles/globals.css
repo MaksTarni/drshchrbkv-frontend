@@ -11,258 +11,176 @@
 html, body {
   padding: 0;
   margin: 0;
-  background: #fff;
+  background: #FFFFFF;
   color: #161616;
 }
 
-body { overflow-x: hidden; }
-
 * { box-sizing: border-box; }
 
-/* =========================
-   TOKENS
-   ========================= */
-
 :root{
-  --font-condense-body: 1;
-  --font-condense-head: 1;
-  --font-condense-ui:   1;
-
-  --color-text: #161616;
-  --color-secondary: #7D7D7D;
+  --color-text-primary: #161616;
+  --color-text-secondary: #7D7D7D;
   --color-line: #E5E5E5;
-
   --color-highlight: #FDFF45;
 
-  /* ВАЖНО: фиксированные отступы, не зависят от ширины экрана */
-  --page-padding: 20px;
-  --page-width: 1366px;
+  --indent-m: 20px;
 
-  --h-font: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
-  --b-font: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
+  --font-family-header: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
+  --font-size-header: 50px;
+  --font-line-height-header: 48px;
+  --font-tracking-header: -1px;
 
-  --h-size: 50px;
-  --h-line: 48px;
-  --h-letter: -1px;
-
-  --t-size: 16px;
-  --t-line: 20px;
-  --t-letter: -0.48px;
-
-  /* HERO defaults */
-  --hero-height: 768px;
-  --hero-text-width: 653px;
-  --hero-intro-top: 60px;
-  --hero-highlight-top: 414px;
-  --hero-highlight-height: 334px;
-  --hero-highlight-padding-y: 26px;
-  --hero-highlight-padding-x: 20px;
-
-  /* COURSE */
-  --course-height: 768px;
-
-  /* COMPANY */
-  --company-height: 768px;
-  --company-padding-top: 60px;
-
-  /* CRAFT */
-  --craft-height: 768px;
-  --craft-padding-top: 60px;
+  /* scale only PNG */
+  --png-scale: 1;
 }
 
-html, body { font-family: var(--b-font); }
+html, body { font-family: var(--font-family-header); }
+body { overflow-x: hidden; }
 
-.figma-header {
-  font-family: var(--h-font);
-  font-size: var(--h-size);
-  line-height: var(--h-line);
-  letter-spacing: var(--h-letter);
-  transform: scaleX(var(--font-condense-head));
-  transform-origin: left center;
+/* Убираем дефолтную жирность/маржины у заголовков */
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  font-weight: 500;
+  font-family: var(--font-family-header);
 }
 
-.figma-text {
-  font-family: var(--b-font);
-  font-size: var(--t-size);
-  line-height: var(--t-line);
-  letter-spacing: var(--t-letter);
-  transform: scaleX(var(--font-condense-body));
-  transform-origin: left center;
+/* Перенос строк по словам (и для title string/text, и для blocks) */
+.figma-header,
+.figma-text{
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
-.figma-text--secondary { color: var(--color-secondary); }
+/* Figma header style */
+.figma-header{
+  color: var(--color-text-primary);
+  font-family: var(--font-family-header);
+  font-size: var(--font-size-header);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--font-line-height-header);
+  letter-spacing: var(--font-tracking-header);
+  text-transform: lowercase;
+}
+
+/* базовый текст (пока оставляем таким же шрифтом, позже уточним body из Figma) */
+.figma-text{
+  color: var(--color-text-primary);
+  font-family: var(--font-family-header);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.48px;
+}
+
+.figma-text--secondary { color: var(--color-text-secondary); }
 
 /* =========================
-   LAYOUT: единая рамка для всех секций
+   Full-width container
    ========================= */
-
 .frame{
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
+  width: 100%;
+  padding-left: var(--indent-m);
+  padding-right: var(--indent-m);
+  margin: 0;
 }
 
-/* секция может быть full-bleed по фону, но контент всегда внутри .frame */
-.section { width: 100%; }
-.section > .frame { position: relative; }
+.section{ width: 100%; }
 
 /* =========================
-   HEADER / NAV
+   Header
    ========================= */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  background: #fff;
-}
+.header{ position: sticky; top: 0; z-index: 20; background: #fff; }
 
-.nav {
+.nav{
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 20px var(--page-padding);
-  max-width: var(--page-width);
-  margin: 0 auto;
+  padding-top: var(--indent-m);
+  padding-bottom: var(--indent-m);
 }
 
 .nav-link{
-  font-family: var(--b-font);
-  font-size: var(--t-size);
-  line-height: var(--t-line);
-  letter-spacing: var(--t-letter);
-  color: var(--color-text);
+  color: var(--color-text-primary);
   text-decoration: none;
-  transform: scaleX(var(--font-condense-ui));
-  transform-origin: left center;
+  text-transform: lowercase;
 }
 
 /* =========================
-   HERO (фикс отступов на широких экранах)
+   HERO (1:1 from Figma)
    ========================= */
-
 .hero{
-  position: relative;
-  height: var(--hero-height);
+  width: 100%;
 }
 
-/* координатная система hero — это .frame, а не окно */
-.hero > .frame{
-  position: relative;
-  height: 100%;
+.hero-grid{
+  display: grid;
+  height: 768px;
+  padding: var(--indent-m, 20px);
+  row-gap: var(--indent-m, 20px);
+  column-gap: var(--indent-m, 20px);
+  align-self: stretch;
+  grid-template-rows: fit-content(100%) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: #FFFFFF;
 }
 
-.hero-intro{
-  position: absolute;
-  top: var(--hero-intro-top);
-  left: 0;
-  width: var(--hero-text-width);
+.hero-topline{
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  border-top: 1px solid var(--color-line);
 }
 
-/* желтая плашка на всю ширину, но текст внутри frame */
-.hero-highlight{
-  position: absolute;
-  top: var(--hero-highlight-top);
-  left: 0;
-  right: 0;
-  height: var(--hero-highlight-height);
+.hero-title{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: start;
+}
+
+.hero-empty{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.hero-highlight-left{
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
   background: var(--color-highlight);
   display: flex;
   align-items: flex-start;
 }
 
-.hero-highlight > .frame{
-  height: 100%;
-  position: relative;
-  padding-top: var(--hero-highlight-padding-y);
-  padding-bottom: var(--hero-highlight-padding-y);
+.hero-highlight-right{
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background: var(--color-highlight);
 }
 
 .hero-highlight-inner{
+  padding: 26px 20px;
   width: 100%;
-  height: 100%;
-  padding-left: var(--hero-highlight-padding-x);
-  padding-right: var(--hero-highlight-padding-x);
 }
 
 /* =========================
-   PROJECTS / META
+   PNG slots (scaled)
    ========================= */
-.projects { padding-bottom: 40px; }
-
-.projects-meta{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 20px;
-}
-
-/* =========================
-   COMPANY SECTION
-   ========================= */
-.company-section{
-  position: relative;
-  height: var(--company-height);
-  border-top: 1px solid var(--color-line);
-  margin-top: 16px;
-}
-
-.company-inner{
-  position: relative;
-  height: 100%;
-  padding-top: var(--company-padding-top);
-}
-
-.company-title{
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 12px;
-}
-
-.company-tags{
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tag{
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-family: var(--b-font);
-  font-size: 16px;
-  line-height: 18px;
-  letter-spacing: -0.48px;
-  transform: scaleX(var(--font-condense-ui));
-  transform-origin: left center;
-}
-
-/* slots for PNG from Strapi */
 .frame-slot{
   position: absolute;
   overflow: hidden;
+
+  top:  calc(var(--slot-top, 0px) * var(--png-scale));
+  left: calc(var(--slot-left, 0px) * var(--png-scale));
+  width: calc(var(--slot-w, 0px) * var(--png-scale));
+  height: calc(var(--slot-h, 0px) * var(--png-scale));
+
+  z-index: var(--slot-z, 1);
 }
 
 .frame-slot img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: var(--slot-fit, cover);
   display: block;
 }
-
-/* =========================
-   COURSE SECTION
-   ========================= */
-.course{
-  position: relative;
-  height: var(--course-height);
-  border-top: 1px solid var(--color-line);
-}
-
-.course-inner{
-  position: relative;
-  height: 100%;
-}
-
-/* =========================
-   CRAFT GR

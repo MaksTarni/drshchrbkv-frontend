@@ -29,41 +29,43 @@ export default function CourseSection({ course }) {
 
   const metaLeft = course.metaLeft || "courses";
   const metaRight = course.metaRight || "";
-  const title = course.title || "design mentor";
+  const title = course.title || "";
   const subtitle = course.subtitle || "";
 
   const frame = resolveSlot(course.courseFrame, DEFAULT_FRAME);
 
   return (
-    <section className="course">
-      <div className="course-inner">
-        <div className="projects-meta">
-          <div className="figma-text">{metaLeft}</div>
-          <div className="figma-text figma-text--secondary">{metaRight}</div>
-        </div>
-
-        <div className="hero-intro" style={{ top: 60 }}>
-          <div className="figma-header" style={{ marginBottom: 18 }}>
-            {title}
+    <section className="course section">
+      <div className="frame">
+        <div className="course-inner">
+          <div className="projects-meta">
+            <div className="figma-text">{metaLeft}</div>
+            <div className="figma-text figma-text--secondary">{metaRight}</div>
           </div>
-          <div className="figma-text figma-text--secondary">{subtitle}</div>
-        </div>
 
-        {/* PNG slot */}
-        {frame?.imageUrl ? (
-          <div
-            className="frame-slot"
-            style={{
-              top: frame.top,
-              left: frame.left,
-              width: frame.width,
-              height: frame.height,
-              zIndex: frame.zIndex,
-            }}
-          >
-            <img src={frame.imageUrl} alt="Course frame" style={{ objectFit: frame.objectFit }} />
+          <div style={{ marginTop: 60 }}>
+            <div className="figma-header" style={{ marginBottom: 18 }}>
+              {title}
+            </div>
+            <div className="figma-text figma-text--secondary">{subtitle}</div>
           </div>
-        ) : null}
+
+          {frame?.imageUrl ? (
+            <div
+              className="frame-slot"
+              style={{
+                "--slot-top": `${frame.top}px`,
+                "--slot-left": `${frame.left}px`,
+                "--slot-w": `${frame.width}px`,
+                "--slot-h": `${frame.height}px`,
+                "--slot-z": frame.zIndex,
+                "--slot-fit": frame.objectFit,
+              }}
+            >
+              <img src={frame.imageUrl} alt="Course frame" />
+            </div>
+          ) : null}
+        </div>
       </div>
     </section>
   );

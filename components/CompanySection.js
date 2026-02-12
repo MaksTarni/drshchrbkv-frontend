@@ -1,6 +1,4 @@
 // frontend/components/CompanySection.js
-// frontend/components/CompanySection.js
-// frontend/components/CompanySection.js
 import { getMediaUrl } from "../lib/api";
 
 const DEFAULTS = {
@@ -39,26 +37,26 @@ export default function CompanySection({ company }) {
           <div className="figma-text figma-text--secondary">{subtitle}</div>
         </div>
 
-        {(tagA || tagB) && (
+        {(tagA || tagB) ? (
           <div className="company-tags">
             {tagA ? <span className="tag">{tagA}</span> : null}
             {tagB ? <span className="tag">{tagB}</span> : null}
           </div>
-        )}
+        ) : null}
 
-        {/* PNG slots (строго по координатам) */}
         {a?.imageUrl ? (
           <div
             className="frame-slot"
             style={{
-              top: a.top,
-              left: a.left,
-              width: a.width,
-              height: a.height,
-              zIndex: a.zIndex,
+              "--slot-top": `${a.top}px`,
+              "--slot-left": `${a.left}px`,
+              "--slot-w": `${a.width}px`,
+              "--slot-h": `${a.height}px`,
+              "--slot-z": a.zIndex,
+              "--slot-fit": a.objectFit,
             }}
           >
-            <img src={a.imageUrl} alt={`${title} frame A`} style={{ objectFit: a.objectFit }} />
+            <img src={a.imageUrl} alt={`${title} frame A`} />
           </div>
         ) : null}
 
@@ -66,14 +64,15 @@ export default function CompanySection({ company }) {
           <div
             className="frame-slot"
             style={{
-              top: b.top,
-              left: b.left,
-              width: b.width,
-              height: b.height,
-              zIndex: b.zIndex,
+              "--slot-top": `${b.top}px`,
+              "--slot-left": `${b.left}px`,
+              "--slot-w": `${b.width}px`,
+              "--slot-h": `${b.height}px`,
+              "--slot-z": b.zIndex,
+              "--slot-fit": b.objectFit,
             }}
           >
-            <img src={b.imageUrl} alt={`${title} frame B`} style={{ objectFit: b.objectFit }} />
+            <img src={b.imageUrl} alt={`${title} frame B`} />
           </div>
         ) : null}
       </div>
