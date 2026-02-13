@@ -210,7 +210,7 @@ html, body {
 /* cloudpayments: 2 rows × 4 columns */
 .company-cloudpayments {
   display: inline-grid;
-  padding: 20px 0;
+  padding: var(--indent-l, 124px) var(--indent-m, 20px) 0 var(--indent-m, 20px);
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
@@ -221,7 +221,7 @@ html, body {
 /* sberbank: 3 rows × 4 columns */
 .company-sberbank {
   display: inline-grid;
-  padding: 20px 0;
+  padding: var(--indent-l, 124px) var(--indent-m, 20px);
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
@@ -377,7 +377,7 @@ html, body {
   display: inline-grid;
   min-height: 100vh;
   height: 100vh;
-  padding: 20px 0;
+  padding: 20px;
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
