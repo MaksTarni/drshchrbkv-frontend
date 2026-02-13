@@ -29,17 +29,6 @@ export default function Hero({ hero, accent, settings }) {
     >
       <Header settings={settings} />
       <div className="hero-grid">
-        {/* жёлтый блок — верхние 50% по вертикали */}
-        <div className="hero-highlight-row">
-          <div className="hero-highlight-col hero-highlight-col--left">
-            <div className="hero-highlight-inner">
-              <h2 className="figma-header">{highlightText}</h2>
-            </div>
-          </div>
-
-          <div className="hero-highlight-col hero-highlight-col--right" />
-        </div>
-
         <div className="hero-top">
           <div className="hero-topline" />
           <div className="hero-title-row">
@@ -48,6 +37,17 @@ export default function Hero({ hero, accent, settings }) {
             </div>
             <div className="hero-empty" />
           </div>
+        </div>
+
+        {/* жёлтый блок — нижние 50% по вертикали */}
+        <div className="hero-highlight-row">
+          <div className="hero-highlight-col hero-highlight-col--left">
+            <div className="hero-highlight-inner">
+              <h2 className="figma-header">{highlightText}</h2>
+            </div>
+          </div>
+
+          <div className="hero-highlight-col hero-highlight-col--right" />
         </div>
       </div>
     </section>
