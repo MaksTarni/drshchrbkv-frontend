@@ -9,18 +9,6 @@ html, body {
   box-sizing: border-box;
 }
 
-/* ========================= PAGE ========================= */
-
-.page-layout {
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-.page-layout > * {
-  width: 100%;
-}
-
 /* ========================= ROOT ========================= */
 
 :root {
@@ -31,6 +19,31 @@ html, body {
 
   --h-font: "Times New Roman MT Condensed", serif;
   --b-font: Inter, system-ui, sans-serif;
+
+  /* ВАЖНО: фиксируем "изначальный центр" макета */
+  --layout-max: 1366px;
+  --layout-pad: 20px;
+}
+
+/* ========================= PAGE ========================= */
+
+/* Центрируем всю страницу относительно "дизайн-центра" */
+.page-layout {
+  width: 100%;
+  min-height: 100vh;
+
+  /* ключевое: центрирование контейнера */
+  max-width: var(--layout-max);
+  margin-left: auto;
+  margin-right: auto;
+
+  /* отступы макета */
+  padding-left: var(--layout-pad);
+  padding-right: var(--layout-pad);
+}
+
+.page-layout > * {
+  width: 100%;
 }
 
 /* ========================= TYPOGRAPHY ========================= */
@@ -53,6 +66,7 @@ html, body {
   letter-spacing: -0.48px;
   text-transform: lowercase;
   color: var(--color-text);
+  margin: 0;
 }
 
 .figma-text--secondary {
@@ -71,14 +85,14 @@ html, body {
   display: grid;
   flex: 1;
   gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: 1fr 1fr;
 }
 
 .hero-title-row {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   align-items: flex-end;
 }
@@ -86,7 +100,7 @@ html, body {
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   background: var(--color-highlight);
   align-content: flex-end;
@@ -102,7 +116,7 @@ html, body {
   display: grid;
   min-height: 100vh;
   gap: 20px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows:
     fit-content(100%)
     84px
@@ -119,6 +133,30 @@ html, body {
 
 .course-meta .figma-text:last-child {
   text-align: right;
+}
+
+.course-spacer {
+  grid-column: 1 / -1;
+}
+
+/* ✅ ВАЖНО: фиксируем course title, чтобы не "уезжал" */
+.course-titleblock {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+
+  align-items: start;
+}
+
+/* Title и subtitle остаются в ЛЕВОЙ половине */
+.course-titleblock .figma-header {
+  grid-column: 1 / 2;
+}
+
+.course-titleblock .figma-text {
+  grid-column: 1 / 2;
 }
 
 .course-frame {
@@ -143,7 +181,7 @@ html, body {
   display: grid;
   padding-top: 124px;
   gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 /* ========================= EMEX ========================= */
@@ -158,7 +196,7 @@ html, body {
   grid-column: 1 / 3;
 }
 
-/* ===== LINE UNDER TITLE ===== */
+/* line under title */
 .company-emex .company-line-top {
   grid-row: 2;
   grid-column: 1 / 3;
@@ -271,7 +309,7 @@ html, body {
   display: grid;
   padding-top: 220px;
   gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .craft-cell img {
