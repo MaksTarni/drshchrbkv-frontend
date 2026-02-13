@@ -1,8 +1,6 @@
-/* styles/globals.css */
-
 html, body {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 * { box-sizing: border-box; }
@@ -11,349 +9,185 @@ html, body {
   --color-text: #161616;
   --color-secondary: #7D7D7D;
   --color-line: #E5E5E5;
-
   --color-highlight: #FDFF45;
 
-  --page-padding: 20px;
-  --page-width: 1366px;
-
-  --h-font: "Times New Roman", serif;
-  --b-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-  --h-size: 50px;
-  --h-line: 48px;
-  --h-letter: -1px;
-
-  --t-size: 16px;
-  --t-line: 20px;
-  --t-letter: -0.48px;
-
-  /* HERO defaults (могут переопределяться инлайном из Strapi) */
-  --hero-height: 768px;
-  --hero-text-width: 653px;
-  --hero-intro-top: 60px;
-
-  /* spacing tokens from Figma */
-  --indent-xs: 3px;
-  --indent-s: 5px;
   --indent-m: 20px;
   --indent-l: 124px;
 
-  --border: 1px solid var(--color-line);
+  --h-font: "Times New Roman MT Condensed", serif;
+  --b-font: Inter, system-ui, sans-serif;
 }
 
-body {
-  font-family: var(--b-font);
-  color: var(--color-text);
-  background: #fff;
-}
+/* ------------------- TYPOGRAPHY ------------------- */
 
-/* Typography helpers */
 .figma-header {
   font-family: var(--h-font);
-  font-size: var(--h-size);
-  line-height: var(--h-line);
-  letter-spacing: var(--h-letter);
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 48px;
+  letter-spacing: -1px;
+  text-transform: lowercase;
+  color: var(--color-text);
   margin: 0;
-  font-weight: 400;
 }
 
 .figma-text {
   font-family: var(--b-font);
-  font-size: var(--t-size);
-  line-height: var(--t-line);
-  letter-spacing: var(--t-letter);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.48px;
+  text-transform: lowercase;
+  color: var(--color-text);
 }
 
 .figma-text--secondary {
   color: var(--color-secondary);
 }
 
-/* generic section wrapper */
+/* ------------------- GLOBAL SECTION ------------------- */
+
 .section {
   width: 100%;
+  padding: 0 var(--indent-m);
 }
 
-.frame {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--page-padding);
-}
-
-/* ---------------- HERO ---------------- */
-
-.hero {
-  width: 100%;
-}
+/* ------------------- HERO ------------------- */
 
 .hero-grid {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--indent-m);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto auto;
+  width: 100%;
+  padding: var(--indent-m);
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
-  align-items: stretch;
+
+  /* 2 fluid columns */
+  grid-template-columns: repeat(2, 1fr);
+
+  /* line, title row, highlight row */
+  grid-template-rows: 1px auto 1fr;
 }
 
 .hero-topline {
-  grid-column: 1 / 3;
-  height: 1px;
+  grid-column: 1 / -1;
   background: var(--color-line);
-  margin-top: var(--indent-m);
 }
 
 .hero-title {
   grid-column: 1 / 2;
-  padding-top: 0;
 }
 
-.hero-empty {
-  grid-column: 2 / 3;
+.hero-highlight-left,
+.hero-highlight-right {
+  background: var(--color-highlight);
+  padding: 26px var(--indent-m);
+  display: flex;
+  align-items: flex-end;
 }
 
 .hero-highlight-left {
   grid-column: 1 / 2;
-  background: var(--color-highlight);
 }
 
 .hero-highlight-right {
   grid-column: 2 / 3;
-  background: var(--color-highlight);
 }
 
-.hero-highlight-inner {
-  padding: 26px 20px;
-}
+/* ------------------- COMPANY GRID ------------------- */
 
-/* Full-bleed yellow block (no left/right page padding in Figma) */
-.hero-highlight-left,
-.hero-highlight-right {
-  /* allow backgrounds to bleed outside the 20px page padding */
-  margin-top: 0;
-}
-.hero-highlight-left { margin-left: calc(-1 * var(--indent-m)); }
-.hero-highlight-right { margin-right: calc(-1 * var(--indent-m)); }
-
-/* Also support alternative DOM from older builds */
-.hero-highlight-row{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  grid-column: 1 / 3;
-  column-gap: var(--indent-m);
-  margin-left: calc(-1 * var(--indent-m));
-  margin-right: calc(-1 * var(--indent-m));
-}
-.hero-highlight-col{ background: var(--color-highlight); }
-.hero-highlight-inner{ padding: 26px 20px; }
-
-/* ---------------- PROJECTS / COMPANIES ---------------- */
-
-.projects {
+.company-emex,
+.company-sberbank,
+.company-cloudpayments {
   width: 100%;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+
+  display: grid;
+  column-gap: var(--indent-m);
+  row-gap: var(--indent-m);
+
+  /* 4 fluid columns */
+  grid-template-columns: repeat(4, 1fr);
+
+  /* header rows auto, media rows flexible */
+  grid-auto-rows: auto;
 }
 
-.projects-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0 var(--page-padding);
-  max-width: var(--page-width);
-  margin: 0 auto;
-}
+/* Header placement */
 
-.company-title{
+.company-title {
   grid-column: 1 / 3;
 }
-.company-subtitle{
+
+.company-subtitle {
   grid-column: 3 / 5;
-  align-self: end;
   text-align: right;
 }
-.company-tags{
+
+.company-tags {
   grid-column: 1 / 3;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
 }
 
-.tag{
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
+/* ------------------- MEDIA (ВАЖНО) ------------------- */
+
+.company-media {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ВСЕГДА заполняем контейнер */
+.company-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* EMEX layout */
+
+.company-emex .company-media--a {
+  grid-column: 1 / 3;
+  aspect-ratio: 653 / 690; /* пропорция из Figma */
+}
+
+.company-emex .company-media--b {
+  grid-column: 3 / 5;
+  aspect-ratio: 653 / 690;
+}
+
+/* ------------------- COURSE ------------------- */
+
+.course-grid {
+  width: 100%;
+  padding: var(--indent-l) var(--indent-m);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--indent-m);
+  row-gap: var(--indent-m);
+}
+
+.course-frame {
+  grid-column: 1 / -1;
+  aspect-ratio: 1326 / 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ------------------- TAG ------------------- */
+
+.tag {
   border: 1px solid var(--color-line);
   border-radius: 999px;
-  font-family: var(--b-font);
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: -0.42px;
-  white-space: nowrap;
-}
-
-/* EMEX */
-.company-emex{
-  display: inline-grid;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  /* title row, tags row, then two fixed media rows */
-  grid-template-rows: fit-content(100%) fit-content(100%) 335px 335px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: var(--page-width);
-  margin: 0 auto;
-}
-
-/* other variants keep same base grid (can be refined later) */
-.company-sberbank,
-.company-cloudpayments{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: var(--indent-m);
-  row-gap: var(--indent-m);
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  max-width: var(--page-width);
-  margin: 0 auto;
-}
-
-.company-media{
-  height: 335px;
-  background: #F3F3F3;
-  overflow: hidden;
-  border: 1px solid var(--color-line);
-}
-
-.company-media img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-/* EMEX: exact frame placements from Figma */
-.company-emex .company-empty--left{
-  grid-column: 1 / 2;
-  grid-row: 3 / span 2;
-}
-
-.company-emex .company-media--emex-a{
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-  background: #F3F3F3;
-  border: 1px solid var(--color-line);
-  overflow: hidden;
-}
-.company-emex .company-media--emex-a img{
-  object-fit: cover; /* заполняет контейнер как ты просил */
-}
-
-.company-emex .company-empty--emex-a-bottom{
-  grid-column: 2 / 3;
-  grid-row: 4 / 5;
-}
-
-.company-emex .company-media--emex-b{
-  grid-column: 3 / 5;
-  grid-row: 3 / span 2;
-  height: 690px; /* 335 + 20 gap + 335 */
-  background: #F3F3F3;
-  border: 1px solid var(--color-line);
-  overflow: hidden;
-}
-.company-emex .company-media--emex-b img{
-  object-fit: cover;
-}
-
-/* Non-emex basic positioning */
-.company-media--a{ grid-column: 1 / 3; }
-.company-media--b{ grid-column: 3 / 5; }
-
-/* ---------------- COURSE ---------------- */
-
-.course-grid{
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: var(--indent-m);
-  row-gap: var(--indent-m);
-}
-
-.course-meta{
-  grid-column: 1 / 3;
-  display:flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.course-titleblock{
-  grid-column: 1 / 3;
-  display:flex;
-  flex-direction: column;
-  gap: var(--indent-xs);
-}
-
-.course-frame{
-  grid-column: 1 / 5;
-  height: 600px;
-  background: #F3F3F3;
-  border: 1px solid var(--color-line);
-  overflow:hidden;
-}
-
-.course-frame img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-.course-line{
-  grid-column: 1 / 5;
-  height: 1px;
-  background: var(--color-line);
-}
-
-/* ---------------- CRAFT ---------------- */
-
-.craft-wrap{
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  column-gap: var(--indent-m);
-  row-gap: var(--indent-m);
-}
-
-.craft-meta{
-  grid-column: 1 / 3;
-  display:flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.craft-cell{
-  background:#F3F3F3;
-  border: 1px solid var(--color-line);
-  overflow:hidden;
-}
-
-.craft-cell img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-}
-
-/* ---------------- FOOTER ---------------- */
-
-.footer{
-  padding: var(--indent-l) 0 var(--indent-m) 0;
-}
-.footer-layer{
-  display:flex;
-  justify-content: space-between;
+  padding: 6px 10px;
+  font-size: 12px;
+  margin-right: 8px;
 }
