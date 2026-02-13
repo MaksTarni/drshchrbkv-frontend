@@ -49,13 +49,13 @@ export default function HomePage({
             </div>
           </div>
 
+          <CourseSection course={course} settings={settings} />
+
           {Array.isArray(companies) &&
             companies.map((c) => (
               <CompanySection key={c?.id || c?.documentId} company={c} />
             ))}
         </section>
-
-        <CourseSection course={course} settings={settings} />
 
         <CraftGrid items={craftItems} settings={settings} />
 

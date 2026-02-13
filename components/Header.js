@@ -1,7 +1,7 @@
 // frontend/components/Header.js
 export default function Header({ settings }) {
-  const leftLabel = settings?.navLeftLabel || "";
-  const rightLabel = settings?.navRightLabel || "";
+  const leftLabel = settings?.navLeftLabel || "index";
+  const rightLabel = settings?.navRightLabel || "info";
 
   const leftHref = settings?.navLeftHref || "#index";
   const rightHref = settings?.navRightHref || "#info";

@@ -29,17 +29,18 @@ export default function Hero({ hero, accent, settings }) {
     >
       <Header settings={settings} />
       <div className="hero-grid">
-        <div className="hero-top">
-          <div className="hero-topline" />
-          <div className="hero-title-row">
-            <div className="hero-title">
-              <h1 className="figma-header">{title}</h1>
-            </div>
-            <div className="hero-empty" />
+        {/* ряд 1: fit-content */}
+        <div className="hero-topline" />
+
+        {/* ряд 2: 1fr — заголовок */}
+        <div className="hero-title-row">
+          <div className="hero-title">
+            <h1 className="figma-header">{title}</h1>
           </div>
+          <div className="hero-empty" />
         </div>
 
-        {/* жёлтый блок — 2-й ряд, на 3 колонки */}
+        {/* ряд 3: 1fr — жёлтый блок (50%) */}
         <div className="hero-highlight-row">
           <div className="hero-highlight-col hero-highlight-col--left">
             <div className="hero-highlight-inner">

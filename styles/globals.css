@@ -48,51 +48,74 @@ html, body {
 
 .section {
   width: 100%;
-  padding: 0 var(--indent-m);
+  padding: var(--indent-m);
+}
+
+/* ------------------- HEADER / NAV ------------------- */
+/* сверху 20, кнопки index и info с отступами 20 от краёв */
+
+.header {
+  width: 100%;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.header .frame,
+.header .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.header .nav {
+  gap: var(--indent-m);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* ------------------- HERO ------------------- */
+/* Figma: grid 768px, padding 20, 3 rows, 2 cols, 50% блоки с отступами 20 */
 
 .hero.section {
   padding: var(--indent-m);
-  min-height: 768px;
+  padding-top: var(--indent-m);
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
-/* Hero: 2 ряда, 3 колонки, gap 20px (Figma) */
 .hero-grid {
   display: grid;
   width: 100%;
-  flex: 1;
-  min-height: 0;
-  column-gap: var(--indent-m);
-  row-gap: var(--indent-m);
+  height: 768px;
+  padding: var(--indent-m, 20px);
+  row-gap: var(--indent-m, 20px);
+  column-gap: var(--indent-m, 20px);
+  align-self: stretch;
+  box-sizing: border-box;
 
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr 1fr;
-}
-
-.hero-top {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+  grid-template-rows: fit-content(100%) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .hero-topline {
-  flex-shrink: 0;
+  grid-column: 1 / -1;
   height: 1px;
   background: var(--color-line);
-  margin-bottom: 40px;
+  flex-shrink: 0;
 }
 
 .hero-title-row {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: var(--indent-m);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--indent-m, 20px);
   align-items: flex-end;
-  flex: 1;
   min-height: 0;
 }
 
@@ -101,18 +124,21 @@ html, body {
 }
 
 .hero-empty {
-  grid-column: 2 / -1;
+  grid-column: 2 / 3;
 }
 
-/* жёлтый блок — нижний ряд, на всю ширину (3 колонки) */
+/* жёлтый блок — ряд 3; padding -20: фон в упор к краям */
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: var(--indent-m);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--indent-m, 20px);
   min-height: 0;
   background: var(--color-highlight);
-  padding: 40px var(--indent-m);
+  padding: 0;
+  margin-left: calc(-1 * var(--indent-m));
+  margin-right: calc(-1 * var(--indent-m));
+  width: calc(100% + 2 * var(--indent-m));
   align-content: flex-end;
 }
 
@@ -123,6 +149,7 @@ html, body {
 
 .hero-highlight-inner {
   width: 100%;
+  padding: 20px;
 }
 
 .hero-highlight-col--right {
