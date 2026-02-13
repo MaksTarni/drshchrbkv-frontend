@@ -15,6 +15,30 @@ function getCompanyClass(company) {
   return `company-${v}`;
 }
 
+/**
+ * Tag format in Strapi: "seller hub|2025"
+ * Требование: после "|" другой стиль (серый).
+ */
+function RenderTag({ value }) {
+  if (!value) return null;
+
+  const raw = String(value);
+  const parts = raw.split("|");
+
+  // если "|" нет — рендерим как есть
+  if (parts.length < 2) return <span className="tag">{raw}</span>;
+
+  const left = parts[0].trim();
+  const right = parts.slice(1).join("|").trim(); // на случай, если "|" больше одного
+
+  return (
+    <span className="tag">
+      {left} <span className="tag-sep">|</span>
+      <span className="tag-secondary">{right}</span>
+    </span>
+  );
+}
+
 export default function CompanySection({ company }) {
   if (!company) return null;
 
@@ -33,52 +57,48 @@ export default function CompanySection({ company }) {
     <section className={cls} aria-label={title}>
       {/* ===== ROW 1 ===== */}
       <div className="company-title-wrapper">
-        {subtitle && (
+        {subtitle ? (
           <div className="company-subtitle">
-            <div className="figma-text figma-text--secondary">
-              {subtitle}
-            </div>
+            <div className="figma-text figma-text--secondary">{subtitle}</div>
           </div>
-        )}
+        ) : null}
 
-        {title && (
+        {title ? (
           <div className="company-title">
             <div className="figma-header">{title}</div>
           </div>
-        )}
+        ) : null}
       </div>
 
-      {/* ===== LINE UNDER TITLE ===== */}
-      {variant === "emex" && <div className="company-line-top" />}
+      {/* ===== LINE UNDER TITLE (отдельная строка) ===== */}
+      {variant === "emex" ? <div className="company-line-top" /> : null}
 
-      {/* ===== ROW 2 LEFT ===== */}
-      {tagA && (
+      {/* ===== ROW 3 (контент row2 в фигме) ===== */}
+      {tagA ? (
         <div className="company-tag-a">
-          <span className="tag">{tagA}</span>
+          <RenderTag value={tagA} />
         </div>
-      )}
+      ) : null}
 
-      {frameAUrl && (
+      {frameAUrl ? (
         <div className="company-media company-media--emex-a">
           <img src={frameAUrl} alt={`${title} frame A`} loading="lazy" />
         </div>
-      )}
+      ) : null}
 
-      {/* ===== ROW 3 LEFT LINE ===== */}
-      {variant === "emex" && <div className="company-line-middle" />}
-
-      {tagB && (
+      {/* ===== ROW 4 (контент row3 в фигме) ===== */}
+      {tagB ? (
         <div className="company-tag-b">
-          <span className="tag">{tagB}</span>
+          <RenderTag value={tagB} />
         </div>
-      )}
+      ) : null}
 
       {/* ===== RIGHT BIG FRAME (2x2) ===== */}
-      {frameBUrl && (
+      {frameBUrl ? (
         <div className="company-media company-media--emex-b">
           <img src={frameBUrl} alt={`${title} frame B`} loading="lazy" />
         </div>
-      )}
+      ) : null}
     </section>
   );
 }
