@@ -44,20 +44,23 @@ export default function HomePage({
                 {settings?.projectsTitle || "professional projects"}
               </span>
               <span className="figma-text figma-text--secondary">
-                {" "}{settings?.projectsSubtitle || "2021 — present"}
+                {" "}
+                {settings?.projectsSubtitle || "2021 — present"}
               </span>
             </div>
           </div>
 
-          <CourseSection course={course} settings={settings} />
-
+          {/* ✅ СНАЧАЛА компании */}
           {Array.isArray(companies) &&
             companies.map((c) => (
               <CompanySection key={c?.id || c?.documentId} company={c} />
             ))}
+
+          {/* ✅ ПОТОМ course */}
+          <CourseSection course={course} />
         </section>
 
-        <CraftGrid items={craftItems} settings={settings} />
+        <CraftGrid items={craftItems} />
 
         <Footer settings={settings} />
       </div>
