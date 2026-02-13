@@ -121,7 +121,7 @@ html, body {
 .hero.section {
   min-height: 100vh;
   height: 100vh;
-  padding: 20px 0;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -159,7 +159,7 @@ html, body {
   grid-column: 2 / 3;
 }
 
-/* жёлтый блок — на всю ширину */
+/* жёлтый блок — до краёв hero (компенсация padding hero 20px) */
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
@@ -168,6 +168,9 @@ html, body {
   min-height: 0;
   background: var(--color-highlight);
   padding: 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  width: calc(100% + 40px);
   align-content: flex-end;
 }
 
