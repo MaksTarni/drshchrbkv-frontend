@@ -7,12 +7,22 @@ html, body {
 
 :root {
   --color-text: #161616;
+  --color-text-primary: #161616;
   --color-secondary: #7D7D7D;
+  --color-text-secondary: #7D7D7D;
   --color-line: #E5E5E5;
   --color-highlight: #FDFF45;
 
+  --indent-xs: 3px;
+  --indent-s: 5px;
   --indent-m: 20px;
   --indent-l: 124px;
+  --indent-xl: 220px;
+
+  --font-family-text: Inter, system-ui, sans-serif;
+  --font-size-text: 16px;
+  --font-line-height-text: 20px;
+  --font-tracking-text: -0.48px;
 
   --h-font: "Times New Roman MT Condensed", serif;
   --b-font: Inter, system-ui, sans-serif;
@@ -101,15 +111,8 @@ html, body {
   align-self: stretch;
   box-sizing: border-box;
 
-  grid-template-rows: fit-content(100%) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.hero-topline {
-  grid-column: 1 / -1;
-  height: 1px;
-  background: var(--color-line);
-  flex-shrink: 0;
 }
 
 .hero-title-row {
@@ -265,12 +268,11 @@ html, body {
 }
 
 /* ------------------- COURSE ------------------- */
-/* Figma: 5 rows, 2 cols, gap 20px, padding 20px */
+/* 5 rows × 2 columns */
 
 .course-grid {
-  width: 100%;
-  padding: var(--indent-m, 20px);
-  display: grid;
+  display: inline-grid;
+  padding: var(--indent-xl, 220px) var(--indent-m, 20px) 0 var(--indent-m, 20px);
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
@@ -278,30 +280,67 @@ html, body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+/* row 1: meta — secondary text */
 .course-meta {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: var(--indent-m, 20px);
   align-items: end;
+  color: var(--color-text-secondary, #7D7D7D);
+  font-family: var(--font-family-text, Inter), system-ui, sans-serif;
+  font-size: var(--font-size-text, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--font-line-height-text, 20px);
+  letter-spacing: var(--font-tracking-text, -0.48px);
+  text-transform: lowercase;
 }
 
 .course-meta .figma-text:last-child {
   text-align: right;
 }
 
+/* row 2: spacer */
 .course-spacer {
   grid-column: 1 / -1;
   min-height: 0;
 }
 
+/* row 3: title + subtitle — flex column, align end */
 .course-titleblock {
-  grid-column: 1 / -1;
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 2;
+  justify-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: var(--indent-xs, 3px);
+  color: var(--color-text-primary, #161616);
+  font-family: var(--font-family-text, Inter), system-ui, sans-serif;
+  font-size: var(--font-size-text, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--font-line-height-text, 20px);
+  letter-spacing: var(--font-tracking-text, -0.48px);
+  text-transform: lowercase;
 }
 
+.course-titleblock .figma-header {
+  color: var(--color-text-primary, #161616);
+}
+
+.course-titleblock .figma-text--secondary {
+  color: var(--color-text-secondary, #7D7D7D);
+}
+
+/* row 4: frame — height 600px */
 .course-frame {
-  grid-column: 1 / -1;
-  aspect-ratio: 1326 / 600;
+  grid-row: 4 / span 1;
+  grid-column: 1 / span 2;
+  justify-self: stretch;
+  height: 600px;
   position: relative;
   overflow: hidden;
   min-height: 0;
@@ -315,8 +354,20 @@ html, body {
   object-fit: cover;
 }
 
+/* row 5: bottom line */
 .course-line {
   grid-column: 1 / -1;
+  display: flex;
+  height: 20px;
+  align-items: flex-end;
+  gap: var(--indent-s, 5px);
+  flex: 1 0 0;
+  min-height: 20px;
+}
+
+.course-line::after {
+  content: "";
+  width: 100%;
   height: 1px;
   background: var(--color-line);
 }
