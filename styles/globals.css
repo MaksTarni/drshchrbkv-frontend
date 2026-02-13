@@ -60,6 +60,7 @@ html, body {
   flex-direction: column;
 }
 
+/* Hero: 2 ряда, 3 колонки, gap 20px (Figma) */
 .hero-grid {
   display: grid;
   width: 100%;
@@ -68,8 +69,7 @@ html, body {
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
 
-  grid-template-columns: repeat(2, 1fr);
-  /* верх 50% / низ 50% — жёлтый блок растягивается снизу */
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
 }
 
@@ -88,26 +88,27 @@ html, body {
 }
 
 .hero-title-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: var(--indent-m);
   align-items: flex-end;
   flex: 1;
   min-height: 0;
 }
 
 .hero-title {
-  flex: 0 1 auto;
+  grid-column: 1 / 2;
 }
 
 .hero-empty {
-  flex: 0 0 auto;
+  grid-column: 2 / -1;
 }
 
-/* жёлтый блок — нижние 50%, растянут по высоте */
+/* жёлтый блок — нижний ряд, на всю ширину (3 колонки) */
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: var(--indent-m);
   min-height: 0;
   background: var(--color-highlight);
@@ -122,6 +123,10 @@ html, body {
 
 .hero-highlight-inner {
   width: 100%;
+}
+
+.hero-highlight-col--right {
+  grid-column: 2 / -1;
 }
 
 /* ------------------- COMPANY GRID ------------------- */

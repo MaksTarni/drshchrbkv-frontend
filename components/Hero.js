@@ -39,14 +39,13 @@ export default function Hero({ hero, accent, settings }) {
           </div>
         </div>
 
-        {/* жёлтый блок — нижние 50% по вертикали */}
+        {/* жёлтый блок — 2-й ряд, на 3 колонки */}
         <div className="hero-highlight-row">
           <div className="hero-highlight-col hero-highlight-col--left">
             <div className="hero-highlight-inner">
               <h2 className="figma-header">{highlightText}</h2>
             </div>
           </div>
-
           <div className="hero-highlight-col hero-highlight-col--right" />
         </div>
       </div>
