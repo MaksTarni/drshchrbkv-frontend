@@ -61,6 +61,13 @@ html, body {
   padding: var(--indent-m);
 }
 
+/* course и company друг под другом по порядку */
+.projects.section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 /* ------------------- HEADER / NAV ------------------- */
 /* сверху 20, кнопки index и info с отступами 20 от краёв */
 
