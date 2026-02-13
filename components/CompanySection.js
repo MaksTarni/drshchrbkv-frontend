@@ -42,11 +42,11 @@ export default function CompanySection({ company }) {
     <section className={cls} aria-label={title}>
       {variant === "emex" ? (
         <>
-          <div className="company-title">
-            <div className="figma-header">{title}</div>
-          </div>
           <div className="company-subtitle">
             <div className="figma-text figma-text--secondary">{subtitle}</div>
+          </div>
+          <div className="company-title">
+            <div className="figma-header">{title}</div>
           </div>
         </>
       ) : (
