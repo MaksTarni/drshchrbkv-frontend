@@ -27,15 +27,17 @@ export default function Hero({ hero, accent }) {
       style={{ "--color-highlight": highlightColor }}
     >
       <div className="hero-grid">
-        <div className="hero-topline" />
-
-        <div className="hero-title">
-          <h1 className="figma-header">{title}</h1>
+        <div className="hero-top">
+          <div className="hero-topline" />
+          <div className="hero-title-row">
+            <div className="hero-title">
+              <h1 className="figma-header">{title}</h1>
+            </div>
+            <div className="hero-empty" />
+          </div>
         </div>
 
-        <div className="hero-empty" />
-
-        {/* yellow band (full width like Figma "color") */}
+        {/* жёлтый блок — нижние 50% по вертикали */}
         <div className="hero-highlight-row">
           <div className="hero-highlight-col hero-highlight-col--left">
             <div className="hero-highlight-inner">

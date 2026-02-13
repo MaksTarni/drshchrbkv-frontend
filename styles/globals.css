@@ -53,43 +53,75 @@ html, body {
 
 /* ------------------- HERO ------------------- */
 
+.hero.section {
+  padding: var(--indent-m);
+  min-height: 768px;
+  display: flex;
+  flex-direction: column;
+}
+
 .hero-grid {
   display: grid;
   width: 100%;
-  padding: var(--indent-m);
+  flex: 1;
+  min-height: 0;
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
 
-  /* 2 fluid columns */
   grid-template-columns: repeat(2, 1fr);
+  /* верх 50% / низ 50% — жёлтый блок растягивается снизу */
+  grid-template-rows: 1fr 1fr;
+}
 
-  /* line, title row, highlight row */
-  grid-template-rows: 1px auto 1fr;
+.hero-top {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .hero-topline {
-  grid-column: 1 / -1;
+  flex-shrink: 0;
+  height: 1px;
   background: var(--color-line);
+  margin-bottom: 40px;
+}
+
+.hero-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
+  min-height: 0;
 }
 
 .hero-title {
-  grid-column: 1 / 2;
+  flex: 0 1 auto;
 }
 
-.hero-highlight-left,
-.hero-highlight-right {
+.hero-empty {
+  flex: 0 0 auto;
+}
+
+/* жёлтый блок — нижние 50%, растянут по высоте */
+.hero-highlight-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: var(--indent-m);
+  min-height: 0;
   background: var(--color-highlight);
-  padding: 26px var(--indent-m);
+  padding: 40px var(--indent-m);
+  align-content: flex-end;
+}
+
+.hero-highlight-col {
   display: flex;
   align-items: flex-end;
 }
 
-.hero-highlight-left {
-  grid-column: 1 / 2;
-}
-
-.hero-highlight-right {
-  grid-column: 2 / 3;
+.hero-highlight-inner {
+  width: 100%;
 }
 
 /* ------------------- COMPANY GRID ------------------- */
