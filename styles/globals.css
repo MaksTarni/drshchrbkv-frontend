@@ -221,14 +221,38 @@ html, body {
 }
 
 /* ------------------- COURSE ------------------- */
+/* Figma: 5 rows, 2 cols, gap 20px, padding 20px */
 
 .course-grid {
   width: 100%;
-  padding: var(--indent-l) var(--indent-m);
+  padding: var(--indent-m, 20px);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: var(--indent-m);
-  row-gap: var(--indent-m);
+  row-gap: var(--indent-m, 20px);
+  column-gap: var(--indent-m, 20px);
+  align-self: stretch;
+  grid-template-rows: fit-content(100%) 84px fit-content(100%) fit-content(100%) fit-content(100%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.course-meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--indent-m, 20px);
+  align-items: end;
+}
+
+.course-meta .figma-text:last-child {
+  text-align: right;
+}
+
+.course-spacer {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.course-titleblock {
+  grid-column: 1 / -1;
 }
 
 .course-frame {
@@ -236,6 +260,7 @@ html, body {
   aspect-ratio: 1326 / 600;
   position: relative;
   overflow: hidden;
+  min-height: 0;
 }
 
 .course-frame img {
@@ -244,6 +269,12 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.course-line {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--color-line);
 }
 
 /* ------------------- TAG ------------------- */
