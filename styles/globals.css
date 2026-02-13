@@ -346,3 +346,24 @@ html, body {
   font-size: 12px;
   font-family: var(--b-font);
 }
+/* ========================= HEADER FIX ========================= */
+
+.header {
+  width: 100%;
+}
+
+.header .frame {
+  width: 100%;
+}
+
+.header .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-link {
+  text-decoration: underline;
+  color: var(--color-text);
+}
