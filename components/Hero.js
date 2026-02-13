@@ -1,4 +1,4 @@
-// components/Hero.js
+// frontend/components/Hero.js
 
 function blocksToPlainText(blocks) {
   if (!blocks) return "";
@@ -35,7 +35,7 @@ export default function Hero({ hero, accent }) {
 
         <div className="hero-empty" />
 
-        {/* solid yellow row (spans both columns) */}
+        {/* yellow band (full width like Figma "color") */}
         <div className="hero-highlight-row">
           <div className="hero-highlight-col hero-highlight-col--left">
             <div className="hero-highlight-inner">
