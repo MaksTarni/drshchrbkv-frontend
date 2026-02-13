@@ -7,11 +7,11 @@ html, body {
 
 * { box-sizing: border-box; }
 
-/* прибито к левому и правому краю, отступ только сверху/снизу 20px */
+/* крайние столбцы прикреплены к краю экрана на расстоянии 20px */
 .page-layout {
   width: 100%;
   min-height: 100vh;
-  padding: 20px 0;
+  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -378,8 +378,18 @@ html, body {
   grid-column: 3 / 5;
 }
 
-.company-sberbank .company-tags {
-  grid-row: 3;
+/* sberbank tagA */
+.company-sberbank .company-tag-a {
+  display: flex;
+  width: 336px;
+  height: 25px;
+  padding: var(--indent-s, 5px) 0 0 var(--indent-m, 20px);
+  align-items: flex-start;
+  gap: var(--indent-s, 5px);
+  grid-row: 2 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: start;
+  border-top: 1px solid var(--color-line, #E5E5E5);
 }
 
 /* ------------------- COURSE ------------------- */
@@ -503,7 +513,7 @@ html, body {
 
 .craft-wrap {
   display: inline-grid;
-  padding: 20px 0;
+  padding: 20px;
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
