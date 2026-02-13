@@ -213,6 +213,15 @@ html, body {
   align-self: stretch;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   box-sizing: border-box;
+  width: 100%;
+}
+
+/* Предотвращаем распад сетки на desktop - используем minmax(auto, 1fr) вместо minmax(0, 1fr) */
+@media (min-width: 1366px) {
+  .company-sberbank,
+  .company-cloudpayments {
+    grid-template-columns: repeat(4, minmax(auto, 1fr));
+  }
 }
 
 /* ========================= EMEX ========================= */
@@ -471,12 +480,16 @@ html, body {
   background: #FFFFFF;
   flex: none;
   flex-grow: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media (min-width: 1366px) {
   .projects.section {
     width: 1366px;
     margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
