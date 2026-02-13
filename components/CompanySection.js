@@ -59,14 +59,14 @@ export default function CompanySection({ company }) {
       <section className={cls} aria-label={title}>
         {/* Row 1: title + subtitle */}
         <div className="company-title-wrapper">
-          {subtitle ? (
-            <div className="company-subtitle">
-              <div className="figma-text figma-text--secondary">{subtitle}</div>
-            </div>
-          ) : null}
           {title ? (
             <div className="company-title">
               <div className="figma-header">{title}</div>
+            </div>
+          ) : null}
+          {subtitle ? (
+            <div className="company-subtitle">
+              <div className="figma-text figma-text--secondary">{subtitle}</div>
             </div>
           ) : null}
         </div>

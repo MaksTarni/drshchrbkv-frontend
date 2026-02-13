@@ -231,14 +231,6 @@ html, body {
   gap: 0;
 }
 
-.company-emex .company-subtitle {
-  order: 1;
-}
-
-.company-emex .company-title {
-  order: 2;
-}
-
 /* LINE UNDER TITLE */
 .company-emex .company-line-top {
   grid-row: 2;
