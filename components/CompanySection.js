@@ -6,7 +6,6 @@ function getCompanyClass(company) {
   if (v === "emex") return "company-emex";
   if (v === "sberbank") return "company-sberbank";
   if (v === "cloudpayments") return "company-cloudpayments";
-  // fallback
   return "company-emex";
 }
 
@@ -21,7 +20,10 @@ export default function CompanySection({ company }) {
   const frameAUrl = getMediaUrl(company?.frameA?.image);
   const frameBUrl = getMediaUrl(company?.frameB?.image);
 
+  const variant = (company?.variant || "").toLowerCase();
   const cls = getCompanyClass(company);
+
+  const isEmex = variant === "emex";
 
   return (
     <section className={cls} aria-label={title || "company"}>
@@ -34,7 +36,7 @@ export default function CompanySection({ company }) {
         <div className="figma-text figma-text--secondary">{subtitle}</div>
       </div>
 
-      {/* row 2: tags (как pills) */}
+      {/* row 2: tags */}
       {(tagA || tagB) ? (
         <div className="company-tags">
           {tagA ? <span className="tag">{tagA}</span> : null}
@@ -44,21 +46,52 @@ export default function CompanySection({ company }) {
         <div />
       )}
 
-      {/* row 3 (emex): media left (cols 1-2) and right (cols 3-4) */}
-      {frameAUrl ? (
-        <div className="company-media" style={{ gridColumn: "1 / 3" }}>
-          <img src={frameAUrl} alt={`${title} frame A`} />
-        </div>
-      ) : (
-        <div style={{ gridColumn: "1 / 3" }} />
-      )}
+      {/* MEDIA */}
+      {isEmex ? (
+        <>
+          {/* emex: frameA -> col 2, row 3 (653x690 ячейка, внутри паддинги) */}
+          {frameAUrl ? (
+            <div
+              className="company-media company-media--a"
+              style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}
+            >
+              <img src={frameAUrl} alt={`${title} frame A`} />
+            </div>
+          ) : (
+            <div style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }} />
+          )}
 
-      {frameBUrl ? (
-        <div className="company-media" style={{ gridColumn: "3 / 5" }}>
-          <img src={frameBUrl} alt={`${title} frame B`} />
-        </div>
+          {/* emex: frameB -> cols 3-4, rows 3-4 (большой блок) */}
+          {frameBUrl ? (
+            <div
+              className="company-media company-media--b"
+              style={{ gridColumn: "3 / 5", gridRow: "3 / 5" }}
+            >
+              <img src={frameBUrl} alt={`${title} frame B`} />
+            </div>
+          ) : (
+            <div style={{ gridColumn: "3 / 5", gridRow: "3 / 5" }} />
+          )}
+        </>
       ) : (
-        <div style={{ gridColumn: "3 / 5" }} />
+        <>
+          {/* default (пока): 2 большие карточки 50/50 */}
+          {frameAUrl ? (
+            <div className="company-media" style={{ gridColumn: "1 / 3" }}>
+              <img src={frameAUrl} alt={`${title} frame A`} />
+            </div>
+          ) : (
+            <div style={{ gridColumn: "1 / 3" }} />
+          )}
+
+          {frameBUrl ? (
+            <div className="company-media" style={{ gridColumn: "3 / 5" }}>
+              <img src={frameBUrl} alt={`${title} frame B`} />
+            </div>
+          ) : (
+            <div style={{ gridColumn: "3 / 5" }} />
+          )}
+        </>
       )}
     </section>
   );
