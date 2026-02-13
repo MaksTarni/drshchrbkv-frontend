@@ -28,230 +28,268 @@ html, body {
   --t-line: 20px;
   --t-letter: -0.48px;
 
+  /* HERO defaults (могут переопределяться инлайном из Strapi) */
+  --hero-height: 768px;
+  --hero-text-width: 653px;
+  --hero-intro-top: 60px;
+
+  /* spacing tokens from Figma */
   --indent-xs: 3px;
   --indent-s: 5px;
   --indent-m: 20px;
   --indent-l: 124px;
 
-  --max-w: 1326px;
+  --border: 1px solid var(--color-line);
 }
 
 body {
-  color: var(--color-text);
   font-family: var(--b-font);
-  background: white;
+  color: var(--color-text);
+  background: #fff;
 }
 
+/* Typography helpers */
+.figma-header {
+  font-family: var(--h-font);
+  font-size: var(--h-size);
+  line-height: var(--h-line);
+  letter-spacing: var(--h-letter);
+  margin: 0;
+  font-weight: 400;
+}
+
+.figma-text {
+  font-family: var(--b-font);
+  font-size: var(--t-size);
+  line-height: var(--t-line);
+  letter-spacing: var(--t-letter);
+}
+
+.figma-text--secondary {
+  color: var(--color-secondary);
+}
+
+/* generic section wrapper */
 .section {
   width: 100%;
 }
 
 .frame {
-  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  max-width: var(--page-width);
   margin: 0 auto;
+  padding: 0 var(--page-padding);
 }
 
-/* Typography */
-.figma-header{
-  font-family: var(--h-font);
-  font-size: var(--h-size);
-  line-height: var(--h-line);
-  letter-spacing: var(--h-letter);
-  font-weight: 400;
-  margin: 0;
+/* ---------------- HERO ---------------- */
+
+.hero {
+  width: 100%;
 }
 
-.figma-text{
-  font-family: var(--b-font);
-  font-size: var(--t-size);
-  line-height: var(--t-line);
-  letter-spacing: var(--t-letter);
-  font-weight: 400;
-  margin: 0;
-}
-
-.figma-text--secondary{
-  color: var(--color-secondary);
-}
-
-/* Pills */
-.tag{
-  display: inline-flex;
-  padding: 6px 12px;
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  font-family: var(--b-font);
-  font-size: 13px;
-  line-height: 16px;
-}
-
-/* HERO */
-.hero-grid{
-  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+.hero-grid {
+  max-width: var(--page-width);
   margin: 0 auto;
+  padding: 0 var(--indent-m);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
-  padding: var(--indent-m);
+  align-items: stretch;
 }
 
-.hero-topline{
+.hero-topline {
   grid-column: 1 / 3;
   height: 1px;
   background: var(--color-line);
+  margin-top: var(--indent-m);
 }
 
-.hero-title{
+.hero-title {
   grid-column: 1 / 2;
+  padding-top: 0;
 }
 
-.hero-empty{
+.hero-empty {
   grid-column: 2 / 3;
 }
 
-.hero-highlight-row{
-  grid-column: 1 / 3;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--indent-m);
-}
-
-.hero-highlight-col{
+.hero-highlight-left {
+  grid-column: 1 / 2;
   background: var(--color-highlight);
-  min-height: 302px;
-  display: flex;
 }
 
-.hero-highlight-col--left{ align-items: flex-end; }
-.hero-highlight-col--right{ align-items: stretch; }
+.hero-highlight-right {
+  grid-column: 2 / 3;
+  background: var(--color-highlight);
+}
 
-.hero-highlight-inner{
+.hero-highlight-inner {
   padding: 26px 20px;
-  width: 100%;
 }
 
-/* PROJECTS */
-.projects.section{
-  width: 100%;
+/* Full-bleed yellow block (no left/right page padding in Figma) */
+.hero-highlight-left,
+.hero-highlight-right {
+  /* allow backgrounds to bleed outside the 20px page padding */
+  margin-top: 0;
 }
+.hero-highlight-left { margin-left: calc(-1 * var(--indent-m)); }
+.hero-highlight-right { margin-right: calc(-1 * var(--indent-m)); }
 
-.projects-meta{
-  display:flex;
-  justify-content: space-between;
-  padding-top: 40px;
-}
-
-/* COMPANIES базовая сетка */
-.company-emex, .company-sberbank, .company-cloudpayments{
-  display: inline-grid;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
+/* Also support alternative DOM from older builds */
+.hero-highlight-row{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  grid-column: 1 / 3;
   column-gap: var(--indent-m);
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin-left: calc(-1 * var(--indent-m));
+  margin-right: calc(-1 * var(--indent-m));
+}
+.hero-highlight-col{ background: var(--color-highlight); }
+.hero-highlight-inner{ padding: 26px 20px; }
+
+/* ---------------- PROJECTS / COMPANIES ---------------- */
+
+.projects {
+  width: 100%;
+}
+
+.projects-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 var(--page-padding);
+  max-width: var(--page-width);
   margin: 0 auto;
-  align-self: stretch;
 }
 
 .company-title{
   grid-column: 1 / 3;
-  grid-row: 1 / span 1;
 }
-
 .company-subtitle{
   grid-column: 3 / 5;
-  grid-row: 1 / span 1;
-  justify-self: end;
-  text-align: right;
   align-self: end;
+  text-align: right;
 }
-
 .company-tags{
   grid-column: 1 / 3;
-  grid-row: 2 / span 1;
-  display:flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* media blocks default */
-.company-media{
-  border: 1px solid var(--color-line);
-  background: #f3f3f3;
-  overflow: hidden;
-}
-
-.company-media img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* EMEX specific grid */
-.company-emex{
-  /* Figma: media area is 2 rows (335px + 335px) */
-  grid-template-rows: fit-content(100%) fit-content(100%) 335px 335px;
-}
-
-/* empty cells to preserve Figma grid */
-.company-emex-spacer{
-  grid-column: 1 / span 1;
-  grid-row: 3 / span 1;
-}
-.company-emex-spacer--wide{
-  grid-column: 1 / span 2;
-  grid-row: 4 / span 1;
-}
-
-/* small card cell (col2,row3) */
-.company-media--emex-a{
-  grid-column: 2 / span 1;
-  grid-row: 3 / span 1;
-
   display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag{
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-
-  /* close to figma paddings; card stays centered */
-  padding: 90px 34px;
-}
-.company-media--emex-a img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* large monitor (col3-4,row3-4) */
-.company-media--emex-b{
-  grid-column: 3 / span 2;
-  grid-row: 3 / span 2;
+  padding: 6px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  font-family: var(--b-font);
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.42px;
+  white-space: nowrap;
 }
 
-/* give emex media explicit heights like figma */
-.company-media--emex-a{ height: 335px; }
-.company-media--emex-b{ height: 690px; }
-
-/* Course */
-.course-grid{
-  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+/* EMEX */
+.company-emex{
+  display: inline-grid;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  row-gap: var(--indent-m);
+  column-gap: var(--indent-m);
+  /* title row, tags row, then two fixed media rows */
+  grid-template-rows: fit-content(100%) fit-content(100%) 335px 335px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: var(--page-width);
   margin: 0 auto;
+}
+
+/* other variants keep same base grid (can be refined later) */
+.company-sberbank,
+.company-cloudpayments{
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
   padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+.company-media{
+  height: 335px;
+  background: #F3F3F3;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+}
+
+.company-media img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+/* EMEX: exact frame placements from Figma */
+.company-emex .company-empty--left{
+  grid-column: 1 / 2;
+  grid-row: 3 / span 2;
+}
+
+.company-emex .company-media--emex-a{
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background: #F3F3F3;
+  border: 1px solid var(--color-line);
+  overflow: hidden;
+}
+.company-emex .company-media--emex-a img{
+  object-fit: cover; /* заполняет контейнер как ты просил */
+}
+
+.company-emex .company-empty--emex-a-bottom{
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+}
+
+.company-emex .company-media--emex-b{
+  grid-column: 3 / 5;
+  grid-row: 3 / span 2;
+  height: 690px; /* 335 + 20 gap + 335 */
+  background: #F3F3F3;
+  border: 1px solid var(--color-line);
+  overflow: hidden;
+}
+.company-emex .company-media--emex-b img{
+  object-fit: cover;
+}
+
+/* Non-emex basic positioning */
+.company-media--a{ grid-column: 1 / 3; }
+.company-media--b{ grid-column: 3 / 5; }
+
+/* ---------------- COURSE ---------------- */
+
+.course-grid{
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--indent-m);
+  row-gap: var(--indent-m);
 }
 
 .course-meta{
-  grid-column: 1 / 5;
+  grid-column: 1 / 3;
   display:flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .course-titleblock{
-  grid-column: 1 / 5;
+  grid-column: 1 / 3;
   display:flex;
   flex-direction: column;
   gap: var(--indent-xs);
@@ -260,13 +298,14 @@ body {
 .course-frame{
   grid-column: 1 / 5;
   height: 600px;
+  background: #F3F3F3;
   border: 1px solid var(--color-line);
-  overflow: hidden;
+  overflow:hidden;
 }
 
 .course-frame img{
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   object-fit: cover;
   display:block;
 }
@@ -277,39 +316,44 @@ body {
   background: var(--color-line);
 }
 
-/* Craft */
+/* ---------------- CRAFT ---------------- */
+
 .craft-wrap{
-  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  max-width: var(--page-width);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--indent-m);
   padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  column-gap: var(--indent-m);
+  row-gap: var(--indent-m);
 }
 
 .craft-meta{
   grid-column: 1 / 3;
   display:flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .craft-cell{
+  background:#F3F3F3;
   border: 1px solid var(--color-line);
   overflow:hidden;
 }
 
 .craft-cell img{
-  width: 100%;
-  height: 100%;
+  width:100%;
+  height:100%;
   object-fit: cover;
   display:block;
 }
 
-/* Footer */
-.footer-layer{
-  padding: var(--indent-l) 0 80px;
+/* ---------------- FOOTER ---------------- */
+
+.footer{
+  padding: var(--indent-l) 0 var(--indent-m) 0;
 }
-.footer-links{
+.footer-layer{
   display:flex;
   justify-content: space-between;
 }

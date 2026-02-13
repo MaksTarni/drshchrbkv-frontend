@@ -1,31 +1,42 @@
-// components/CompanySection.js
 import React from "react";
 
-// helper to build absolute url if Strapi gives relative
+const STRAPI_URL =
+  process.env.NEXT_PUBLIC_STRAPI_URL || "https://cms.drshchrbkv.com";
+
 function getMediaUrl(media) {
-  if (!media) return null;
-  const url = media?.url || media?.data?.attributes?.url;
+  const url = media?.url;
   if (!url) return null;
   if (url.startsWith("http")) return url;
-  const base = process.env.NEXT_PUBLIC_STRAPI_URL || "https://cms.drshchrbkv.com";
-  return `${base}${url}`;
+  return `${STRAPI_URL}${url}`;
 }
 
 function getCompanyClass(company) {
-  const v = company?.variant || "emex";
+  const v = (company?.variant || "emex").toLowerCase();
   return `company-${v}`;
 }
 
 export default function CompanySection({ company }) {
   if (!company) return null;
 
-  const { title, subtitle, tagA, tagB } = company;
+  const title = company?.title || "";
+  const subtitle = company?.subtitle || "";
+  const tagA = company?.tagA || "";
+  const tagB = company?.tagB || "";
 
   const frameAUrl = getMediaUrl(company?.frameA?.image);
   const frameBUrl = getMediaUrl(company?.frameB?.image);
 
   const cls = getCompanyClass(company);
-  const isEmex = cls === "company-emex";
+  const variant = (company?.variant || "emex").toLowerCase();
+
+  const Media = ({ src, alt, className }) => {
+    if (!src) return null;
+    return (
+      <div className={`company-media ${className || ""}`.trim()}>
+        <img src={src} alt={alt} loading="lazy" />
+      </div>
+    );
+  };
 
   return (
     <section className={cls} aria-label={title}>
@@ -37,60 +48,45 @@ export default function CompanySection({ company }) {
         <div className="figma-text figma-text--secondary">{subtitle}</div>
       </div>
 
-      {/* row 2: tags (как pills) */}
-      {tagA || tagB ? (
-        <div className="company-tags">
-          {tagA ? <span className="tag">{tagA}</span> : null}
-          {tagB ? <span className="tag">{tagB}</span> : null}
-        </div>
-      ) : (
-        <div />
-      )}
+      <div className="company-tags">
+        {tagA ? <span className="tag">{tagA}</span> : null}
+        {tagB ? <span className="tag">{tagB}</span> : null}
+      </div>
 
-      {/* MEDIA */}
-      {isEmex ? (
+      {variant === "emex" ? (
         <>
-          {/* Empty cell (col 1) on media row to match Figma grid */}
-          <div className="company-emex-spacer" aria-hidden="true" />
+          {/* empty left column (Figma empty frame) */}
+          <div className="company-empty company-empty--left" />
 
-          {/* Small card (col 2, row 3) */}
-          {frameAUrl ? (
-            <div className="company-media company-media--emex-a">
-              <img src={frameAUrl} alt={`${title} frame A`} />
-            </div>
-          ) : (
-            <div className="company-media company-media--emex-a" />
-          )}
+          {/* Frame A (middle small card) */}
+          <Media
+            src={frameAUrl}
+            alt={`${title} frame A`}
+            className="company-media--emex-a"
+          />
 
-          {/* Large image (cols 3-4, rows 3-4) */}
-          {frameBUrl ? (
-            <div className="company-media company-media--emex-b">
-              <img src={frameBUrl} alt={`${title} frame B`} />
-            </div>
-          ) : (
-            <div className="company-media company-media--emex-b" />
-          )}
+          {/* empty cell under frame A (Figma empty) */}
+          <div className="company-empty company-empty--emex-a-bottom" />
 
-          {/* Bottom-left empty cell (cols 1-2, row 4) */}
-          <div className="company-emex-spacer company-emex-spacer--wide" aria-hidden="true" />
+          {/* Frame B (big monitor) */}
+          <Media
+            src={frameBUrl}
+            alt={`${title} frame B`}
+            className="company-media--emex-b"
+          />
         </>
       ) : (
         <>
-          {frameAUrl ? (
-            <div className="company-media" style={{ gridColumn: "1 / 3" }}>
-              <img src={frameAUrl} alt={`${title} frame A`} />
-            </div>
-          ) : (
-            <div style={{ gridColumn: "1 / 3" }} />
-          )}
-
-          {frameBUrl ? (
-            <div className="company-media" style={{ gridColumn: "3 / 5" }}>
-              <img src={frameBUrl} alt={`${title} frame B`} />
-            </div>
-          ) : (
-            <div style={{ gridColumn: "3 / 5" }} />
-          )}
+          <Media
+            src={frameAUrl}
+            alt={`${title} frame A`}
+            className="company-media--a"
+          />
+          <Media
+            src={frameBUrl}
+            alt={`${title} frame B`}
+            className="company-media--b"
+          />
         </>
       )}
     </section>
