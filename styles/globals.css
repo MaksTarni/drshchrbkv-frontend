@@ -94,7 +94,7 @@ html, body {
 .header {
   width: 100%;
   margin-bottom: 0;
-  flex-shrink: 0;
+  flex-shrink: 20;
 }
 
 .header .frame,
@@ -132,7 +132,7 @@ html, body {
   width: 100%;
   flex: 1;
   min-height: 0;
-  padding: 20;
+  padding: 0;
   row-gap: 20px;
   column-gap: 20px;
   align-self: stretch;
