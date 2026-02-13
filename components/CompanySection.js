@@ -26,8 +26,8 @@ export default function CompanySection({ company }) {
   const frameAUrl = getMediaUrl(company?.frameA?.image);
   const frameBUrl = getMediaUrl(company?.frameB?.image);
 
-  const cls = getCompanyClass(company);
   const variant = (company?.variant || "emex").toLowerCase();
+  const cls = getCompanyClass(company);
 
   const Media = ({ src, alt, className }) => {
     if (!src) return null;
@@ -40,67 +40,44 @@ export default function CompanySection({ company }) {
 
   return (
     <section className={cls} aria-label={title}>
-      {variant === "emex" ? (
-        <>
+      {/* ===== TITLE BLOCK ===== */}
+      <div className="company-title-wrapper">
+        {subtitle ? (
           <div className="company-subtitle">
-            <div className="figma-text figma-text--secondary">{subtitle}</div>
+            <div className="figma-text figma-text--secondary">
+              {subtitle}
+            </div>
           </div>
-          <div className="company-title">
-            <div className="figma-header">{title}</div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="company-title">
-            <div className="figma-header">{title}</div>
-          </div>
-          <div className="company-subtitle">
-            <div className="figma-text figma-text--secondary">{subtitle}</div>
-          </div>
-        </>
-      )}
+        ) : null}
 
-      {variant === "emex" ? (
-        <>
-          <div className="company-tag-a">
-            {tagA ? <span className="tag">{tagA}</span> : null}
+        {title ? (
+          <div className="company-title">
+            <div className="figma-header">{title}</div>
           </div>
-          <div className="company-tag-b">
-            {tagB ? <span className="tag">{tagB}</span> : null}
-          </div>
-        </>
-      ) : variant === "sberbank" ? (
-        <>
-          <div className="company-tag-a">
-            {tagA ? <span className="tag">{tagA}</span> : null}
-          </div>
-          <div className="company-tag-b">
-            {tagB ? <span className="tag">{tagB}</span> : null}
-          </div>
-        </>
-      ) : (
-        <div className="company-tags">
-          {tagA ? <span className="tag">{tagA}</span> : null}
-          {tagB ? <span className="tag">{tagB}</span> : null}
+        ) : null}
+      </div>
+
+      {/* ===== TAGS ===== */}
+      {tagA ? (
+        <div className="company-tag-a">
+          <span className="tag">{tagA}</span>
         </div>
-      )}
+      ) : null}
 
+      {tagB ? (
+        <div className="company-tag-b">
+          <span className="tag">{tagB}</span>
+        </div>
+      ) : null}
+
+      {/* ===== MEDIA ===== */}
       {variant === "emex" ? (
         <>
-          {/* empty left column (Figma empty frame) */}
-          <div className="company-empty company-empty--left" />
-
-          {/* Frame A (middle small card) */}
           <Media
             src={frameAUrl}
             alt={`${title} frame A`}
             className="company-media--emex-a"
           />
-
-          {/* empty cell under frame A (Figma empty) */}
-          <div className="company-empty company-empty--emex-a-bottom" />
-
-          {/* Frame B (big monitor) */}
           <Media
             src={frameBUrl}
             alt={`${title} frame B`}
