@@ -34,7 +34,7 @@ export default function HomePage({
         ) : null}
       </Head>
 
-      <div style={{ "--color-highlight": accent }}>
+      <div className="page-layout" style={{ "--color-highlight": accent }}>
         <Hero hero={hero} accent={accent} settings={settings} />
 
         <section id="projects" className="projects section">

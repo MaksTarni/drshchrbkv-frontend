@@ -1,9 +1,24 @@
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  min-height: 100%;
 }
 
 * { box-sizing: border-box; }
+
+/* отступ 20px от краёв страницы, блоки растягиваются по ширине */
+.page-layout {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.page-layout > * {
+  width: 100%;
+  max-width: 100%;
+}
 
 :root {
   --color-text: #161616;
