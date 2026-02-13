@@ -1,3 +1,14 @@
+/* ========================= FONTS ========================= */
+
+/* ВАЖНО: возвращаем шрифт, иначе "Times New Roman MT Condensed" не существует */
+@font-face {
+  font-family: "Times New Roman MT Condensed";
+  src: url("/fonts/times-new-roman-mt-condensed.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -30,7 +41,7 @@ html, body {
   --color-highlight: #FDFF45;
 
   --h-font: "Times New Roman MT Condensed", serif;
-  --b-font: Inter, system-ui, sans-serif;
+  --b-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 /* ========================= TYPOGRAPHY ========================= */
@@ -122,12 +133,12 @@ html, body {
   text-align: right;
 }
 
-/* ✅ spacer должен занимать всю ширину, иначе сетка "гуляет" */
+/* spacer должен занимать всю ширину */
 .course-spacer {
   grid-column: 1 / -1;
 }
 
-/* ✅ фикс: titleblock всегда как в фигме — 2 колонки, текст в левой половине */
+/* titleblock всегда как в фигме — 2 колонки, текст в левой половине */
 .course-titleblock {
   grid-column: 1 / -1;
   display: grid;
@@ -182,7 +193,7 @@ html, body {
   grid-column: 1 / 3;
 }
 
-/* ===== LINE UNDER TITLE ===== */
+/* LINE UNDER TITLE */
 .company-emex .company-line-top {
   grid-row: 2;
   grid-column: 1 / 3;
@@ -208,18 +219,21 @@ html, body {
   grid-column: 2;
 }
 
+/* ✅ FIX: линия над seller hub должна упираться в правый фрейм (включая gap 20px) */
 .company-emex .company-line-middle {
   grid-row: 3;
-  grid-column: 2;
+  grid-column: 2 / 5;
   border-top: 1px solid var(--color-line);
   align-self: start;
 }
 
+/* ✅ FIX: seller hub прижат к верхней границе ячейки */
 .company-emex .company-tag-b {
   grid-row: 3;
   grid-column: 2;
   justify-self: end;
   align-self: start;
+  margin: 0;
 }
 
 /* ========================= SBERBANK ========================= */
