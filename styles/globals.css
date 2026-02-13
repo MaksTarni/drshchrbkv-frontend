@@ -94,7 +94,7 @@ html, body {
 .header {
   width: 100%;
   margin-bottom: 0;
-  flex-shrink: 20;
+  flex-shrink: 0;
 }
 
 .header .frame,
