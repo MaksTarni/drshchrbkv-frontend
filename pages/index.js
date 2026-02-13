@@ -40,12 +40,12 @@ export default function HomePage({
         <section id="projects" className="projects section">
           <div className="frame">
             <div className="projects-meta">
-              <div className="figma-text">
+              <span className="figma-text">
                 {settings?.projectsTitle || "professional projects"}
-              </div>
-              <div className="figma-text figma-text--secondary">
-                {settings?.projectsSubtitle || "2021 — present"}
-              </div>
+              </span>
+              <span className="figma-text figma-text--secondary">
+                {" "}{settings?.projectsSubtitle || "2021 — present"}
+              </span>
             </div>
           </div>
 
