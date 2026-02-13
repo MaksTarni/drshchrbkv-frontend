@@ -75,16 +75,25 @@ html, body {
 
 .hero.section {
   min-height: 100vh;
+  height: 100vh;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
 .hero-grid {
   display: grid;
+  width: 100%;
   flex: 1;
-  gap: 20px;
+  min-height: 0;
+  padding: 0;
+  row-gap: 20px;
+  column-gap: 20px;
+  align-self: stretch;
+  box-sizing: border-box;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 1fr 1fr;
 }
 
 .hero-title-row {
@@ -99,8 +108,13 @@ html, body {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  column-gap: 20px;
+  min-height: 0;
   background: var(--color-highlight);
+  padding: 0;
+  margin-left: -20px;
+  margin-right: -20px;
+  width: calc(100% + 40px);
   align-content: flex-end;
 }
 
@@ -111,16 +125,16 @@ html, body {
 /* ========================= COURSE ========================= */
 
 .course-grid {
-  display: grid;
+  display: inline-grid;
   min-height: 100vh;
-  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+  row-gap: 20px;
+  column-gap: 20px;
+  align-self: stretch;
+  grid-template-rows: fit-content(100%) 84px fit-content(100%) minmax(0, 1fr) fit-content(100%);
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows:
-    fit-content(100%)
-    84px
-    fit-content(100%)
-    minmax(0, 1fr)
-    fit-content(100%);
+  box-sizing: border-box;
 }
 
 .course-meta {
@@ -160,14 +174,29 @@ html, body {
   grid-column: 1 / -1;
 }
 
+.course-frame {
+  grid-row: 4 / span 1;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 0;
+}
+
 .course-frame img {
   width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 .course-line {
-  grid-column: 1 / -1;
-  border-bottom: 1px solid var(--color-line);
+  grid-row: 5 / span 1;
+  grid-column: 1 / span 2;
+  justify-self: stretch;
+  display: flex;
+  height: 25px;
+  padding-top: 5px;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 /* ========================= COMPANIES BASE ========================= */
@@ -175,22 +204,39 @@ html, body {
 .company-emex,
 .company-sberbank,
 .company-cloudpayments {
-  display: grid;
+  display: inline-grid;
   padding-top: 124px;
-  gap: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  row-gap: 20px;
+  column-gap: 20px;
+  align-self: stretch;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  box-sizing: border-box;
 }
 
 /* ========================= EMEX ========================= */
 
 .company-emex {
-  grid-template-rows: auto auto auto;
+  grid-template-rows: fit-content(100%) fit-content(100%) 335px;
 }
 
-/* Row 1 */
+/* Row 1: title и subtitle в одной ячейке, размах 2 колонки */
 .company-emex .company-title-wrapper {
   grid-row: 1;
-  grid-column: 1 / 3;
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.company-emex .company-subtitle {
+  order: 1;
+}
+
+.company-emex .company-title {
+  order: 2;
 }
 
 /* LINE UNDER TITLE */
@@ -204,19 +250,34 @@ html, body {
 /* Big right frame (2x2) */
 .company-emex .company-media--emex-b {
   grid-row: 2 / span 2;
-  grid-column: 3 / 5;
+  grid-column: 3 / span 2;
+  align-self: stretch;
+  justify-self: stretch;
+  min-height: 0;
+}
+
+.company-emex .company-media--emex-b img {
+  object-fit: contain;
 }
 
 /* Left side */
 .company-emex .company-tag-a {
   grid-row: 2;
   grid-column: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px 0 0 20px;
+  gap: 5px;
+  border-top: 1px solid var(--color-line);
   align-self: start;
 }
 
 .company-emex .company-media--emex-a {
   grid-row: 2;
   grid-column: 2;
+  aspect-ratio: 653 / 690;
+  min-height: 0;
 }
 
 /* ✅ FIX: линия над seller hub должна упираться в правый фрейм (включая gap 20px) */
@@ -231,7 +292,13 @@ html, body {
 .company-emex .company-tag-b {
   grid-row: 3;
   grid-column: 2;
-  justify-self: end;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 5px 0 0 20px;
+  gap: 5px;
+  border-top: 1px solid var(--color-line);
+  justify-self: start;
   align-self: start;
   margin: 0;
 }
@@ -239,7 +306,8 @@ html, body {
 /* ========================= SBERBANK ========================= */
 
 .company-sberbank {
-  grid-template-rows: auto auto auto;
+  grid-template-rows: fit-content(100%) 335px fit-content(100%);
+  padding-bottom: 0;
 }
 
 .company-sberbank .company-title {
@@ -251,27 +319,46 @@ html, body {
   grid-row: 1;
   grid-column: 3 / 5;
   text-align: right;
+  align-self: start;
 }
 
 .company-sberbank .company-media--a {
+  display: flex;
+  padding: 86px 67.904px 0 68px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: stretch;
   grid-row: 2 / span 2;
-  grid-column: 1 / 3;
+  grid-column: 1 / span 2;
+  justify-self: stretch;
+  min-height: 0;
 }
 
 .company-sberbank .company-tag-a {
-  grid-row: 2;
-  grid-column: 3;
+  display: flex;
+  width: 336px;
+  height: 25px;
+  padding: 5px 0 0 20px;
+  align-items: flex-start;
+  gap: 5px;
+  grid-row: 2 / span 1;
+  grid-column: 3 / span 1;
+  justify-self: start;
+  border-top: 1px solid var(--color-line);
 }
 
 .company-sberbank .company-media--b {
-  grid-row: 3;
+  grid-row: 2;
   grid-column: 3 / 5;
+  min-height: 0;
 }
 
 /* ========================= CLOUDPAYMENTS ========================= */
 
 .company-cloudpayments {
-  grid-template-rows: auto auto;
+  grid-template-rows: repeat(2, fit-content(100%));
+  padding-bottom: 0;
 }
 
 .company-cloudpayments .company-title {
@@ -283,16 +370,19 @@ html, body {
   grid-row: 1;
   grid-column: 3 / 5;
   text-align: right;
+  align-self: start;
 }
 
 .company-cloudpayments .company-media--a {
   grid-row: 2;
   grid-column: 1 / 3;
+  min-height: 0;
 }
 
 .company-cloudpayments .company-media--b {
   grid-row: 2;
   grid-column: 3 / 5;
+  min-height: 0;
 }
 
 /* ========================= MEDIA ========================= */
@@ -306,15 +396,33 @@ html, body {
 /* ========================= CRAFT ========================= */
 
 .craft-wrap {
-  display: grid;
-  padding-top: 220px;
-  gap: 20px;
+  display: inline-grid;
+  padding: 220px 20px 0 20px;
+  row-gap: 20px;
+  column-gap: 20px;
+  align-self: stretch;
+  grid-template-rows: fit-content(100%) 335px 335px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  box-sizing: border-box;
+}
+
+.craft-meta {
+  grid-row: 1;
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.5em;
+  align-items: baseline;
+}
+
+.craft-cell {
+  min-height: 0;
 }
 
 .craft-cell img {
   width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* ========================= TAG ========================= */
@@ -324,11 +432,83 @@ html, body {
   padding: 0;
   font-size: 16px;
   font-family: var(--b-font);
+  color: var(--color-text);
+}
+
+.tag-sep {
+  margin: 0 0.25em;
+}
+
+.tag-secondary {
+  color: var(--color-secondary);
 }
 
 /* ========================= HEADER ========================= */
 
+.header {
+  width: 100%;
+}
+
+.header .frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
 .header .nav {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ========================= PROJECTS ========================= */
+
+.projects.section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  background: #FFFFFF;
+  flex: none;
+  flex-grow: 0;
+}
+
+@media (min-width: 1366px) {
+  .projects.section {
+    width: 1366px;
+    margin: 0 auto;
+  }
+}
+
+.projects-meta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+/* ========================= FOOTER ========================= */
+
+.footer {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.footer .frame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1em;
 }
