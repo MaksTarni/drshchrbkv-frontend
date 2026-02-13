@@ -87,11 +87,17 @@ html, body {
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  max-width: 1366px;
-  margin: 0 auto;
   background: #FFFFFF;
   flex: none;
   flex-grow: 0;
+}
+
+/* desktop: min-width 1366px */
+@media (min-width: 1366px) {
+  .projects.section {
+    width: 1366px;
+    margin: 0 auto;
+  }
 }
 
 /* ------------------- HEADER / NAV ------------------- */
