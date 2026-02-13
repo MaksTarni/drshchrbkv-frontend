@@ -218,9 +218,28 @@ html, body {
 
 /* Предотвращаем распад сетки на desktop - используем minmax(auto, 1fr) вместо minmax(0, 1fr) */
 @media (min-width: 1366px) {
+  .company-emex,
   .company-sberbank,
   .company-cloudpayments {
     grid-template-columns: repeat(4, minmax(auto, 1fr));
+  }
+}
+
+/* Tablet breakpoint (768px - 1365px) */
+@media (min-width: 768px) and (max-width: 1365px) {
+  .company-emex,
+  .company-sberbank,
+  .company-cloudpayments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile breakpoint (< 768px) */
+@media (max-width: 767px) {
+  .company-emex,
+  .company-sberbank,
+  .company-cloudpayments {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -258,7 +277,10 @@ html, body {
 }
 
 .company-emex .company-media--emex-b img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 /* Left side */
@@ -279,6 +301,13 @@ html, body {
   grid-column: 2;
   aspect-ratio: 653 / 690;
   min-height: 0;
+}
+
+.company-emex .company-media--emex-a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ✅ FIX: линия над seller hub должна упираться в правый фрейм (включая gap 20px) */
@@ -302,6 +331,85 @@ html, body {
   justify-self: start;
   align-self: start;
   margin: 0;
+}
+
+/* EMEX Tablet (768px - 1365px) */
+@media (min-width: 768px) and (max-width: 1365px) {
+  .company-emex {
+    grid-template-rows: fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%);
+  }
+
+  .company-emex .company-title-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  .company-emex .company-line-top {
+    grid-column: 1 / -1;
+  }
+
+  .company-emex .company-tag-a {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .company-emex .company-media--emex-a {
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  .company-emex .company-media--emex-b {
+    grid-row: 3;
+    grid-column: 1 / -1;
+  }
+
+  .company-emex .company-tag-b {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .company-emex .company-line-middle {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+}
+
+/* EMEX Mobile (< 768px) */
+@media (max-width: 767px) {
+  .company-emex {
+    grid-template-rows: fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%) fit-content(100%);
+  }
+
+  .company-emex .company-title-wrapper {
+    grid-column: 1;
+  }
+
+  .company-emex .company-line-top {
+    grid-column: 1;
+  }
+
+  .company-emex .company-tag-a {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .company-emex .company-media--emex-a {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .company-emex .company-media--emex-b {
+    grid-row: 4;
+    grid-column: 1;
+  }
+
+  .company-emex .company-tag-b {
+    grid-row: 5;
+    grid-column: 1;
+  }
+
+  .company-emex .company-line-middle {
+    display: none;
+  }
 }
 
 /* ========================= SBERBANK ========================= */
@@ -380,18 +488,105 @@ html, body {
   min-height: 0;
 }
 
+.company-cloudpayments .company-media--a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .company-cloudpayments .company-media--b {
   grid-row: 2;
   grid-column: 3 / 5;
   min-height: 0;
 }
 
+.company-cloudpayments .company-media--b img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* CLOUDPAYMENTS Tablet (768px - 1365px) */
+@media (min-width: 768px) and (max-width: 1365px) {
+  .company-cloudpayments {
+    grid-template-rows: fit-content(100%) fit-content(100%) fit-content(100%);
+  }
+
+  .company-cloudpayments .company-title {
+    grid-row: 1;
+    grid-column: 1 / -1;
+  }
+
+  .company-cloudpayments .company-subtitle {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    text-align: left;
+    margin-top: 0.5em;
+  }
+
+  .company-cloudpayments .company-media--a {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+
+  .company-cloudpayments .company-media--b {
+    grid-row: 3;
+    grid-column: 1 / -1;
+  }
+}
+
+/* CLOUDPAYMENTS Mobile (< 768px) */
+@media (max-width: 767px) {
+  .company-cloudpayments {
+    grid-template-rows: fit-content(100%) fit-content(100%) fit-content(100%);
+  }
+
+  .company-cloudpayments .company-title {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .company-cloudpayments .company-subtitle {
+    grid-row: 1;
+    grid-column: 1;
+    text-align: left;
+    margin-top: 0.5em;
+  }
+
+  .company-cloudpayments .company-media--a {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .company-cloudpayments .company-media--b {
+    grid-row: 3;
+    grid-column: 1;
+  }
+}
+
 /* ========================= MEDIA ========================= */
+
+.company-media {
+  min-height: 0;
+  overflow: hidden;
+}
 
 .company-media img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
+}
+
+/* SBERBANK media specific */
+.company-sberbank .company-media--a img {
+  object-fit: contain;
+}
+
+.company-sberbank .company-media--b img {
+  object-fit: cover;
 }
 
 /* ========================= CRAFT ========================= */

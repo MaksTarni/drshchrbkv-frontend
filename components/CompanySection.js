@@ -103,7 +103,40 @@ export default function CompanySection({ company }) {
     );
   }
 
-  // SBERBANK и CLOUDPAYMENTS layout
+  // CLOUDPAYMENTS layout
+  if (variant === "cloudpayments") {
+    return (
+      <section className={cls} aria-label={title}>
+        {/* Row 1: title и subtitle */}
+        {title ? (
+          <div className="company-title">
+            <div className="figma-header">{title}</div>
+          </div>
+        ) : null}
+
+        {subtitle ? (
+          <div className="company-subtitle">
+            <div className="figma-text figma-text--secondary">{subtitle}</div>
+          </div>
+        ) : null}
+
+        {/* Row 2: Media frames */}
+        {frameAUrl ? (
+          <div className="company-media company-media--a">
+            <img src={frameAUrl} alt={`${title} frame A`} loading="lazy" />
+          </div>
+        ) : null}
+
+        {frameBUrl ? (
+          <div className="company-media company-media--b">
+            <img src={frameBUrl} alt={`${title} frame B`} loading="lazy" />
+          </div>
+        ) : null}
+      </section>
+    );
+  }
+
+  // SBERBANK layout
   return (
     <section className={cls} aria-label={title}>
       {/* Row 1: title и subtitle */}
@@ -120,7 +153,7 @@ export default function CompanySection({ company }) {
       ) : null}
 
       {/* Tags для sberbank */}
-      {variant === "sberbank" && tagA ? (
+      {tagA ? (
         <div className="company-tag-a">
           <RenderTag value={tagA} />
         </div>
@@ -128,13 +161,13 @@ export default function CompanySection({ company }) {
 
       {/* Media frames */}
       {frameAUrl ? (
-        <div className={`company-media company-media--a`}>
+        <div className="company-media company-media--a">
           <img src={frameAUrl} alt={`${title} frame A`} loading="lazy" />
         </div>
       ) : null}
 
       {frameBUrl ? (
-        <div className={`company-media company-media--b`}>
+        <div className="company-media company-media--b">
           <img src={frameBUrl} alt={`${title} frame B`} loading="lazy" />
         </div>
       ) : null}
