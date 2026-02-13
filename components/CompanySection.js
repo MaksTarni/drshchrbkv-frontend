@@ -40,13 +40,26 @@ export default function CompanySection({ company }) {
 
   return (
     <section className={cls} aria-label={title}>
-      <div className="company-title">
-        <div className="figma-header">{title}</div>
-      </div>
-
-      <div className="company-subtitle">
-        <div className="figma-text figma-text--secondary">{subtitle}</div>
-      </div>
+      {variant === "emex" ? (
+        <div className="company-title">
+          <span className="figma-header">{title}</span>
+          {subtitle ? (
+            <>
+              {" "}
+              <span className="figma-text figma-text--secondary">{subtitle}</span>
+            </>
+          ) : null}
+        </div>
+      ) : (
+        <>
+          <div className="company-title">
+            <div className="figma-header">{title}</div>
+          </div>
+          <div className="company-subtitle">
+            <div className="figma-text figma-text--secondary">{subtitle}</div>
+          </div>
+        </>
+      )}
 
       {variant === "emex" ? (
         <>
