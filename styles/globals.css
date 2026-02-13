@@ -53,11 +53,86 @@ html, body {
   letter-spacing: -0.48px;
   text-transform: lowercase;
   color: var(--color-text);
-  margin: 0;
 }
 
 .figma-text--secondary {
   color: var(--color-secondary);
+}
+
+/* ========================= HERO ========================= */
+
+.hero.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-grid {
+  display: grid;
+  flex: 1;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+}
+
+.hero-title-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.hero-highlight-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  background: var(--color-highlight);
+  align-content: flex-end;
+}
+
+.hero-highlight-inner {
+  padding: 20px;
+}
+
+/* ========================= COURSE ========================= */
+
+.course-grid {
+  display: grid;
+  min-height: 100vh;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows:
+    fit-content(100%)
+    84px
+    fit-content(100%)
+    minmax(0, 1fr)
+    fit-content(100%);
+}
+
+.course-meta {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.course-meta .figma-text:last-child {
+  text-align: right;
+}
+
+.course-frame {
+  grid-column: 1 / -1;
+}
+
+.course-frame img {
+  width: 100%;
+  display: block;
+}
+
+.course-line {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--color-line);
 }
 
 /* ========================= COMPANIES BASE ========================= */
@@ -72,16 +147,9 @@ html, body {
 }
 
 /* ========================= EMEX ========================= */
-/*
-Структура строк:
-1 — title
-2 — линия под title
-3 — контент row2 (tagA + frameA + большой frame)
-4 — контент row3 (tagB + большой frame)
-*/
 
 .company-emex {
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto;
 }
 
 /* Row 1 */
@@ -90,44 +158,103 @@ html, body {
   grid-column: 1 / 3;
 }
 
-/* Row 2 — линия под title */
+/* ===== LINE UNDER TITLE ===== */
 .company-emex .company-line-top {
   grid-row: 2;
   grid-column: 1 / 3;
   border-top: 1px solid var(--color-line);
-}
-
-/* Row 3 */
-.company-emex .company-tag-a {
-  grid-row: 3;
-  grid-column: 1;
   align-self: start;
-  margin: 0;
-  padding: 0;
 }
 
-.company-emex .company-media--emex-a {
-  grid-row: 3;
-  grid-column: 2;
-}
-
+/* Big right frame (2x2) */
 .company-emex .company-media--emex-b {
-  grid-row: 3 / span 2;
+  grid-row: 2 / span 2;
   grid-column: 3 / 5;
 }
 
-/* Row 4 — tagB с линией сверху и отступом 20px после линии */
-.company-emex .company-tag-b {
-  grid-row: 4;
-  grid-column: 2;
+/* Left side */
+.company-emex .company-tag-a {
+  grid-row: 2;
+  grid-column: 1;
+  align-self: start;
+}
 
+.company-emex .company-media--emex-a {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.company-emex .company-line-middle {
+  grid-row: 3;
+  grid-column: 2;
+  border-top: 1px solid var(--color-line);
+  align-self: start;
+}
+
+.company-emex .company-tag-b {
+  grid-row: 3;
+  grid-column: 2;
   justify-self: end;
   align-self: start;
+}
 
-  border-top: 1px solid var(--color-line);
-  padding-top: 20px;
+/* ========================= SBERBANK ========================= */
 
-  margin: 0;
+.company-sberbank {
+  grid-template-rows: auto auto auto;
+}
+
+.company-sberbank .company-title {
+  grid-row: 1;
+  grid-column: 1 / 3;
+}
+
+.company-sberbank .company-subtitle {
+  grid-row: 1;
+  grid-column: 3 / 5;
+  text-align: right;
+}
+
+.company-sberbank .company-media--a {
+  grid-row: 2 / span 2;
+  grid-column: 1 / 3;
+}
+
+.company-sberbank .company-tag-a {
+  grid-row: 2;
+  grid-column: 3;
+}
+
+.company-sberbank .company-media--b {
+  grid-row: 3;
+  grid-column: 3 / 5;
+}
+
+/* ========================= CLOUDPAYMENTS ========================= */
+
+.company-cloudpayments {
+  grid-template-rows: auto auto;
+}
+
+.company-cloudpayments .company-title {
+  grid-row: 1;
+  grid-column: 1 / 3;
+}
+
+.company-cloudpayments .company-subtitle {
+  grid-row: 1;
+  grid-column: 3 / 5;
+  text-align: right;
+}
+
+.company-cloudpayments .company-media--a {
+  grid-row: 2;
+  grid-column: 1 / 3;
+}
+
+.company-cloudpayments .company-media--b {
+  grid-row: 2;
+  grid-column: 3 / 5;
 }
 
 /* ========================= MEDIA ========================= */
@@ -138,28 +265,27 @@ html, body {
   display: block;
 }
 
-/* ========================= TAG (no gray bg) ========================= */
+/* ========================= CRAFT ========================= */
+
+.craft-wrap {
+  display: grid;
+  padding-top: 220px;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.craft-cell img {
+  width: 100%;
+  display: block;
+}
+
+/* ========================= TAG ========================= */
 
 .tag {
   background: none;
   padding: 0;
-  margin: 0;
   font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.48px;
-  text-transform: lowercase;
   font-family: var(--b-font);
-  color: var(--color-text);
-  white-space: nowrap;
-}
-
-.tag-sep {
-  margin: 0 4px;
-  color: var(--color-text);
-}
-
-.tag-secondary {
-  color: var(--color-secondary);
 }
 
 /* ========================= HEADER ========================= */
