@@ -37,6 +37,9 @@ export default function HomePage({
       <div className="page-layout" style={{ "--color-highlight": accent }}>
         <Hero hero={hero} accent={accent} settings={settings} />
 
+        {/* ✅ COURSE СРАЗУ ПОСЛЕ HERO */}
+        <CourseSection course={course} />
+
         <section id="projects" className="projects section">
           <div className="frame">
             <div className="projects-meta">
@@ -50,14 +53,11 @@ export default function HomePage({
             </div>
           </div>
 
-          {/* ✅ СНАЧАЛА компании */}
+          {/* ✅ ПОТОМ КОМПАНИИ */}
           {Array.isArray(companies) &&
             companies.map((c) => (
               <CompanySection key={c?.id || c?.documentId} company={c} />
             ))}
-
-          {/* ✅ ПОТОМ course */}
-          <CourseSection course={course} />
         </section>
 
         <CraftGrid items={craftItems} />

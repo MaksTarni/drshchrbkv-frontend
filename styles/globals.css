@@ -93,12 +93,12 @@ html, body {
 }
 
 /* desktop: min-width 1366px */
-@media (min-width: 1366px) {
+/*@media (min-width: 1366px) {
   .projects.section {
     width: 1366px;
     margin: 0 auto;
   }
-}
+}/*
 
 /* ------------------- HEADER / NAV ------------------- */
 /* сверху 20, кнопки index и info с отступами 20 от краёв */
@@ -140,12 +140,12 @@ html, body {
 
 .hero.section {
   min-height: 100vh;
-  height: 100vh;
-  padding: 20px 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
+
 
 .hero-grid {
   display: grid;
@@ -398,14 +398,22 @@ html, body {
 .course-grid {
   display: inline-grid;
   min-height: 100vh;
-  height: 100vh;
-  padding: 20px;
+  width: 100%;
   row-gap: var(--indent-m, 20px);
   column-gap: var(--indent-m, 20px);
   align-self: stretch;
-  grid-template-rows: fit-content(100%) 84px fit-content(100%) minmax(0, 1fr) fit-content(100%);
+
+  grid-template-rows:
+    fit-content(100%)
+    84px
+    fit-content(100%)
+    minmax(0, 1fr)
+    fit-content(100%);
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+
 
 /* row 1: ячейка с текстом из Strapi (meta) */
 .course-meta {
