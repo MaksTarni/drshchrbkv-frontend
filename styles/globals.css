@@ -1,354 +1,315 @@
 /* styles/globals.css */
 
-@font-face {
-  font-family: "Times New Roman MT Condensed";
-  src: url("/fonts/times-new-roman-mt-condensed.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 html, body {
   padding: 0;
   margin: 0;
-  background: #FFFFFF;
-  color: #161616;
 }
 
 * { box-sizing: border-box; }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-:root{
-  --color-text-primary: #161616;
-  --color-text-secondary: #7D7D7D;
+:root {
+  --color-text: #161616;
+  --color-secondary: #7D7D7D;
   --color-line: #E5E5E5;
+
   --color-highlight: #FDFF45;
 
-  /* Figma indents */
-  --indent-m: 20px;   /* left/right padding */
+  --page-padding: 20px;
+  --page-width: 1366px;
+
+  --h-font: "Times New Roman", serif;
+  --b-font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --h-size: 50px;
+  --h-line: 48px;
+  --h-letter: -1px;
+
+  --t-size: 16px;
+  --t-line: 20px;
+  --t-letter: -0.48px;
+
+  --indent-xs: 3px;
+  --indent-s: 5px;
+  --indent-m: 20px;
   --indent-l: 124px;
-  --indent-xl: 220px;
 
-  --font-family-header: "Times New Roman MT Condensed", "Times New Roman", Times, serif;
-  --font-family-text: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-  --font-size-header: 50px;
-  --font-line-height-header: 48px;
-  --font-tracking-header: -1px;
+  --max-w: 1326px;
 }
 
-body { overflow-x: hidden; }
+body {
+  color: var(--color-text);
+  font-family: var(--b-font);
+  background: white;
+}
+
+.section {
+  width: 100%;
+}
+
+.frame {
+  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin: 0 auto;
+}
 
 /* Typography */
-h1,h2,h3,h4,h5,h6{
-  margin: 0;
-  font-family: var(--font-family-header);
-  font-weight: 400;
-}
-
 .figma-header{
-  color: var(--color-text-primary);
-  font-family: var(--font-family-header);
-  font-size: var(--font-size-header);
-  line-height: var(--font-line-height-header);
-  letter-spacing: var(--font-tracking-header);
-  text-transform: lowercase;
+  font-family: var(--h-font);
+  font-size: var(--h-size);
+  line-height: var(--h-line);
+  letter-spacing: var(--h-letter);
   font-weight: 400;
-  white-space: normal;
-  overflow-wrap: anywhere;
+  margin: 0;
 }
 
 .figma-text{
-  color: var(--color-text-primary);
-  font-family: var(--font-family-text);
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.48px;
-  text-transform: lowercase;
-  white-space: normal;
-  overflow-wrap: anywhere;
+  font-family: var(--b-font);
+  font-size: var(--t-size);
+  line-height: var(--t-line);
+  letter-spacing: var(--t-letter);
+  font-weight: 400;
+  margin: 0;
 }
 
-.figma-text--secondary{ color: var(--color-text-secondary); }
-
-/* Pills/tags */
-.company-tags{
-  display:flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.figma-text--secondary{
+  color: var(--color-secondary);
 }
 
+/* Pills */
 .tag{
-  display:inline-flex;
-  align-items:center;
+  display: inline-flex;
   padding: 6px 12px;
   border: 1px solid var(--color-line);
   border-radius: 999px;
-  font-family: var(--font-family-text);
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: -0.48px;
-  text-transform: lowercase;
+  font-family: var(--b-font);
+  font-size: 13px;
+  line-height: 16px;
 }
 
-/* =========================
-   HERO (Figma)
-   ========================= */
-
+/* HERO */
 .hero-grid{
+  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin: 0 auto;
   display: grid;
-  width: 100%;
-  height: 768px;
-
-  padding: var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 20px 314px 354px;
+  column-gap: var(--indent-m);
+  row-gap: var(--indent-m);
+  padding: var(--indent-m);
 }
 
 .hero-topline{
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  border-top: 1px solid var(--color-line);
-  height: 100%;
+  grid-column: 1 / 3;
+  height: 1px;
+  background: var(--color-line);
 }
 
 .hero-title{
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  display: flex;
-  align-items: flex-end;
-  min-width: 0;
 }
 
 .hero-empty{
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  min-width: 0;
 }
 
-/* yellow без отступов слева/справа */
 .hero-highlight-row{
-  grid-column: 1 / -1;
-  grid-row: 3 / 4;
-
-  background: var(--color-highlight);
-
-  margin-left: calc(-1 * var(--indent-m));
-  margin-right: calc(-1 * var(--indent-m));
-  width: calc(100% + (2 * var(--indent-m)));
-
+  grid-column: 1 / 3;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 10px;
-
-  min-width: 0;
-  height: 354px;
+  gap: var(--indent-m);
 }
 
 .hero-highlight-col{
-  min-width: 0;
+  background: var(--color-highlight);
+  min-height: 302px;
+  display: flex;
 }
+
+.hero-highlight-col--left{ align-items: flex-end; }
+.hero-highlight-col--right{ align-items: stretch; }
 
 .hero-highlight-inner{
   padding: 26px 20px;
-  height: 100%;
-}
-
-/* =========================
-   COMPANIES (общие)
-   ========================= */
-
-.company-title{ grid-column: 1 / 3; }
-.company-subtitle{ grid-column: 3 / 5; justify-self: end; text-align: right; }
-.company-tags{ grid-column: 1 / 3; }
-
-/* базовый контейнер медиа (не дает картинкам раздуваться) */
-.company-media{
   width: 100%;
-  overflow: hidden;
 }
 
-/* =========================
-   EMEX (по твоим скринам)
-   padding-top: 124
-   grid: 4 cols
-   media cell: 653x690
-   frameA: маленькая карточка внутри с padding ~90/34
-   frameB: большой экран на 2 колонки и 2 ряда
-   ========================= */
+/* PROJECTS */
+.projects.section{
+  width: 100%;
+}
 
-.company-emex{
+.projects-meta{
+  display:flex;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+
+/* COMPANIES базовая сетка */
+.company-emex, .company-sberbank, .company-cloudpayments{
   display: inline-grid;
-  width: 100%;
   padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
   row-gap: var(--indent-m);
   column-gap: var(--indent-m);
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  /* 1: заголовок/сабтайтл
-     2: теги
-     3-4: сетка с картинками (2 ряда по 690) */
-  grid-template-rows: auto auto 690px 690px;
+  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin: 0 auto;
   align-self: stretch;
 }
 
-/* frameA (левая карточка) */
-.company-emex .company-media--a{
-  height: 690px;
-  background: #F3F3F3;
+.company-title{
+  grid-column: 1 / 3;
+  grid-row: 1 / span 1;
+}
+
+.company-subtitle{
+  grid-column: 3 / 5;
+  grid-row: 1 / span 1;
+  justify-self: end;
+  text-align: right;
+  align-self: end;
+}
+
+.company-tags{
+  grid-column: 1 / 3;
+  grid-row: 2 / span 1;
+  display:flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* media blocks default */
+.company-media{
+  border: 1px solid var(--color-line);
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.company-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* EMEX specific grid */
+.company-emex{
+  /* Figma: media area is 2 rows (335px + 335px) */
+  grid-template-rows: fit-content(100%) fit-content(100%) 335px 335px;
+}
+
+/* empty cells to preserve Figma grid */
+.company-emex-spacer{
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+}
+.company-emex-spacer--wide{
+  grid-column: 1 / span 2;
+  grid-row: 4 / span 1;
+}
+
+/* small card cell (col2,row3) */
+.company-media--emex-a{
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* по Figma: padding ~90.27 top/bot, ~34.4 L/R */
+  /* close to figma paddings; card stays centered */
   padding: 90px 34px;
 }
-
-.company-emex .company-media--a img{
+.company-media--emex-a img{
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* frameB (правый большой экран) */
-.company-emex .company-media--b{
-  height: calc((690px * 2) + var(--indent-m)); /* 2 ряда + gap 20 */
-  background: #F3F3F3;
-  overflow: hidden;
+/* large monitor (col3-4,row3-4) */
+.company-media--emex-b{
+  grid-column: 3 / span 2;
+  grid-row: 3 / span 2;
 }
 
-.company-emex .company-media--b img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+/* give emex media explicit heights like figma */
+.company-media--emex-a{ height: 335px; }
+.company-media--emex-b{ height: 690px; }
 
-/* =========================
-   SBERBANK / CLOUDPAYMENTS (пока оставляем как было базово)
-   ========================= */
-
-.company-sberbank,
-.company-cloudpayments{
-  display: inline-grid;
-  width: 100%;
-  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-self: stretch;
-}
-
-.company-sberbank .company-media,
-.company-cloudpayments .company-media{
-  height: 690px;
-  background: #F3F3F3;
-}
-
-.company-sberbank .company-media img,
-.company-cloudpayments .company-media img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-}
-
-/* =========================
-   COURSE (как у тебя уже по скринам)
-   ========================= */
-
+/* Course */
 .course-grid{
+  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin: 0 auto;
   display: grid;
-  width: 100%;
-  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: var(--indent-m);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 20px 84px 71px 600px 25px;
-  align-self: stretch;
+  row-gap: var(--indent-m);
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
 }
 
 .course-meta{
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-  height: 20px;
-}
-
-.course-spacer{
-  grid-column: 1 / -1;
-  grid-row: 2 / 3;
+  grid-column: 1 / 5;
+  display:flex;
+  justify-content: space-between;
 }
 
 .course-titleblock{
-  grid-column: 1 / -1;
-  grid-row: 3 / 4;
-  display: flex;
+  grid-column: 1 / 5;
+  display:flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: 3px;
-  height: 71px;
+  gap: var(--indent-xs);
 }
 
 .course-frame{
-  grid-column: 1 / -1;
-  grid-row: 4 / 5;
+  grid-column: 1 / 5;
   height: 600px;
+  border: 1px solid var(--color-line);
   overflow: hidden;
-  background: #F3F3F3;
 }
 
 .course-frame img{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display:block;
 }
 
 .course-line{
-  grid-column: 1 / -1;
-  grid-row: 5 / 6;
-  height: 25px;
-  border-top: 1px solid var(--color-line);
-  padding-top: 5px;
+  grid-column: 1 / 5;
+  height: 1px;
+  background: var(--color-line);
 }
 
-/* =========================
-   CRAFT (минимально)
-   ========================= */
-
+/* Craft */
 .craft-wrap{
+  width: min(var(--max-w), calc(100% - (var(--page-padding) * 2)));
+  margin: 0 auto;
   display: grid;
-  width: 100%;
-  padding: var(--indent-xl) var(--indent-m) 0 var(--indent-m);
-  row-gap: var(--indent-m);
-  column-gap: var(--indent-m);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: 335px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--indent-m);
+  padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
 }
 
 .craft-meta{
-  grid-column: 1 / -1;
-  display: flex;
+  grid-column: 1 / 3;
+  display:flex;
   justify-content: space-between;
 }
 
 .craft-cell{
-  width: 100%;
-  height: 335px;
-  overflow: hidden;
-  background: #F3F3F3;
+  border: 1px solid var(--color-line);
+  overflow:hidden;
 }
 
 .craft-cell img{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display:block;
+}
+
+/* Footer */
+.footer-layer{
+  padding: var(--indent-l) 0 80px;
+}
+.footer-links{
+  display:flex;
+  justify-content: space-between;
 }

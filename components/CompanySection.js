@@ -1,33 +1,34 @@
-// frontend/components/CompanySection.js
-import { getMediaUrl } from "../lib/api";
+// components/CompanySection.js
+import React from "react";
+
+// helper to build absolute url if Strapi gives relative
+function getMediaUrl(media) {
+  if (!media) return null;
+  const url = media?.url || media?.data?.attributes?.url;
+  if (!url) return null;
+  if (url.startsWith("http")) return url;
+  const base = process.env.NEXT_PUBLIC_STRAPI_URL || "https://cms.drshchrbkv.com";
+  return `${base}${url}`;
+}
 
 function getCompanyClass(company) {
-  const v = (company?.variant || "").toLowerCase();
-  if (v === "emex") return "company-emex";
-  if (v === "sberbank") return "company-sberbank";
-  if (v === "cloudpayments") return "company-cloudpayments";
-  return "company-emex";
+  const v = company?.variant || "emex";
+  return `company-${v}`;
 }
 
 export default function CompanySection({ company }) {
   if (!company) return null;
 
-  const title = company?.title || "";
-  const subtitle = company?.subtitle || "";
-  const tagA = company?.tagA;
-  const tagB = company?.tagB;
+  const { title, subtitle, tagA, tagB } = company;
 
   const frameAUrl = getMediaUrl(company?.frameA?.image);
   const frameBUrl = getMediaUrl(company?.frameB?.image);
 
-  const variant = (company?.variant || "").toLowerCase();
   const cls = getCompanyClass(company);
-
-  const isEmex = variant === "emex";
+  const isEmex = cls === "company-emex";
 
   return (
-    <section className={cls} aria-label={title || "company"}>
-      {/* row 1: title left, subtitle right */}
+    <section className={cls} aria-label={title}>
       <div className="company-title">
         <div className="figma-header">{title}</div>
       </div>
@@ -36,8 +37,8 @@ export default function CompanySection({ company }) {
         <div className="figma-text figma-text--secondary">{subtitle}</div>
       </div>
 
-      {/* row 2: tags */}
-      {(tagA || tagB) ? (
+      {/* row 2: tags (как pills) */}
+      {tagA || tagB ? (
         <div className="company-tags">
           {tagA ? <span className="tag">{tagA}</span> : null}
           {tagB ? <span className="tag">{tagB}</span> : null}
@@ -49,33 +50,32 @@ export default function CompanySection({ company }) {
       {/* MEDIA */}
       {isEmex ? (
         <>
-          {/* emex: frameA -> col 2, row 3 (653x690 ячейка, внутри паддинги) */}
+          {/* Empty cell (col 1) on media row to match Figma grid */}
+          <div className="company-emex-spacer" aria-hidden="true" />
+
+          {/* Small card (col 2, row 3) */}
           {frameAUrl ? (
-            <div
-              className="company-media company-media--a"
-              style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }}
-            >
+            <div className="company-media company-media--emex-a">
               <img src={frameAUrl} alt={`${title} frame A`} />
             </div>
           ) : (
-            <div style={{ gridColumn: "2 / 3", gridRow: "3 / 4" }} />
+            <div className="company-media company-media--emex-a" />
           )}
 
-          {/* emex: frameB -> cols 3-4, rows 3-4 (большой блок) */}
+          {/* Large image (cols 3-4, rows 3-4) */}
           {frameBUrl ? (
-            <div
-              className="company-media company-media--b"
-              style={{ gridColumn: "3 / 5", gridRow: "3 / 5" }}
-            >
+            <div className="company-media company-media--emex-b">
               <img src={frameBUrl} alt={`${title} frame B`} />
             </div>
           ) : (
-            <div style={{ gridColumn: "3 / 5", gridRow: "3 / 5" }} />
+            <div className="company-media company-media--emex-b" />
           )}
+
+          {/* Bottom-left empty cell (cols 1-2, row 4) */}
+          <div className="company-emex-spacer company-emex-spacer--wide" aria-hidden="true" />
         </>
       ) : (
         <>
-          {/* default (пока): 2 большие карточки 50/50 */}
           {frameAUrl ? (
             <div className="company-media" style={{ gridColumn: "1 / 3" }}>
               <img src={frameAUrl} alt={`${title} frame A`} />
