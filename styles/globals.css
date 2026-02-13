@@ -79,11 +79,12 @@ html, body {
 }
 
 /* ------------------- HERO ------------------- */
-/* Figma: grid 768px, padding 20, 3 rows, 2 cols, 50% блоки с отступами 20 */
+/* 100% высоты экрана, отступы 20px */
 
 .hero.section {
-  padding: var(--indent-m);
-  padding-top: var(--indent-m);
+  min-height: 100vh;
+  height: 100vh;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -92,10 +93,11 @@ html, body {
 .hero-grid {
   display: grid;
   width: 100%;
-  height: 768px;
-  padding: var(--indent-m, 20px);
-  row-gap: var(--indent-m, 20px);
-  column-gap: var(--indent-m, 20px);
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  row-gap: 20px;
+  column-gap: 20px;
   align-self: stretch;
   box-sizing: border-box;
 
@@ -114,7 +116,7 @@ html, body {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--indent-m, 20px);
+  column-gap: 20px;
   align-items: flex-end;
   min-height: 0;
 }
@@ -127,18 +129,18 @@ html, body {
   grid-column: 2 / 3;
 }
 
-/* жёлтый блок — ряд 3; padding -20: фон в упор к краям */
+/* жёлтый блок — ряд 3; фон в упор к краям (отступ секции 20px) */
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: var(--indent-m, 20px);
+  column-gap: 20px;
   min-height: 0;
   background: var(--color-highlight);
   padding: 0;
-  margin-left: calc(-1 * var(--indent-m));
-  margin-right: calc(-1 * var(--indent-m));
-  width: calc(100% + 2 * var(--indent-m));
+  margin-left: -20px;
+  margin-right: -20px;
+  width: calc(100% + 40px);
   align-content: flex-end;
 }
 
@@ -158,24 +160,59 @@ html, body {
 
 /* ------------------- COMPANY GRID ------------------- */
 
-.company-emex,
 .company-sberbank,
 .company-cloudpayments {
   width: 100%;
   padding: var(--indent-l) var(--indent-m) 0 var(--indent-m);
-
   display: grid;
   column-gap: var(--indent-m);
   row-gap: var(--indent-m);
-
-  /* 4 fluid columns */
   grid-template-columns: repeat(4, 1fr);
-
-  /* header rows auto, media rows flexible */
   grid-auto-rows: auto;
 }
 
-/* Header placement */
+/* EMEX block: 3 rows × 4 columns */
+.company-emex {
+  display: inline-grid;
+  padding: var(--indent-l, 124px) var(--indent-m, 20px) 0 var(--indent-m, 20px);
+  row-gap: var(--indent-m, 20px);
+  column-gap: var(--indent-m, 20px);
+  align-self: stretch;
+  grid-template-rows: fit-content(100%) fit-content(100%) 335px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.company-emex .company-title {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.company-emex .company-subtitle {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  text-align: left;
+}
+
+.company-emex .company-tag-a {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.company-emex .company-tag-b {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.company-emex .company-empty--left {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.company-emex .company-empty--emex-a-bottom {
+  display: none;
+}
+
+/* Header placement (non-emex) */
 
 .company-title {
   grid-column: 1 / 3;
@@ -210,14 +247,21 @@ html, body {
 
 /* EMEX layout */
 
-.company-emex .company-media--a {
-  grid-column: 1 / 3;
-  aspect-ratio: 653 / 690; /* пропорция из Figma */
+.company-emex .company-media--emex-a {
+  grid-column: 2;
+  grid-row: 2;
+  aspect-ratio: 653 / 690;
 }
 
-.company-emex .company-media--b {
+.company-emex .company-media--emex-b {
   grid-column: 3 / 5;
-  aspect-ratio: 653 / 690;
+  grid-row: 2 / 4;
+  aspect-ratio: auto;
+  min-height: 0;
+}
+
+.company-emex .company-media--emex-b img {
+  object-fit: contain;
 }
 
 /* ------------------- COURSE ------------------- */

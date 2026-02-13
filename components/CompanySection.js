@@ -48,10 +48,21 @@ export default function CompanySection({ company }) {
         <div className="figma-text figma-text--secondary">{subtitle}</div>
       </div>
 
-      <div className="company-tags">
-        {tagA ? <span className="tag">{tagA}</span> : null}
-        {tagB ? <span className="tag">{tagB}</span> : null}
-      </div>
+      {variant === "emex" ? (
+        <>
+          <div className="company-tag-a">
+            {tagA ? <span className="tag">{tagA}</span> : null}
+          </div>
+          <div className="company-tag-b">
+            {tagB ? <span className="tag">{tagB}</span> : null}
+          </div>
+        </>
+      ) : (
+        <div className="company-tags">
+          {tagA ? <span className="tag">{tagA}</span> : null}
+          {tagB ? <span className="tag">{tagB}</span> : null}
+        </div>
+      )}
 
       {variant === "emex" ? (
         <>
