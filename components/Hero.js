@@ -1,4 +1,5 @@
 // frontend/components/Hero.js
+import Header from "./Header";
 
 function blocksToPlainText(blocks) {
   if (!blocks) return "";
@@ -15,7 +16,7 @@ function blocksToPlainText(blocks) {
   return out.join("\n").trim();
 }
 
-export default function Hero({ hero, accent }) {
+export default function Hero({ hero, accent, settings }) {
   const title = hero?.title || "";
   const highlightText = blocksToPlainText(hero?.description);
   const highlightColor = hero?.highlightColor || accent || "#FDFF45";
@@ -26,18 +27,9 @@ export default function Hero({ hero, accent }) {
       id="index"
       style={{ "--color-highlight": highlightColor }}
     >
+      <Header settings={settings} />
       <div className="hero-grid">
-        <div className="hero-top">
-          <div className="hero-topline" />
-          <div className="hero-title-row">
-            <div className="hero-title">
-              <h1 className="figma-header">{title}</h1>
-            </div>
-            <div className="hero-empty" />
-          </div>
-        </div>
-
-        {/* жёлтый блок — нижние 50% по вертикали */}
+        {/* жёлтый блок — верхние 50% по вертикали */}
         <div className="hero-highlight-row">
           <div className="hero-highlight-col hero-highlight-col--left">
             <div className="hero-highlight-inner">
@@ -46,6 +38,16 @@ export default function Hero({ hero, accent }) {
           </div>
 
           <div className="hero-highlight-col hero-highlight-col--right" />
+        </div>
+
+        <div className="hero-top">
+          <div className="hero-topline" />
+          <div className="hero-title-row">
+            <div className="hero-title">
+              <h1 className="figma-header">{title}</h1>
+            </div>
+            <div className="hero-empty" />
+          </div>
         </div>
       </div>
     </section>

@@ -103,7 +103,7 @@ html, body {
   flex: 0 0 auto;
 }
 
-/* жёлтый блок — нижние 50%, растянут по высоте */
+/* жёлтый блок — верхние 50%, растянут по высоте */
 .hero-highlight-row {
   grid-column: 1 / -1;
   display: grid;
