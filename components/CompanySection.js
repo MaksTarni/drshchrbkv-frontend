@@ -29,74 +29,55 @@ export default function CompanySection({ company }) {
   const variant = (company?.variant || "emex").toLowerCase();
   const cls = getCompanyClass(company);
 
-  const Media = ({ src, alt, className }) => {
-    if (!src) return null;
-    return (
-      <div className={`company-media ${className || ""}`.trim()}>
-        <img src={src} alt={alt} loading="lazy" />
-      </div>
-    );
-  };
-
   return (
     <section className={cls} aria-label={title}>
-      {/* ===== TITLE BLOCK ===== */}
+      {/* ===== ROW 1 ===== */}
       <div className="company-title-wrapper">
-        {subtitle ? (
+        {subtitle && (
           <div className="company-subtitle">
             <div className="figma-text figma-text--secondary">
               {subtitle}
             </div>
           </div>
-        ) : null}
+        )}
 
-        {title ? (
+        {title && (
           <div className="company-title">
             <div className="figma-header">{title}</div>
           </div>
-        ) : null}
+        )}
       </div>
 
-      {/* ===== TAGS ===== */}
-      {tagA ? (
+      {/* ===== LINE UNDER TITLE ===== */}
+      {variant === "emex" && <div className="company-line-top" />}
+
+      {/* ===== ROW 2 LEFT ===== */}
+      {tagA && (
         <div className="company-tag-a">
           <span className="tag">{tagA}</span>
         </div>
-      ) : null}
+      )}
 
-      {tagB ? (
+      {frameAUrl && (
+        <div className="company-media company-media--emex-a">
+          <img src={frameAUrl} alt={`${title} frame A`} loading="lazy" />
+        </div>
+      )}
+
+      {/* ===== ROW 3 LEFT LINE ===== */}
+      {variant === "emex" && <div className="company-line-middle" />}
+
+      {tagB && (
         <div className="company-tag-b">
           <span className="tag">{tagB}</span>
         </div>
-      ) : null}
+      )}
 
-      {/* ===== MEDIA ===== */}
-      {variant === "emex" ? (
-        <>
-          <Media
-            src={frameAUrl}
-            alt={`${title} frame A`}
-            className="company-media--emex-a"
-          />
-          <Media
-            src={frameBUrl}
-            alt={`${title} frame B`}
-            className="company-media--emex-b"
-          />
-        </>
-      ) : (
-        <>
-          <Media
-            src={frameAUrl}
-            alt={`${title} frame A`}
-            className="company-media--a"
-          />
-          <Media
-            src={frameBUrl}
-            alt={`${title} frame B`}
-            className="company-media--b"
-          />
-        </>
+      {/* ===== RIGHT BIG FRAME (2x2) ===== */}
+      {frameBUrl && (
+        <div className="company-media company-media--emex-b">
+          <img src={frameBUrl} alt={`${title} frame B`} loading="lazy" />
+        </div>
       )}
     </section>
   );
