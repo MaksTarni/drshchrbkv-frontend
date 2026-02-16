@@ -2,7 +2,7 @@
 
 @theme {
   --font-Inter: 'Inter';
-  --font-Figma: 'Times New Roman MT Cond';
+  --font-Figma: 'TimesNewRomanCondensed';
   --color-text-primary: #161616;
   --color-text-secondary: #7d7d7d;
   --color-background-accent: #fdff45;
@@ -25,4 +25,10 @@
 
   --breakpoint-tablet: 320px;
   --breakpoint-desktop: 768px;
+}
+
+@font-face {
+  font-family: 'TimesNewRomanCondensed';
+  src: url('/src/shared/fonts/times-new-roman-mt-condensed.otf') format('woff2');
+  font-display: swap;
 }

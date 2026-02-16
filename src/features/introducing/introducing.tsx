@@ -1,13 +1,22 @@
 import { Title } from '../../shared/components/atoms/title';
+import type { TScreenData } from './types';
 
-export const Introducing = () => {
+type Props = {
+  accentColor: string;
+  screenData: TScreenData;
+};
+
+export const Introducing = ({ accentColor, screenData }: Props) => {
   return (
     <div>
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 h-83.5 items-end p-5'>
-        <Title text='i am a product designer with 6+ years of experience shipping products b2c and b2b2c in fintech, edtech and e-com' />
+        <Title text={screenData?.title} />
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-5 h-83.5 items-end bg-[#FDFF45] p-5'>
-        <Title text='i am a product designer with 6+ years of experience shipping products b2c and b2b2c in fintech, edtech and e-com' />
+      <div
+        className='grid grid-cols-1 sm:grid-cols-2 gap-5 h-83.5 items-end p-5'
+        style={{ backgroundColor: accentColor }}
+      >
+        <Title text={screenData?.description} />
       </div>
     </div>
   );

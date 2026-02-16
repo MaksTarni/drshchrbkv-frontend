@@ -1,14 +1,32 @@
-export type Props = { leftText?: string; rightText?: string };
+import { Link } from 'react-router-dom';
 
-export const Header = ({ leftText = 'index', rightText = 'info' }: Props) => {
+export type Props = {
+  leftText: string;
+  rightText: string;
+  leftTextLink: string;
+  rightTextLink: string;
+};
+
+export const Header = ({
+  leftText,
+  rightText,
+  leftTextLink,
+  rightTextLink,
+}: Props) => {
   return (
     <header className='flex justify-between p-5'>
-      <p className='font-Inter font-normal text-text/[20px] tracking-[-0.48px] cursor-pointer'>
+      <Link
+        to={leftTextLink || '#'}
+        className='font-Inter font-normal text-text/[20px] tracking-text cursor-pointer'
+      >
         {leftText}
-      </p>
-      <p className='font-Inter font-normal text-text/[20px] tracking-[-0.48px] cursor-pointer'>
+      </Link>
+      <Link
+        to={rightTextLink || '#'}
+        className='font-Inter font-normal text-text leading-header-mobile tracking-text cursor-pointer'
+      >
         {rightText}
-      </p>
+      </Link>
     </header>
   );
 };

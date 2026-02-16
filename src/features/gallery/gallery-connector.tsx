@@ -1,7 +1,12 @@
+import { useMemo } from 'react';
+import { useCraftItems } from '../../entities/craft-items';
 import { Gallery } from './gallery';
+import { mapDataToUI } from './utils';
 
-export type Props = {};
+export const GalleryConnector = () => {
+  const { data } = useCraftItems();
 
-export const GalleryConnector = ({}: Props) => {
-  return <Gallery />;
+  const mappedData = useMemo(() => mapDataToUI(data), [data]);
+
+  return <Gallery screenData={mappedData} />;
 };

@@ -2,57 +2,70 @@ import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-description';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
-import { ProductsCloudpaymentsLayout } from './layouts/cloudpayment/products-cloudpayments-layout';
-import { ProductsEmexLayout } from './layouts/emex/products-emex-layout';
-import { ProductsSberbankLayout } from './layouts/sberbank/products-sberbank-layout';
+import { ProductsLayoutsFactory } from './layouts';
+import type { TCompaniesData, TCourseData } from './types';
 
-export const Products = () => {
+type Props = {
+  courseData: TCourseData;
+  companiesData: TCompaniesData[];
+
+  projectsTitle: string;
+  projectsSubtitle: string;
+  projectsMetaLeft?: string;
+  projectsMetaRight?: string;
+};
+
+export const Products = ({
+  courseData,
+  companiesData,
+  projectsSubtitle,
+  projectsTitle,
+  projectsMetaLeft,
+  projectsMetaRight,
+}: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <div className='pt-30 md:pt-55'>
       <AccentTextWithSubtitle
-        title='professional projects'
-        subtitle='2021 — present'
+        title={projectsMetaLeft || ''}
+        subtitle={projectsMetaRight || ''}
       />
 
       <Box height={isMobile ? 60 : 124} />
 
       <TitleWithSubtitle
-        title='superpowered senior ux/ui course'
-        subtitle='advanced UX/UI and product design course with 250+ graduates'
+        title={courseData?.title}
+        subtitle={courseData?.subtitle}
       />
 
       <Box height={isMobile ? 16 : 20} />
 
       <img
-        src='/test-5.png'
-        alt='test-5'
+        src={courseData?.image.url}
+        alt={courseData?.image.alt}
         className='w-full h-full object-cover'
       />
 
       <Box height={isMobile ? 16 : 20} />
 
       <AccentTextWithSubtitle
-        title='landing page'
-        subtitle='2026'
+        title={projectsTitle}
+        subtitle={projectsSubtitle}
         withLine
       />
 
-      <ProductsEmexLayout
-        title='fdsf'
-        subtitle='fdsfsdf'
-      />
-
-      <ProductsSberbankLayout
-        title='fdsf'
-        subtitle='fdfdf'
-      />
-
-      <ProductsCloudpaymentsLayout
-        title='fdsf'
-        subtitle='fdsfsd'
-      />
+      {companiesData.map(item => (
+        <ProductsLayoutsFactory
+          variant={item.variant}
+          title={item.title}
+          subtitle={item.subtitle}
+          frameA={item.frameA}
+          frameB={item.frameB}
+          tagA={item.tagA}
+          tagB={item.tagB}
+        />
+      ))}
     </div>
   );
 };

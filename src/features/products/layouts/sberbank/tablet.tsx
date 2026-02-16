@@ -1,35 +1,43 @@
 import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-description';
+import type { TImage, TTag } from '../../types';
 
-export type Props = { title: string; subtitle: string };
+export type Props = {
+  tagA: TTag;
+  tagB: TTag;
+  frameA: TImage;
+  frameB: TImage;
+};
 
-export const Tablet = ({ subtitle, title }: Props) => {
+export const Tablet = ({ frameA, frameB, tagA, tagB }: Props) => {
   return (
     <>
       <img
-        src='/test-3.png'
-        alt='test-3'
+        src={frameA.url}
+        alt={frameA.alt}
         className='w-full h-full object-cover '
       />
 
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={title}
-          subtitle={subtitle}
+          title={tagA.title}
+          subtitle={tagA.subtitle}
           withLine
+          withLeftPadding
         />
       </div>
 
       <img
-        src='/test-4.png'
-        alt='test-3'
+        src={frameB.url}
+        alt={frameB.alt}
         className='w-full h-full object-cover '
       />
 
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={title}
-          subtitle={subtitle}
+          title={tagB.title}
+          subtitle={tagB.subtitle}
           withLine
+          withLeftPadding
         />
       </div>
     </>
