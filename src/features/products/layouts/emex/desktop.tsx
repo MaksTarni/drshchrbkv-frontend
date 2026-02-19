@@ -1,4 +1,5 @@
 import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-description';
+import { getFullUrl } from '../../../../shared/utils';
 import type { TImage, TTag } from '../../types';
 
 export type Props = {
@@ -22,7 +23,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
       <div className='[grid-area:1/2/2/3] pr-5'>
         <img
-          src={frameA.url}
+          src={getFullUrl(frameA.url)}
           alt={frameA.alt}
           className='w-full h-full object-cover '
         />
@@ -38,7 +39,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
       <div className='[grid-area:1/3/3/5]'>
         <img
-          src={frameB.url}
+          src={getFullUrl(frameB.url)}
           alt={frameB.alt}
           className='w-full h-full object-cover'
         />

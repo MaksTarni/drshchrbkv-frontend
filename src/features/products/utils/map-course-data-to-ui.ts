@@ -18,7 +18,7 @@ export const mapCourseDataToUI = (data?: TCourse): TCourseData => {
     title: data.data.title,
     subtitle: data.data.subtitle,
     image: {
-      url: data.data.courseFrame.image,
+      url: data.data.courseFrame.image.url,
       alt: 'course image',
     },
   };

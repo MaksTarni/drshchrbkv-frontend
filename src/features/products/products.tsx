@@ -2,6 +2,7 @@ import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-description';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
+import { getFullUrl } from '../../shared/utils';
 import { ProductsLayoutsFactory } from './layouts';
 import type { TCompaniesData, TCourseData } from './types';
 
@@ -42,7 +43,7 @@ export const Products = ({
       <Box height={isMobile ? 16 : 20} />
 
       <img
-        src={courseData?.image.url}
+        src={getFullUrl(courseData?.image.url)}
         alt={courseData?.image.alt}
         className='w-full h-full object-cover'
       />
@@ -57,6 +58,7 @@ export const Products = ({
 
       {companiesData.map(item => (
         <ProductsLayoutsFactory
+          key={item.title}
           variant={item.variant}
           title={item.title}
           subtitle={item.subtitle}

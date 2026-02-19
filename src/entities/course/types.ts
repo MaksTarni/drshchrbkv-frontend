@@ -9,5 +9,9 @@ type TCourseData = {
 };
 
 type TCourseFrameData = {
-  image: string;
+  image: TImage;
+};
+
+type TImage = {
+  url: string;
 };

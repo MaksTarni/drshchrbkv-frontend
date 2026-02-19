@@ -5,10 +5,12 @@ export type TCraftItems = {
 type TCraftItemsData = {
   title: string;
   subtitle: string;
-  image: TImage[] | null;
+  gallery: TImage[] | null;
 };
 
 type TImage = {
-  url: string;
+  image: {
+    url: string;
+  };
   alt: string;
 };

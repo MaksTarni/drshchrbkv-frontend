@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-description';
 import type { TImage, TTag } from '../../types';
+import { getFullUrl } from '../../../../shared/utils';
 
 export type Props = {
   tagA: TTag;
@@ -27,7 +28,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
         target='_blank'
       >
         <img
-          src={frameA.url}
+          src={getFullUrl(frameA.url)}
           alt={frameA.alt}
           className='w-full h-full object-cover'
         />
@@ -38,7 +39,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
         target='_blank'
       >
         <img
-          src={frameB.url}
+          src={getFullUrl(frameB.url)}
           alt={frameB.alt}
           className='w-full h-full object-cover'
         />

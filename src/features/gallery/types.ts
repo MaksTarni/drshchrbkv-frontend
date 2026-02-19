@@ -1,7 +1,7 @@
 export type TScreenData = {
   title: string;
   subtitle: string;
-  image: TImage[] | null;
+  gallery: TImage[] | null;
 };
 
 type TImage = {

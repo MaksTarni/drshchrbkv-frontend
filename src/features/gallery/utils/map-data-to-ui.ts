@@ -7,19 +7,19 @@ export const mapDataToUI = (data?: TCraftItems): TScreenData => {
     return {
       title: '-',
       subtitle: '-',
-      image: null,
+      gallery: null,
     };
   }
 
   return {
     title: data.data.title,
     subtitle: data.data.subtitle,
-    image:
-      data.data.image?.map(image => {
+    gallery:
+      data.data.gallery?.map(image => {
         return {
-          url: image.url,
+          url: image.image.url,
           alt: image.alt,
         };
-      }) || null,
+      }) ?? null,
   };
 };

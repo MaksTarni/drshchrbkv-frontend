@@ -1,7 +1,8 @@
 import { useQuery } from 'react-query';
-import api from '../../shared/api/client';
+
 import { QUERY_KEYS } from '../query-keys';
 import type { TSiteSettings } from './types';
+import { api } from '../../shared/api';
 
 export const useSiteSettings = () => {
   return useQuery<TSiteSettings>({
