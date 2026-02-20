@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-description';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
@@ -42,11 +43,13 @@ export const Products = ({
 
       <Box height={isMobile ? 16 : 20} />
 
-      <img
-        src={getFullUrl(courseData?.image.url)}
-        alt={courseData?.image.alt}
-        className='w-full h-full object-cover'
-      />
+      <Link to='/stub'>
+        <img
+          src={getFullUrl(courseData?.image.url)}
+          alt={courseData?.image.alt}
+          className='w-full h-full object-cover'
+        />
+      </Link>
 
       <Box height={isMobile ? 16 : 20} />
 

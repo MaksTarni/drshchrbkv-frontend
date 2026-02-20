@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-description';
 import { getFullUrl } from '../../../../shared/utils';
 import type { TImage, TTag } from '../../types';
@@ -22,11 +23,13 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
       <div className='[grid-area:1/2/2/3] pr-5'>
-        <img
-          src={getFullUrl(frameA.url)}
-          alt={frameA.alt}
-          className='w-full h-full object-cover '
-        />
+        <Link to='/stub'>
+          <img
+            src={getFullUrl(frameA.url)}
+            alt={frameA.alt}
+            className='w-full h-full object-cover '
+          />
+        </Link>
       </div>
       <div className='[grid-area:2/2/3/3]'>
         <AccentTextWithSubtitle
@@ -38,11 +41,13 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
       <div className='[grid-area:1/3/3/5]'>
-        <img
-          src={getFullUrl(frameB.url)}
-          alt={frameB.alt}
-          className='w-full h-full object-cover'
-        />
+        <Link to='/stub'>
+          <img
+            src={getFullUrl(frameB.url)}
+            alt={frameB.alt}
+            className='w-full h-full object-cover'
+          />
+        </Link>
       </div>
     </>
   );
