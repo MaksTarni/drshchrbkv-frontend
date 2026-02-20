@@ -1,21 +1,20 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { MainPageConnector } from '../pages/main-page';
+
 import { DimensionsProvider } from '../shared/hooks/dimensions';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { BrowserRouter } from 'react-router-dom';
+
+import { Routing } from '../shared/process';
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <DimensionsProvider>
-          <MainPageConnector />
-        </DimensionsProvider>
-      </BrowserRouter>
+      <DimensionsProvider>
+        <Routing />
+      </DimensionsProvider>
     </QueryClientProvider>
   </StrictMode>,
 );

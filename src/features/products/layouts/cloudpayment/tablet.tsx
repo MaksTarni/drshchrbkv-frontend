@@ -13,10 +13,7 @@ export type Props = {
 export const Tablet = ({ frameA, frameB, tagA, tagB }: Props) => {
   return (
     <>
-      <Link
-        to='https://www.behance.net/gallery/159303845/Cloud-Visual-philosophy-as-a-product'
-        target='_blank'
-      >
+      <Link to='/stub'>
         <img
           src={getFullUrl(frameA.url)}
           alt={frameA.alt}

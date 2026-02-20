@@ -21,10 +21,7 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
 
-      <Link
-        to='https://www.behance.net/gallery/159303845/Cloud-Visual-philosophy-as-a-product'
-        target='_blank'
-      >
+      <Link to='/stub'>
         <img
           src={getFullUrl(frameA.url)}
           alt={frameB.alt}
