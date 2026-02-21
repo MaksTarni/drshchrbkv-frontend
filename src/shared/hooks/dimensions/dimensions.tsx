@@ -6,12 +6,12 @@ const getState = () => ({
   isMobile:
     typeof window !== 'undefined'
       ? window.innerWidth > breakpoints.mobile &&
-        window.innerWidth <= breakpoints.tablet
+        window.innerWidth < breakpoints.tablet
       : false,
 
   isTablet:
     typeof window !== 'undefined'
-      ? window.innerWidth > breakpoints.tablet &&
+      ? window.innerWidth >= breakpoints.tablet &&
         window.innerWidth < breakpoints.desktop
       : false,
   isDesktop:
