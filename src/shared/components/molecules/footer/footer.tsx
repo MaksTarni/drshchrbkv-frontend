@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
 import { useDimensions } from '../../../hooks/dimensions';
 import { Box } from '../../atoms/box';
+import { LinkButtonWithText } from '../../atoms/link-button-with-text';
 
 export type Props = { email: string };
 
@@ -12,15 +12,13 @@ export const Footer = ({ email }: Props) => {
       <Box height={isMobile ? 64 : 124} />
 
       <div className='flex flex-col items-start justify-start'>
-        <span className='font-Inter text-text font-normal leading-text tracking-text'>
-          {email}
-        </span>
-        <Link
+        <LinkButtonWithText to={`mailto:${email}`}>{email}</LinkButtonWithText>
+        <LinkButtonWithText
           to='https://www.linkedin.com/in/daria-shcherbakova/'
           target='_blank'
         >
           linkedin
-        </Link>
+        </LinkButtonWithText>
       </div>
 
       <Box height={isMobile ? 64 : 124} />

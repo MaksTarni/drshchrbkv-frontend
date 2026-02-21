@@ -31,20 +31,26 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
 
       <div className='[grid-area:2/3/3/4] pl-5'>
-        <Link to='/stub'>
+        <Link
+          to='/stub'
+          className='custom-cursor'
+        >
           <img
-            src={getFullUrl(frameA.url)}
-            alt={frameA.alt}
+            src={getFullUrl(frameB.url)}
+            alt={frameB.alt}
             className='w-full h-full object-cover '
           />
         </Link>
       </div>
 
       <div className='[grid-area:1/1/3/3]'>
-        <Link to='/stub'>
+        <Link
+          to='/stub'
+          className='custom-cursor'
+        >
           <img
-            src={getFullUrl(frameB.url)}
-            alt={frameB.alt}
+            src={getFullUrl(frameA.url)}
+            alt={frameA.alt}
             className='w-full object-cover'
           />
         </Link>

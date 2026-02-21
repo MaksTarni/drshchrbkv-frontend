@@ -23,7 +23,7 @@ export const ProductsEmexLayout = ({
   tagA,
   tagB,
 }: Props) => {
-  const { isMobile, isTablet } = useDimensions();
+  const { isMobile, isTablet, isDesktop } = useDimensions();
 
   return (
     <div>
@@ -55,7 +55,7 @@ export const ProductsEmexLayout = ({
           />
         )}
 
-        {!isTablet && !isMobile && (
+        {isDesktop && (
           <Desktop
             tagA={tagA}
             tagB={tagB}

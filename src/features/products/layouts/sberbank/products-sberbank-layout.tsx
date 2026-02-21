@@ -24,7 +24,7 @@ export const ProductsSberbankLayout = ({
   tagA,
   tagB,
 }: Props) => {
-  const { isMobile, isTablet } = useDimensions();
+  const { isMobile, isTablet, isDesktop } = useDimensions();
 
   return (
     <div>
@@ -56,7 +56,7 @@ export const ProductsSberbankLayout = ({
           />
         )}
 
-        {!isMobile && !isTablet && (
+        {isDesktop && (
           <Desktop
             tagA={tagA}
             tagB={tagB}

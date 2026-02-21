@@ -31,7 +31,7 @@ export const Gallery = ({ screenData }: Props) => {
               key={`${item.alt}-${item.url}`}
               src={getFullUrl(item.url)}
               alt={item.alt}
-              className='object-cover'
+              className='object-cover w-full'
             />
           );
         })}

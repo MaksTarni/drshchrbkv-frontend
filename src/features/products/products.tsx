@@ -43,7 +43,10 @@ export const Products = ({
 
       <Box height={isMobile ? 16 : 20} />
 
-      <Link to='/stub'>
+      <Link
+        to='/stub'
+        className='custom-cursor'
+      >
         <img
           src={getFullUrl(courseData?.image.url)}
           alt={courseData?.image.alt}

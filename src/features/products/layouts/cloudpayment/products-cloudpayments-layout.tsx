@@ -24,7 +24,7 @@ export const ProductsCloudpaymentsLayout = ({
   tagA,
   tagB,
 }: Props) => {
-  const { isMobile, isTablet } = useDimensions();
+  const { isMobile, isTablet, isDesktop } = useDimensions();
   return (
     <div>
       <Box height={isMobile ? 68 : 124} />
@@ -55,7 +55,7 @@ export const ProductsCloudpaymentsLayout = ({
           />
         )}
 
-        {!isTablet && !isMobile && (
+        {isDesktop && (
           <Desktop
             tagA={tagA}
             tagB={tagB}

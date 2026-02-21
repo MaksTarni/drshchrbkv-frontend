@@ -23,8 +23,8 @@ export const Tablet = ({ frameA, frameB, tagA, tagB }: Props) => {
 
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={tagA.title}
-          subtitle={tagA.subtitle}
+          title={tagB.title}
+          subtitle={tagB.subtitle}
           withLine
           withLeftPadding
         />
@@ -40,8 +40,8 @@ export const Tablet = ({ frameA, frameB, tagA, tagB }: Props) => {
 
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={tagB.title}
-          subtitle={tagB.subtitle}
+          title={tagA.title}
+          subtitle={tagA.subtitle}
           withLine
           withLeftPadding
         />

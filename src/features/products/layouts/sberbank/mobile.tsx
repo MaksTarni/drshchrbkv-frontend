@@ -15,8 +15,8 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
     <>
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={tagA.title}
-          subtitle={tagA.subtitle}
+          title={tagB.title}
+          subtitle={tagB.subtitle}
           withLine
         />
       </div>
@@ -31,8 +31,8 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
 
       <div className='w-full'>
         <AccentTextWithSubtitle
-          title={tagB.title}
-          subtitle={tagB.subtitle}
+          title={tagA.title}
+          subtitle={tagA.subtitle}
           withLine
         />
       </div>

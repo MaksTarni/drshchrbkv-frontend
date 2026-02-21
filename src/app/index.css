@@ -5,6 +5,7 @@
   --font-Figma: 'TimesNewRomanCondensed';
   --color-text-primary: #161616;
   --color-text-secondary: #7d7d7d;
+  --color-text-accent: #fb5d00;
   --color-background-accent: #fdff45;
   --color-border-primary: #e5e5e5;
 
@@ -23,8 +24,19 @@
   --tracking-header-mobile: -0.6px;
   --tracking-text: -0.48px;
 
-  --breakpoint-tablet: 320px;
-  --breakpoint-desktop: 768px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1366px;
+}
+
+html {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.custom-cursor {
+  cursor:
+    url('/custom-cursor.svg') 16 16,
+    pointer !important;
 }
 
 @font-face {

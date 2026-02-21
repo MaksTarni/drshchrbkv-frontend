@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { LinkButtonWithText } from '../../atoms/link-button-with-text';
 
 export type Props = {
   leftText?: string;
@@ -14,19 +14,13 @@ export const Header = ({
   rightTextLink,
 }: Props) => {
   return (
-    <header className='absolute top-0 left-0 right-0 flex justify-between p-5'>
-      <Link
-        to={leftTextLink || '/'}
-        className='font-Inter font-normal text-text/[20px] tracking-text cursor-pointer'
-      >
+    <header className='absolute top-0 flex justify-between p-5 max-w-420 w-full'>
+      <LinkButtonWithText to={leftTextLink || '/'}>
         {leftText}
-      </Link>
-      <Link
-        to={rightTextLink || '/'}
-        className='font-Inter font-normal text-text leading-header-mobile tracking-text cursor-pointer'
-      >
+      </LinkButtonWithText>
+      <LinkButtonWithText to={rightTextLink || '/'}>
         {rightText}
-      </Link>
+      </LinkButtonWithText>
     </header>
   );
 };

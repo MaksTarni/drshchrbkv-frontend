@@ -23,7 +23,10 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
 
-      <Link to='/stub'>
+      <Link
+        to='/stub'
+        className='custom-cursor'
+      >
         <img
           src={getFullUrl(frameA.url)}
           alt={frameA.alt}
@@ -34,6 +37,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       <Link
         to='https://www.behance.net/gallery/159303845/Cloud-Visual-philosophy-as-a-product'
         target='_blank'
+        className='custom-cursor'
       >
         <img
           src={getFullUrl(frameB.url)}
