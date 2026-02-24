@@ -17,8 +17,8 @@ export const ProductsConnector = ({
   projectsMetaLeft,
   projectsMetaRight,
 }: Props) => {
-  const { data: courseData } = useCourse();
-  const { data: companiesData } = useCompanies();
+  const { data: courseData, isLoading: isCourseLoading } = useCourse();
+  const { data: companiesData, isLoading: isCompaniesLoading } = useCompanies();
 
   const mappedCourseData = useMemo(
     () => mapCourseDataToUI(courseData),
@@ -29,6 +29,10 @@ export const ProductsConnector = ({
     () => mapCompaniesDataToUI(companiesData),
     [companiesData],
   );
+
+  if (isCourseLoading || isCompaniesLoading) {
+    return null;
+  }
 
   return (
     <Products

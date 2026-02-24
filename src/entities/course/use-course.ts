@@ -12,5 +12,6 @@ export const useCourse = () => {
       );
       return response.data;
     },
+    useErrorBoundary: true,
   });
 };

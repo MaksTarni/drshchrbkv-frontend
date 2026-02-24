@@ -1,28 +1,44 @@
 @import 'tailwindcss';
 
 @theme {
+  /* MARK: - Fonts */
+
   --font-Inter: 'Inter';
   --font-Figma: 'TimesNewRomanCondensed';
+
+  /* MARK: - Colors */
+
   --color-text-primary: #161616;
   --color-text-secondary: #7d7d7d;
   --color-text-accent: #fb5d00;
+
+  --color-background-primary: #ffffff;
+  --color-background-secondary: #fafafa;
   --color-background-accent: #fdff45;
   --color-border-primary: #e5e5e5;
+
+  /* MARK: - Font-size */
 
   --text-header-desktop: 50px;
   --text-header-tablet: 30px;
   --text-header-mobile: 25px;
   --text-text: 16px;
 
+  /* MARK: - Line-height */
+
   --leading-header-desktop: 48px;
   --leading-header-tablet: 29px;
   --leading-header-mobile: 26px;
   --leading-text: 20px;
 
+  /* MARK: - Letter-spacing */
+
   --tracking-header-desktop: -1px;
   --tracking-header-tablet: -0.8px;
   --tracking-header-mobile: -0.6px;
   --tracking-text: -0.48px;
+
+  /* MARK: - Breakpoints */
 
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1366px;

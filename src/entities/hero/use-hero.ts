@@ -11,5 +11,6 @@ export const useHero = () => {
       const response = await api.get('/api/hero');
       return response.data;
     },
+    useErrorBoundary: true,
   });
 };

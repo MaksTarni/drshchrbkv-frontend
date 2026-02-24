@@ -7,9 +7,10 @@ import type { TScreenData } from './types';
 
 export type Props = {
   screenData: TScreenData;
+  isLoading?: boolean;
 };
 
-export const MainPage = ({ screenData }: Props) => {
+export const MainPage = ({ screenData, isLoading }: Props) => {
   return (
     <>
       <Header
@@ -29,7 +30,7 @@ export const MainPage = ({ screenData }: Props) => {
           projectsMetaRight={screenData?.projectsMetaRight}
         />
         <GalleryConnector />
-        <Footer email={screenData?.contactEmail} />
+        {!isLoading && <Footer email={screenData?.contactEmail} />}
       </div>
     </>
   );

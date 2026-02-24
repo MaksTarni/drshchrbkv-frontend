@@ -11,7 +11,7 @@ export const StubPage = ({ accentColor, email }: Props) => {
   return (
     <>
       <Header
-        leftText='back'
+        leftText='home'
         leftTextLink='/'
       />
 

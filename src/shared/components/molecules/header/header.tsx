@@ -14,7 +14,7 @@ export const Header = ({
   rightTextLink,
 }: Props) => {
   return (
-    <header className='absolute top-0 flex justify-between p-5 max-w-420 w-full'>
+    <header className='fixed top-0 flex justify-between p-5 max-w-420 w-full bg-white'>
       <LinkButtonWithText to={leftTextLink || '/'}>
         {leftText}
       </LinkButtonWithText>

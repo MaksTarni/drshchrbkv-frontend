@@ -1,5 +1,5 @@
 import { Box } from '../../shared/components/atoms/box';
-import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-description';
+import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { getFullUrl } from '../../shared/utils';
 import type { TScreenData } from './types';

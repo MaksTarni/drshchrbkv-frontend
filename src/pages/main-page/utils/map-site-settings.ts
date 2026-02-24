@@ -4,16 +4,16 @@ import type { TScreenData } from '../types';
 export const mapSiteSettings = (data?: TSiteSettings): TScreenData => {
   if (!data) {
     return {
-      accentColor: '#FDFF45',
+      accentColor: '',
       metaTitle: '-',
       projectsTitle: '-',
       projectsSubtitle: '-',
       projectsMetaLeft: '-',
       projectsMetaRight: '-',
-      navLeftLabel: '-',
-      navRightLabel: '-',
-      navLeftLink: '-',
-      navRightLink: '-',
+      navLeftLabel: '',
+      navRightLabel: '',
+      navLeftLink: '',
+      navRightLink: '',
       contactEmail: '-',
       linkedInUrl: '-',
     };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Box } from '../../shared/components/atoms/box';
-import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-description';
+import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-subtitle';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { getFullUrl } from '../../shared/utils';

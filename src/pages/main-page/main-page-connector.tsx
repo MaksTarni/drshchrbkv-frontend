@@ -4,9 +4,14 @@ import { MainPage } from './main-page';
 import { mapSiteSettings } from './utils';
 
 export const MainPageConnector = () => {
-  const { data } = useSiteSettings();
+  const { data, isLoading } = useSiteSettings();
 
   const mappedData = useMemo(() => mapSiteSettings(data), [data]);
 
-  return <MainPage screenData={mappedData} />;
+  return (
+    <MainPage
+      screenData={mappedData}
+      isLoading={isLoading}
+    />
+  );
 };

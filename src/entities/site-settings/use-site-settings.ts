@@ -11,5 +11,6 @@ export const useSiteSettings = () => {
       const response = await api.get('/api/site-setting');
       return response.data;
     },
+    useErrorBoundary: true,
   });
 };

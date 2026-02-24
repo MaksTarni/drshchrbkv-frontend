@@ -13,5 +13,6 @@ export const useCraftItems = () => {
       );
       return response.data;
     },
+    useErrorBoundary: true,
   });
 };

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-description';
+import { AccentTextWithSubtitle } from '../../../../shared/components/molecules/accent-text-with-subtitle';
 import type { TImage, TTag } from '../../types';
 import { getFullUrl } from '../../../../shared/utils';
 

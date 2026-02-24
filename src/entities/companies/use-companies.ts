@@ -11,5 +11,6 @@ export const useCompanies = () => {
       const response = await api.get('/api/companies');
       return response.data;
     },
+    useErrorBoundary: true,
   });
 };

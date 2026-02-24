@@ -4,4 +4,6 @@ export const QUERY_KEYS = {
   courses: 'courses',
   craftItems: 'craft-items',
   companies: 'companies',
+  emexPoints: 'emex-points',
+  emexIntro: 'emex-intro',
 };
