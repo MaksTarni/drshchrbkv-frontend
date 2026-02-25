@@ -3,7 +3,9 @@ export type TScreenData = {
   firstImage: TImage;
   secondImage?: TImage;
   firstMobileImage?: TImage;
+  firstTabletImage?: TImage;
   secondMobileImage?: TImage;
+  secondTabletImage?: TImage;
   firstColumnMarkdown: string[];
   secondColumnMarkdown?: string[];
 };

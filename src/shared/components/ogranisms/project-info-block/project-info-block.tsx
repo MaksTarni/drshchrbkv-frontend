@@ -10,23 +10,19 @@ type TImage = {
 };
 
 export type Props = {
-  firstImage: TImage;
   title?: string;
-  secondImage?: TImage;
   firstColumnMarkdown: string[];
   secondColumnMarkdown?: string[];
-  firstMobileImage?: TImage;
-  secondMobileImage?: TImage;
+  firstImage: TImage;
+  secondImage?: TImage;
 };
 
 export const ProjectInfoBlock = ({
-  firstImage,
-  firstMobileImage,
-  secondMobileImage,
-  secondImage,
   title,
   firstColumnMarkdown,
   secondColumnMarkdown,
+  firstImage,
+  secondImage,
 }: Props) => {
   const { isMobile, isDesktop } = useDimensions();
 
@@ -36,28 +32,12 @@ export const ProjectInfoBlock = ({
         {secondImage ? (
           <>
             <img
-              src={
-                isMobile && firstMobileImage
-                  ? getFullUrl(firstMobileImage?.url)
-                  : getFullUrl(firstImage.url)
-              }
-              alt={
-                isMobile && firstMobileImage
-                  ? firstMobileImage?.alt
-                  : firstImage.alt
-              }
+              src={getFullUrl(firstImage.url)}
+              alt={firstImage.alt}
             />
             <img
-              src={
-                isMobile && secondMobileImage
-                  ? getFullUrl(secondMobileImage?.url)
-                  : getFullUrl(secondImage.url)
-              }
-              alt={
-                isMobile && secondMobileImage
-                  ? secondMobileImage?.alt
-                  : secondImage.alt
-              }
+              src={getFullUrl(secondImage?.url)}
+              alt={secondImage?.alt}
             />
           </>
         ) : (

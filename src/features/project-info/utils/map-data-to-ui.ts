@@ -14,6 +14,8 @@ export const mapDataToUI = (data?: TEmexPointsData[]): TScreenData[] => {
       firstMobileImage: item.firstMobileImage,
       secondImage: item.secondImage,
       secondMobileImage: item.secondMobileImage,
+      firstTabletImage: item.firstTabletImage,
+      secondTabletImage: item.secondTabletImage,
       title: item.title,
     };
   });
