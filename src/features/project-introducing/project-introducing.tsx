@@ -22,7 +22,7 @@ export const ProjectIntroducing = ({ screenData }: Props) => {
 
       <Box height={isMobile ? 16 : 20} />
 
-      <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
+      <div className={`${isMobile ? 'px-4' : 'px-5'}`}>
         <div className='grid grid-cols-2'>
           <ProjectTitleWithSubtitles
             title={screenData?.projectIntro.title}

@@ -75,7 +75,7 @@ export const ProjectInfoBlock = ({
         </div>
       </div>
 
-      <Box height={isMobile ? 48 : 80} />
+      <Box height={isMobile ? 68 : 124} />
     </div>
   );
 };
