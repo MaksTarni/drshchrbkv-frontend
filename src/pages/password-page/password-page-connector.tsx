@@ -40,15 +40,13 @@ export const PasswordPageConnector = () => {
     mutate(password, {
       onSuccess: () => {
         setIsAuthorized(true);
+        navigate(from, { replace: true });
       },
       onError: () => {
         formMethod.setError('password', {
           type: 'server',
           message: 'Неверный пароль, попробуйте снова',
         });
-        // TODO: перенести когда будет готов бек
-        setIsAuthorized(true);
-        navigate(from, { replace: true });
       },
     });
   };
