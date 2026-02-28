@@ -37,6 +37,7 @@ export const Routing = () => {
               <EmexPageConnector />
             </ProtectedRoute>
           ),
+          ErrorBoundary: ErrorFallback,
         },
       ],
     },
