@@ -15,7 +15,11 @@
   --color-background-primary: #ffffff;
   --color-background-secondary: #fafafa;
   --color-background-accent: #fdff45;
+
   --color-border-primary: #e5e5e5;
+  --color-border-dark: #161616;
+  --color-border-accent: #fb5d00;
+  --color-border-secondary: #8c8c8c;
 
   /* MARK: - Font-size */
 

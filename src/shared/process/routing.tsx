@@ -8,6 +8,10 @@ import { MainPageConnector } from '../../pages/main-page';
 import { StubPageConnector } from '../../pages/stub-page';
 import { EmexPageConnector } from '../../pages/emex-page';
 import { ErrorFallback } from '../components/ogranisms/error-fallback';
+import { PasswordPageConnector } from '../../pages/password-page';
+import { AuthLayout } from './layouts';
+import { AuthProvider } from './context';
+import { ProtectedRoute } from './guard';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -17,17 +21,31 @@ export const Routing = () => {
       ErrorBoundary: ErrorFallback,
     },
     {
-      path: '/companies/emex',
-      element: <EmexPageConnector />,
-      ErrorBoundary: ErrorFallback,
-    },
-    {
       path: '*',
       element: <StubPageConnector />,
       ErrorBoundary: ErrorFallback,
     },
+    {
+      path: '/auth',
+      element: <AuthLayout />,
+      children: [
+        { index: true, element: <PasswordPageConnector /> },
+        {
+          path: 'companies/emex',
+          element: (
+            <ProtectedRoute>
+              <EmexPageConnector />
+            </ProtectedRoute>
+          ),
+        },
+      ],
+    },
   ];
   const router = createBrowserRouter(routes);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
