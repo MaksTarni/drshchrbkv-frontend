@@ -46,6 +46,7 @@ export const PasswordPageConnector = () => {
           type: 'server',
           message: 'Неверный пароль, попробуйте снова',
         });
+        // TODO: перенести когда будет готов бек
         setIsAuthorized(true);
         navigate(from, { replace: true });
       },
