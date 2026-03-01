@@ -7,4 +7,5 @@ export const QUERY_KEYS = {
   emexPoints: 'emex-points',
   emexIntro: 'emex-intro',
   emexSellerHubPoints: 'emex-seller-hub-points',
+  emexSellerHubIntro: 'emex-seller-hub-intro',
 };

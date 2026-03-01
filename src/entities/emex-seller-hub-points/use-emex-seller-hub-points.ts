@@ -1,12 +1,16 @@
-import { EMEX_SELLER_HUB_POINTS } from './__mocks__';
+import { useQuery } from 'react-query';
+import type { TEmexSellerHubPointsData } from './types';
+import { QUERY_KEYS } from '../query-keys';
+import { api } from '../../shared/api';
 
 export const useEmexSellerHubPoints = () => {
-  return EMEX_SELLER_HUB_POINTS;
-  //   return useQuery<TEmexSellerHubPointsData[]>({
-  //     queryKey: [QUERY_KEYS.emexSellerHubPoints],
-  //     queryFn: async () => {
-  //       const response = await api.get('/api/project-pages/by-slug/emex-group');
-  //       return response.data;
-  //     },
-  //   });
+  return useQuery<TEmexSellerHubPointsData[]>({
+    queryKey: [QUERY_KEYS.emexSellerHubPoints],
+    queryFn: async () => {
+      const response = await api.get(
+        '/api/project-pages/seller-hub/by-slug/emex-seller-hub',
+      );
+      return response.data;
+    },
+  });
 };

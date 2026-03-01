@@ -1,0 +1,24 @@
+export type TEmexSellerHubIntro = {
+  data: TEmexSellerHubIntroData;
+};
+
+export type TEmexSellerHubIntroData = {
+  image: TImage;
+  projectIntro: TProjectIntro;
+  tags: TTags[];
+};
+
+export type TProjectIntro = {
+  title: string;
+  subtitles: string[];
+};
+
+export type TTags = {
+  title: string;
+  subtitle: string;
+};
+
+export type TImage = {
+  url: string;
+  alt: string;
+};

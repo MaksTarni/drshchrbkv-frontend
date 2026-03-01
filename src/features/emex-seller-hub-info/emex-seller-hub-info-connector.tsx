@@ -4,15 +4,13 @@ import { EmexSellerHubInfo } from './emex-seller-hub-info';
 import { useEmexSellerHubPoints } from '../../entities/emex-seller-hub-points';
 
 export const EmexSellerHubInfoConnector = () => {
-  const test = useEmexSellerHubPoints();
+  const { data, isLoading } = useEmexSellerHubPoints();
 
-  const screenData = useMemo(() => mapDataToUI(test), [test]);
+  const screenData = useMemo(() => mapDataToUI(data), [data]);
 
-  console.log(screenData);
-
-  //   if (isLoading) {
-  //     return null;
-  //   }
+  if (isLoading) {
+    return null;
+  }
 
   return <EmexSellerHubInfo screenData={screenData} />;
 };
