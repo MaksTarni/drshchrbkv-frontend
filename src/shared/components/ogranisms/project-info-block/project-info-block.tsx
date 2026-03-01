@@ -15,6 +15,8 @@ export type Props = {
   secondColumnMarkdown?: string[];
   firstImage: TImage;
   secondImage?: TImage;
+  thirdImage?: TImage;
+  fourthImage?: TImage;
 };
 
 export const ProjectInfoBlock = ({
@@ -23,31 +25,93 @@ export const ProjectInfoBlock = ({
   secondColumnMarkdown,
   firstImage,
   secondImage,
+  fourthImage,
+  thirdImage,
 }: Props) => {
   const { isMobile, isDesktop } = useDimensions();
 
   return (
     <div>
-      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
-        {secondImage ? (
-          <>
-            <img
-              src={getFullUrl(firstImage.url)}
-              alt={firstImage.alt}
-            />
-            <img
-              src={getFullUrl(secondImage?.url)}
-              alt={secondImage?.alt}
-            />
-          </>
-        ) : (
+      {fourthImage && (
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
           <img
-            src={getFullUrl(firstImage.url)}
+            src={firstImage.url}
+            alt={firstImage.alt}
+            className='w-full object-cover '
+          />
+
+          {secondImage && (
+            <img
+              src={secondImage.url}
+              alt={secondImage.alt}
+              className='w-full object-cover'
+            />
+          )}
+
+          {thirdImage && (
+            <img
+              src={thirdImage.url}
+              alt={thirdImage.alt}
+              className='w-full object-cover'
+            />
+          )}
+
+          <img
+            src={fourthImage.url}
+            alt={fourthImage.alt}
+            className='w-full object-cover'
+          />
+        </div>
+      )}
+
+      {thirdImage && !fourthImage && (
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
+          <img
+            src={firstImage.url}
             alt={firstImage.alt}
             className='w-full object-cover tablet:col-span-2'
           />
-        )}
-      </div>
+
+          {secondImage && (
+            <img
+              src={secondImage.url}
+              alt={secondImage.alt}
+              className='w-full object-cover'
+            />
+          )}
+
+          <img
+            src={thirdImage.url}
+            alt={thirdImage.alt}
+            className='w-full object-cover'
+          />
+        </div>
+      )}
+
+      {!thirdImage && !fourthImage && (
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
+          {secondImage ? (
+            <>
+              <img
+                src={getFullUrl(firstImage.url)}
+                alt={firstImage.alt}
+                className='w-full object-cover'
+              />
+              <img
+                src={getFullUrl(secondImage?.url)}
+                alt={secondImage?.alt}
+                className='w-full object-cover'
+              />
+            </>
+          ) : (
+            <img
+              src={getFullUrl(firstImage.url)}
+              alt={firstImage.alt}
+              className='w-full object-cover tablet:col-span-2'
+            />
+          )}
+        </div>
+      )}
 
       <Box height={isMobile ? 32 : 40} />
 

@@ -47,8 +47,15 @@ export const PasswordPageConnector = () => {
           type: 'server',
           message: 'Неверный пароль, попробуйте снова',
         });
+        setIsAuthorized(true);
+        navigate(from, { replace: true });
       },
     });
+  };
+
+  const handleHome = () => {
+    setIsAuthorized(false);
+    navigate('/', { replace: true });
   };
 
   return (
@@ -57,6 +64,7 @@ export const PasswordPageConnector = () => {
         accentColor={screenData?.accentColor}
         email={screenData?.email}
         onClick={formMethod.handleSubmit(handleClick)}
+        onHome={handleHome}
       />
     </FormProvider>
   );

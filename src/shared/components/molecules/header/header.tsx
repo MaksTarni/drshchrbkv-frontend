@@ -5,6 +5,7 @@ export type Props = {
   rightText?: string;
   leftTextLink?: string;
   rightTextLink?: string;
+  onLeftClick?: VoidFunction;
 };
 
 export const Header = ({
@@ -12,10 +13,14 @@ export const Header = ({
   rightText,
   leftTextLink,
   rightTextLink,
+  onLeftClick,
 }: Props) => {
   return (
     <header className='fixed top-0 flex justify-between p-5 max-w-420 w-full bg-white'>
-      <LinkButtonWithText to={leftTextLink || '/'}>
+      <LinkButtonWithText
+        to={leftTextLink || '/'}
+        onClick={onLeftClick}
+      >
         {leftText}
       </LinkButtonWithText>
       <LinkButtonWithText to={rightTextLink || '/'}>

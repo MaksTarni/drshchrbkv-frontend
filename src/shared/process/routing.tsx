@@ -12,6 +12,7 @@ import { PasswordPageConnector } from '../../pages/password-page';
 import { AuthLayout } from './layouts';
 import { AuthProvider } from './context';
 import { ProtectedRoute } from './guard';
+import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/emex-seller-hub-page-connector';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -38,6 +39,14 @@ export const Routing = () => {
             </ProtectedRoute>
           ),
           ErrorBoundary: ErrorFallback,
+        },
+        {
+          path: 'companies/emex-seller-hub',
+          element: (
+            <ProtectedRoute>
+              <EmexSellerHubPageConnector />
+            </ProtectedRoute>
+          ),
         },
       ],
     },

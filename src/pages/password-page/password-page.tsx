@@ -8,16 +8,22 @@ export type Props = {
   accentColor: string;
   email: string;
   onClick: VoidFunction;
+  onHome: VoidFunction;
 };
 
-export const PasswordPage = ({ accentColor, email, onClick }: Props) => {
+export const PasswordPage = ({
+  accentColor,
+  email,
+  onClick,
+  onHome,
+}: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <>
       <Header
         leftText='home'
-        leftTextLink='/'
+        onLeftClick={onHome}
       />
 
       <div className='h-dvh flex flex-col'>

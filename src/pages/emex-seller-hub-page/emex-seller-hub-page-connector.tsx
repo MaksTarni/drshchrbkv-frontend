@@ -1,10 +1,10 @@
-import { useMemo } from 'react';
-import { useSiteSettings } from '../../entities/site-settings';
-import { EmexPage } from './emex-page';
-import { mapSiteSettings } from './utils';
 import { useNavigate } from 'react-router-dom';
+import { EmexSellerHubPage } from './emex-seller-hub-page';
+import { useSiteSettings } from '../../entities/site-settings';
+import { useMemo } from 'react';
+import { mapSiteSettings } from './utils';
 
-export const EmexPageConnector = () => {
+export const EmexSellerHubPageConnector = () => {
   const navigate = useNavigate();
 
   const { data } = useSiteSettings();
@@ -16,7 +16,7 @@ export const EmexPageConnector = () => {
   };
 
   return (
-    <EmexPage
+    <EmexSellerHubPage
       screenData={screenData}
       onHome={handleHome}
     />

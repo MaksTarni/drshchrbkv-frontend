@@ -1,10 +1,9 @@
-import { ProjectInfoConnector } from '../../features/project-info';
+import { EmexSellerHubInfoConnector } from '../../features/emex-seller-hub-info';
 
 import { ProjectIntroducingConnector } from '../../features/project-introducing';
 import { Box } from '../../shared/components/atoms/box';
 import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
-
 import { useDimensions } from '../../shared/hooks/dimensions';
 import type { TScreenData } from './types';
 
@@ -13,7 +12,7 @@ export type Props = {
   onHome?: VoidFunction;
 };
 
-export const EmexPage = ({ screenData, onHome }: Props) => {
+export const EmexSellerHubPage = ({ screenData, onHome }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
@@ -30,7 +29,7 @@ export const EmexPage = ({ screenData, onHome }: Props) => {
       <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
         <Box height={isMobile ? 68 : 124} />
 
-        <ProjectInfoConnector />
+        <EmexSellerHubInfoConnector />
 
         <Footer email={screenData?.email} />
       </div>
