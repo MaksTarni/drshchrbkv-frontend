@@ -35,14 +35,14 @@ export const ProjectInfoBlock = ({
       {fourthImage && (
         <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
           <img
-            src={firstImage.url}
+            src={getFullUrl(firstImage.url)}
             alt={firstImage.alt}
             className='w-full object-cover '
           />
 
           {secondImage && (
             <img
-              src={secondImage.url}
+              src={getFullUrl(secondImage.url)}
               alt={secondImage.alt}
               className='w-full object-cover'
             />
@@ -50,14 +50,14 @@ export const ProjectInfoBlock = ({
 
           {thirdImage && (
             <img
-              src={thirdImage.url}
+              src={getFullUrl(thirdImage.url)}
               alt={thirdImage.alt}
               className='w-full object-cover'
             />
           )}
 
           <img
-            src={fourthImage.url}
+            src={getFullUrl(fourthImage.url)}
             alt={fourthImage.alt}
             className='w-full object-cover'
           />
@@ -67,21 +67,21 @@ export const ProjectInfoBlock = ({
       {thirdImage && !fourthImage && (
         <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
           <img
-            src={firstImage.url}
+            src={getFullUrl(firstImage.url)}
             alt={firstImage.alt}
             className='w-full object-cover tablet:col-span-2'
           />
 
           {secondImage && (
             <img
-              src={secondImage.url}
+              src={getFullUrl(secondImage.url)}
               alt={secondImage.alt}
               className='w-full object-cover'
             />
           )}
 
           <img
-            src={thirdImage.url}
+            src={getFullUrl(thirdImage.url)}
             alt={thirdImage.alt}
             className='w-full object-cover'
           />

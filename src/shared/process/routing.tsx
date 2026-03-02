@@ -47,6 +47,7 @@ export const Routing = () => {
               <EmexSellerHubPageConnector />
             </ProtectedRoute>
           ),
+          ErrorBoundary: ErrorFallback,
         },
       ],
     },
