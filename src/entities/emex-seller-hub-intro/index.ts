@@ -1,1 +1,1 @@
-export { useEmexSellerHubIntro } from './emex-seller-hub-points';
+export { useEmexSellerHubIntro } from './emex-seller-hub-intro';

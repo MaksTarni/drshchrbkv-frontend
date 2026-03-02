@@ -1,6 +1,6 @@
 import { EmexSellerHubInfoConnector } from '../../features/emex-seller-hub-info';
+import { EmexSellerHubIntroducingConnector } from '../../features/emex-seller-hub-introducing/emex-seller-hub-introducing-connector';
 
-import { ProjectIntroducingConnector } from '../../features/project-introducing';
 import { Box } from '../../shared/components/atoms/box';
 import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
@@ -24,7 +24,7 @@ export const EmexSellerHubPage = ({ screenData, onHome }: Props) => {
         rightTextLink='/stub'
       />
 
-      <ProjectIntroducingConnector />
+      <EmexSellerHubIntroducingConnector />
 
       <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
         <Box height={isMobile ? 68 : 124} />
