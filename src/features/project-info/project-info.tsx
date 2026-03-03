@@ -10,7 +10,7 @@ type Props = {
 export const ProjectInfo = ({ screenData }: Props) => {
   const breakpoints = useDimensions();
 
-  return screenData?.map(item => {
+  return screenData?.map((item, index) => {
     const resolvedFirstImage = resolveImageByBreakpoint({
       defaultImage: item?.firstImage,
       mobileImage: item.firstMobileImage,
@@ -35,6 +35,7 @@ export const ProjectInfo = ({ screenData }: Props) => {
         secondColumnMarkdown={item.secondColumnMarkdown}
         firstImage={resolvedFirstImage}
         secondImage={resolvedSecondImage}
+        isLast={index === screenData.length - 1}
       />
     );
   });

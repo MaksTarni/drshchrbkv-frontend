@@ -59,6 +59,7 @@ export const PasswordPage = ({
                         text='enter'
                         color='text-text-primary'
                         onClick={onClick}
+                        className='hover:text-text-accent active:text-text-primary transition-colors duration-200 ease-in-out'
                       />
                     )}
                   </div>

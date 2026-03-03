@@ -17,6 +17,7 @@ export type Props = {
   secondImage?: TImage;
   thirdImage?: TImage;
   fourthImage?: TImage;
+  isLast?: boolean;
 };
 
 export const ProjectInfoBlock = ({
@@ -27,13 +28,14 @@ export const ProjectInfoBlock = ({
   secondImage,
   fourthImage,
   thirdImage,
+  isLast,
 }: Props) => {
   const { isMobile, isDesktop } = useDimensions();
 
   return (
     <div>
       {fourthImage && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           <img
             src={getFullUrl(firstImage.url)}
             alt={firstImage.alt}
@@ -65,7 +67,7 @@ export const ProjectInfoBlock = ({
       )}
 
       {thirdImage && !fourthImage && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           <img
             src={getFullUrl(firstImage.url)}
             alt={firstImage.alt}
@@ -89,7 +91,7 @@ export const ProjectInfoBlock = ({
       )}
 
       {!thirdImage && !fourthImage && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-12 tablet:gap-5'>
+        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           {secondImage ? (
             <>
               <img
@@ -115,7 +117,7 @@ export const ProjectInfoBlock = ({
 
       <Box height={isMobile ? 32 : 40} />
 
-      <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-5'>
+      <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-x-5'>
         <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-5'>
           <Title text={title} />
 
@@ -139,7 +141,7 @@ export const ProjectInfoBlock = ({
         </div>
       </div>
 
-      <Box height={isMobile ? 68 : 124} />
+      {!isLast ? <Box height={isMobile ? 68 : 124} /> : null}
     </div>
   );
 };

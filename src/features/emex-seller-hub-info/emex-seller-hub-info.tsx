@@ -10,7 +10,7 @@ type Props = {
 export const EmexSellerHubInfo = ({ screenData }: Props) => {
   const breakpoints = useDimensions();
 
-  return screenData?.map(item => {
+  return screenData?.map((item, index) => {
     const resolvedFirstImage = resolveImageByBreakpoint({
       defaultImage: item?.desktopImages.firstImage,
       mobileImage: item.mobileImages.firstImage,
@@ -55,6 +55,7 @@ export const EmexSellerHubInfo = ({ screenData }: Props) => {
         secondImage={resolvedSecondImage}
         thirdImage={resolvedThirdImage}
         fourthImage={resolvedFourthImage}
+        isLast={index === screenData.length - 1}
       />
     );
   });
