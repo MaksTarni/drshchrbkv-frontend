@@ -24,7 +24,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
       <div className='[grid-area:1/2/2/3] pr-5'>
         <Link
-          to='/stub'
+          to='/auth/companies/emex'
           className='custom-cursor'
         >
           <img
@@ -45,7 +45,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
       <div className='[grid-area:1/3/3/5]'>
         <Link
-          to='/stub'
+          to='/auth/companies/emex-seller-hub'
           className='custom-cursor'
         >
           <img

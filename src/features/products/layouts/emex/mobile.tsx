@@ -21,7 +21,7 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
 
-      <Link to='/stub'>
+      <Link to='/auth/companies/emex'>
         <img
           src={getFullUrl(frameA.url)}
           alt={frameA.alt}
@@ -37,7 +37,7 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
 
-      <Link to='/stub'>
+      <Link to='/auth/companies/emex-seller-hub'>
         <img
           src={getFullUrl(frameB.url)}
           alt={frameB.alt}
