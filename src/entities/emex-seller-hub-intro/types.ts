@@ -4,6 +4,8 @@ export type TEmexSellerHubIntro = {
 
 export type TEmexSellerHubIntroData = {
   image: TImage;
+  tabletImage: TImage;
+  mobileImage: TImage;
   projectIntro: TProjectIntro;
   tags: TTags[];
 };

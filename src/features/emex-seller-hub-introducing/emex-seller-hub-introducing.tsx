@@ -3,18 +3,18 @@ import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/pro
 import { SubtitleWithAccentText } from '../../shared/components/molecules/subtitle-with-accent-text';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { getFullUrl } from '../../shared/utils';
-import type { TScreenData } from './types';
+import type { TImage, TScreenData } from './types';
 
-export type Props = { screenData: TScreenData };
+export type Props = { screenData: TScreenData; image: TImage };
 
-export const EmexSellerHubIntroducing = ({ screenData }: Props) => {
+export const EmexSellerHubIntroducing = ({ screenData, image }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <>
       <img
-        src={getFullUrl(screenData?.image.url)}
-        alt={screenData?.image.alt}
+        src={getFullUrl(image.url)}
+        alt={image.alt}
         className='w-full h-dvh object-cover'
       />
 
