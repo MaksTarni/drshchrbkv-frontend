@@ -13,7 +13,7 @@ export type Props = {
 export const Tablet = ({ frameA, frameB, tagA, tagB }: Props) => {
   return (
     <>
-      <Link to='/stub'>
+      <Link to='/auth/companies/sberbank-metal'>
         <img
           src={getFullUrl(frameA.url)}
           alt={frameA.alt}

@@ -20,7 +20,7 @@ export const PasswordPage = ({
   const { isMobile } = useDimensions();
 
   return (
-    <>
+    <form onSubmit={onClick}>
       <Header
         leftText='home'
         onLeftClick={onHome}
@@ -56,6 +56,7 @@ export const PasswordPage = ({
                     />
                     {field.value && (
                       <Subtitle
+                        type='submit'
                         text='enter'
                         color='text-text-primary'
                         onClick={onClick}
@@ -77,6 +78,6 @@ export const PasswordPage = ({
       <div className={`${isMobile ? 'px-4' : 'px-5'}`}>
         <Footer email={email} />
       </div>
-    </>
+    </form>
   );
 };

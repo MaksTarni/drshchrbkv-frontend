@@ -8,4 +8,6 @@ export const QUERY_KEYS = {
   emexIntro: 'emex-intro',
   emexSellerHubPoints: 'emex-seller-hub-points',
   emexSellerHubIntro: 'emex-seller-hub-intro',
+  sberbankMetalPoints: 'sberbank-metal-points',
+  sberbankMetalIntro: 'sberbank-metal-intro',
 };

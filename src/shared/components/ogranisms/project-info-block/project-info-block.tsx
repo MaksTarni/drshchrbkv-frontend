@@ -3,16 +3,13 @@ import { getFullUrl } from '../../../utils';
 import { Box } from '../../atoms/box';
 import { MarkdownView } from '../../atoms/markdown-view';
 import { Title } from '../../atoms/title';
-
-type TImage = {
-  url: string;
-  alt: string;
-};
+import { Video } from '../../atoms/video';
 
 export type Props = {
   title?: string;
   firstColumnMarkdown: string[];
   secondColumnMarkdown?: string[];
+  isVideo?: boolean;
   firstImage: TImage;
   secondImage?: TImage;
   thirdImage?: TImage;
@@ -24,6 +21,7 @@ export const ProjectInfoBlock = ({
   title,
   firstColumnMarkdown,
   secondColumnMarkdown,
+  isVideo,
   firstImage,
   secondImage,
   fourthImage,
@@ -34,7 +32,13 @@ export const ProjectInfoBlock = ({
 
   return (
     <div>
-      {fourthImage && (
+      {isVideo && (
+        <div className='grid grid-cols-1 gap-4 tablet:gap-5'>
+          <Video src={getFullUrl(firstImage.url)} />
+        </div>
+      )}
+
+      {fourthImage && !isVideo && (
         <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           <img
             src={getFullUrl(firstImage.url)}
@@ -50,7 +54,7 @@ export const ProjectInfoBlock = ({
             />
           )}
 
-          {thirdImage && (
+          {thirdImage && !isVideo && (
             <img
               src={getFullUrl(thirdImage.url)}
               alt={thirdImage.alt}
@@ -66,7 +70,7 @@ export const ProjectInfoBlock = ({
         </div>
       )}
 
-      {thirdImage && !fourthImage && (
+      {thirdImage && !fourthImage && !isVideo && (
         <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           <img
             src={getFullUrl(firstImage.url)}
@@ -90,7 +94,7 @@ export const ProjectInfoBlock = ({
         </div>
       )}
 
-      {!thirdImage && !fourthImage && (
+      {!thirdImage && !fourthImage && !isVideo && (
         <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
           {secondImage ? (
             <>

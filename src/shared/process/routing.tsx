@@ -13,6 +13,7 @@ import { AuthLayout } from './layouts';
 import { AuthProvider } from './context';
 import { ProtectedRoute } from './guard';
 import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/emex-seller-hub-page-connector';
+import { SberbankMetalPageConnector } from '../../pages/sberbank-metal-page';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -45,6 +46,15 @@ export const Routing = () => {
           element: (
             <ProtectedRoute>
               <EmexSellerHubPageConnector />
+            </ProtectedRoute>
+          ),
+          ErrorBoundary: ErrorFallback,
+        },
+        {
+          path: 'companies/sberbank-metal',
+          element: (
+            <ProtectedRoute>
+              <SberbankMetalPageConnector />
             </ProtectedRoute>
           ),
           ErrorBoundary: ErrorFallback,

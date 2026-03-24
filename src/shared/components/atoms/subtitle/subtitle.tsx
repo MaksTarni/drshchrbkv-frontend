@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type Props = {
+export type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   text: string | ReactNode;
   color?: string;
   className?: string;
