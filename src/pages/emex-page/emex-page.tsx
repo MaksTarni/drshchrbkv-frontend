@@ -20,9 +20,8 @@ export const EmexPage = ({ screenData, onHome }: Props) => {
     <>
       <Header
         leftText='home'
-        rightText='index'
         onLeftClick={onHome}
-        rightTextLink='/stub'
+        withRightButton
       />
 
       <ProjectIntroducingConnector />

@@ -1,20 +1,23 @@
+import { useState } from 'react';
 import { LinkButtonWithText } from '../../atoms/link-button-with-text';
+import { Button } from '../../atoms/button';
+import { DrawerConnector } from '../../../../features/drawer';
 
 export type Props = {
   leftText?: string;
-  rightText?: string;
   leftTextLink?: string;
-  rightTextLink?: string;
+  withRightButton?: boolean;
   onLeftClick?: VoidFunction;
 };
 
 export const Header = ({
   leftText,
-  rightText,
+  withRightButton,
   leftTextLink,
-  rightTextLink,
   onLeftClick,
 }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className='fixed top-0 flex justify-between p-5 max-w-420 w-full bg-white'>
       <LinkButtonWithText
@@ -23,9 +26,10 @@ export const Header = ({
       >
         {leftText}
       </LinkButtonWithText>
-      <LinkButtonWithText to={rightTextLink || '/'}>
-        {rightText}
-      </LinkButtonWithText>
+      {withRightButton && (
+        <Button onClick={() => setIsOpen(true)}>index</Button>
+      )}
+      {isOpen && <DrawerConnector onClose={() => setIsOpen(false)} />}
     </header>
   );
 };

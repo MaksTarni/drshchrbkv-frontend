@@ -18,9 +18,8 @@ export const SberbankMetalPage = ({ onHome, screenData }: Props) => {
     <>
       <Header
         leftText='home'
-        rightText='index'
+        withRightButton
         onLeftClick={onHome}
-        rightTextLink='/stub'
       />
 
       <SberbankMetalIntroducingConnector />

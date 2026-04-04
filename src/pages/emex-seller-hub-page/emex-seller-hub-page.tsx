@@ -19,9 +19,8 @@ export const EmexSellerHubPage = ({ screenData, onHome }: Props) => {
     <>
       <Header
         leftText='home'
-        rightText='index'
+        withRightButton
         onLeftClick={onHome}
-        rightTextLink='/stub'
       />
 
       <EmexSellerHubIntroducingConnector />

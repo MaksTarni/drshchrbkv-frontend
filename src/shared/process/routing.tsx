@@ -14,6 +14,7 @@ import { AuthProvider } from './context';
 import { ProtectedRoute } from './guard';
 import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/emex-seller-hub-page-connector';
 import { SberbankMetalPageConnector } from '../../pages/sberbank-metal-page';
+import { AboutPageConnector } from '../../pages/about-page';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -25,6 +26,11 @@ export const Routing = () => {
     {
       path: '*',
       element: <StubPageConnector />,
+      ErrorBoundary: ErrorFallback,
+    },
+    {
+      path: '/about',
+      element: <AboutPageConnector />,
       ErrorBoundary: ErrorFallback,
     },
     {

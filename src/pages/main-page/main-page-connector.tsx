@@ -20,9 +20,11 @@ export const MainPageConnector = () => {
   }, [isAuthorized, setIsAuthorized]);
 
   return (
-    <MainPage
-      screenData={mappedData}
-      isLoading={isLoading}
-    />
+    <>
+      <MainPage
+        screenData={mappedData}
+        isLoading={isLoading}
+      />
+    </>
   );
 };

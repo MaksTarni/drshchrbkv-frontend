@@ -10,4 +10,6 @@ export const QUERY_KEYS = {
   emexSellerHubIntro: 'emex-seller-hub-intro',
   sberbankMetalPoints: 'sberbank-metal-points',
   sberbankMetalIntro: 'sberbank-metal-intro',
+  about: 'about',
+  drawer: 'drawer',
 };

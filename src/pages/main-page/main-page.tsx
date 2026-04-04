@@ -15,9 +15,8 @@ export const MainPage = ({ screenData, isLoading }: Props) => {
     <>
       <Header
         leftText={screenData?.navLeftLabel}
-        rightText={screenData?.navRightLabel}
         leftTextLink={screenData?.navLeftLink}
-        rightTextLink={screenData?.navRightLink}
+        withRightButton
       />
 
       <IntroducingConnector accentColor={screenData?.accentColor} />
