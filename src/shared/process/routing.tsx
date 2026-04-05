@@ -9,7 +9,7 @@ import { StubPageConnector } from '../../pages/stub-page';
 import { EmexPageConnector } from '../../pages/emex-page';
 import { ErrorFallback } from '../components/ogranisms/error-fallback';
 import { PasswordPageConnector } from '../../pages/password-page';
-import { AuthLayout } from './layouts';
+import { AuthLayout, RootLayout } from './layouts';
 import { AuthProvider } from './context';
 import { ProtectedRoute } from './guard';
 import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/emex-seller-hub-page-connector';
@@ -20,60 +20,65 @@ import { SberbankDepositPageConnector } from '../../pages/sberbank-deposit-page'
 export const Routing = () => {
   const routes: RouteObject[] = [
     {
-      path: '/',
-      element: <MainPageConnector />,
-      ErrorBoundary: ErrorFallback,
-    },
-    {
-      path: '*',
-      element: <StubPageConnector />,
-      ErrorBoundary: ErrorFallback,
-    },
-    {
-      path: '/about',
-      element: <AboutPageConnector />,
-      ErrorBoundary: ErrorFallback,
-    },
-    {
-      path: '/auth',
-      element: <AuthLayout />,
+      element: <RootLayout />,
       children: [
-        { index: true, element: <PasswordPageConnector /> },
         {
-          path: 'companies/emex',
-          element: (
-            <ProtectedRoute>
-              <EmexPageConnector />
-            </ProtectedRoute>
-          ),
+          path: '/',
+          element: <MainPageConnector />,
           ErrorBoundary: ErrorFallback,
         },
         {
-          path: 'companies/emex-seller-hub',
-          element: (
-            <ProtectedRoute>
-              <EmexSellerHubPageConnector />
-            </ProtectedRoute>
-          ),
+          path: '*',
+          element: <StubPageConnector />,
           ErrorBoundary: ErrorFallback,
         },
         {
-          path: 'companies/sberbank-metal',
-          element: (
-            <ProtectedRoute>
-              <SberbankMetalPageConnector />
-            </ProtectedRoute>
-          ),
+          path: '/about',
+          element: <AboutPageConnector />,
           ErrorBoundary: ErrorFallback,
         },
         {
-          path: 'companies/sberbank-deposit',
-          element: (
-            <ProtectedRoute>
-              <SberbankDepositPageConnector />
-            </ProtectedRoute>
-          ),
-          ErrorBoundary: ErrorFallback,
+          path: '/auth',
+          element: <AuthLayout />,
+          children: [
+            { index: true, element: <PasswordPageConnector /> },
+            {
+              path: 'companies/emex',
+              element: (
+                <ProtectedRoute>
+                  <EmexPageConnector />
+                </ProtectedRoute>
+              ),
+              ErrorBoundary: ErrorFallback,
+            },
+            {
+              path: 'companies/emex-seller-hub',
+              element: (
+                <ProtectedRoute>
+                  <EmexSellerHubPageConnector />
+                </ProtectedRoute>
+              ),
+              ErrorBoundary: ErrorFallback,
+            },
+            {
+              path: 'companies/sberbank-metal',
+              element: (
+                <ProtectedRoute>
+                  <SberbankMetalPageConnector />
+                </ProtectedRoute>
+              ),
+              ErrorBoundary: ErrorFallback,
+            },
+            {
+              path: 'companies/sberbank-deposit',
+              element: (
+                <ProtectedRoute>
+                  <SberbankDepositPageConnector />
+                </ProtectedRoute>
+              ),
+              ErrorBoundary: ErrorFallback,
+            },
+          ],
         },
       ],
     },

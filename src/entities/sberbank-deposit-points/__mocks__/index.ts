@@ -53,7 +53,6 @@ export const MOCK_SBERBANK_DEPOSIT_POINTS: TSberbankDepositPointsData[] = [
   },
   {
     title: 'fdsfsdf',
-    isVideo: true,
     firstColumnMarkdown: [
       'dsfsdffsdfsdf\ndfdsfdsf\nfdsfsdfdsfds\nfsdfdsf',
       'dsfsdffsdfsdf\ndfdsfdsf\nfdsfsdfdsfds\nfsdfdsf',

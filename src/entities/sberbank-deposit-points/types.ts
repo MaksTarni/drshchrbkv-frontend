@@ -4,7 +4,6 @@ export type TSberbankDepositPoints = {
 
 export type TSberbankDepositPointsData = {
   title?: string;
-  isVideo?: boolean;
   mobileImages: {
     firstImage: TImage;
     secondImage?: TImage;
