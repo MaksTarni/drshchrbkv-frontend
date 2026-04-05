@@ -30,93 +30,18 @@ export const ProjectInfoBlock = ({
 }: Props) => {
   const { isMobile, isDesktop } = useDimensions();
 
+  const images = [firstImage, secondImage, thirdImage, fourthImage].filter(
+    Boolean,
+  ) as TImage[];
+
   return (
     <div>
-      {isVideo && (
+      {isVideo ? (
         <div className='grid grid-cols-1 gap-4 tablet:gap-5'>
           <Video src={getFullUrl(firstImage.url)} />
         </div>
-      )}
-
-      {fourthImage && !isVideo && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
-          <img
-            src={getFullUrl(firstImage.url)}
-            alt={firstImage.alt}
-            className='w-full object-cover '
-          />
-
-          {secondImage && (
-            <img
-              src={getFullUrl(secondImage.url)}
-              alt={secondImage.alt}
-              className='w-full object-cover'
-            />
-          )}
-
-          {thirdImage && !isVideo && (
-            <img
-              src={getFullUrl(thirdImage.url)}
-              alt={thirdImage.alt}
-              className='w-full object-cover'
-            />
-          )}
-
-          <img
-            src={getFullUrl(fourthImage.url)}
-            alt={fourthImage.alt}
-            className='w-full object-cover'
-          />
-        </div>
-      )}
-
-      {thirdImage && !fourthImage && !isVideo && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
-          <img
-            src={getFullUrl(firstImage.url)}
-            alt={firstImage.alt}
-            className='w-full object-cover tablet:col-span-2'
-          />
-
-          {secondImage && (
-            <img
-              src={getFullUrl(secondImage.url)}
-              alt={secondImage.alt}
-              className='w-full object-cover'
-            />
-          )}
-
-          <img
-            src={getFullUrl(thirdImage.url)}
-            alt={thirdImage.alt}
-            className='w-full object-cover'
-          />
-        </div>
-      )}
-
-      {!thirdImage && !fourthImage && !isVideo && (
-        <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
-          {secondImage ? (
-            <>
-              <img
-                src={getFullUrl(firstImage.url)}
-                alt={firstImage.alt}
-                className='w-full object-cover'
-              />
-              <img
-                src={getFullUrl(secondImage?.url)}
-                alt={secondImage?.alt}
-                className='w-full object-cover'
-              />
-            </>
-          ) : (
-            <img
-              src={getFullUrl(firstImage.url)}
-              alt={firstImage.alt}
-              className='w-full object-cover tablet:col-span-2'
-            />
-          )}
-        </div>
+      ) : (
+        <ImageGrid images={images} />
       )}
 
       <Box height={isMobile ? 32 : 40} />
@@ -134,7 +59,9 @@ export const ProjectInfoBlock = ({
         </div>
 
         <div
-          className={`tablet:col-start-2 desktop:col-start-4 flex flex-col gap-5 ${isDesktop ? 'pt-17' : ''}`}
+          className={`tablet:col-start-2 desktop:col-start-4 flex flex-col gap-5 ${
+            isDesktop ? 'pt-17' : ''
+          }`}
         >
           {secondColumnMarkdown?.map(item => (
             <MarkdownView
@@ -145,7 +72,78 @@ export const ProjectInfoBlock = ({
         </div>
       </div>
 
-      {!isLast ? <Box height={isMobile ? 68 : 124} /> : null}
+      {!isLast && <Box height={isMobile ? 68 : 124} />}
+    </div>
+  );
+};
+
+const ImageItem = ({ image }: { image: TImage }) => (
+  <img
+    src={getFullUrl(image.url)}
+    alt={image.alt}
+    className='w-full object-cover'
+  />
+);
+
+type ImageGridProps = {
+  images: TImage[];
+};
+
+const ImageGrid = ({ images }: ImageGridProps) => {
+  if (!images.length) return null;
+
+  // 1 изображение
+  if (images.length === 1) {
+    return (
+      <div className='grid grid-cols-1'>
+        <div className='tablet:col-span-2'>
+          <ImageItem image={images[0]} />
+        </div>
+      </div>
+    );
+  }
+
+  // 2 изображения
+  if (images.length === 2) {
+    return (
+      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+        {images.map(img => (
+          <ImageItem
+            key={img.url}
+            image={img}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // 3 изображения
+  if (images.length === 3) {
+    return (
+      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+        <div className='tablet:col-span-2'>
+          <ImageItem image={images[0]} />
+        </div>
+
+        {images.slice(1).map(img => (
+          <ImageItem
+            key={img.url}
+            image={img}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // 4 изображения
+  return (
+    <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+      {images.map(img => (
+        <ImageItem
+          key={img.url}
+          image={img}
+        />
+      ))}
     </div>
   );
 };

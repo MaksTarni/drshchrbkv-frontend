@@ -1,5 +1,5 @@
-import { SberbankMetalInfoConnector } from '../../features/sberbank-metal-info';
-import { SberbankMetalIntroducingConnector } from '../../features/sberbank-metal-introducing';
+import { SberbankDepositInfoConnector } from '../../features/sberbank-deposit-info';
+import { SberbankDepositIntroducingConnector } from '../../features/sberbank-deposit-introducing';
 import { Box } from '../../shared/components/atoms/box';
 import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
@@ -11,7 +11,7 @@ export type Props = {
   onHome?: VoidFunction;
 };
 
-export const SberbankMetalPage = ({ onHome, screenData }: Props) => {
+export const SberbankDepositPage = ({ onHome, screenData }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
@@ -22,12 +22,12 @@ export const SberbankMetalPage = ({ onHome, screenData }: Props) => {
         onLeftClick={onHome}
       />
 
-      <SberbankMetalIntroducingConnector />
+      <SberbankDepositIntroducingConnector />
 
       <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
         <Box height={isMobile ? 68 : 124} />
 
-        <SberbankMetalInfoConnector />
+        <SberbankDepositInfoConnector />
 
         <Footer email={screenData?.email} />
       </div>

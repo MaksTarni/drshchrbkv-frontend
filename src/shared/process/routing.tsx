@@ -15,6 +15,7 @@ import { ProtectedRoute } from './guard';
 import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/emex-seller-hub-page-connector';
 import { SberbankMetalPageConnector } from '../../pages/sberbank-metal-page';
 import { AboutPageConnector } from '../../pages/about-page';
+import { SberbankDepositPageConnector } from '../../pages/sberbank-deposit-page';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -61,6 +62,15 @@ export const Routing = () => {
           element: (
             <ProtectedRoute>
               <SberbankMetalPageConnector />
+            </ProtectedRoute>
+          ),
+          ErrorBoundary: ErrorFallback,
+        },
+        {
+          path: 'companies/sberbank-deposit',
+          element: (
+            <ProtectedRoute>
+              <SberbankDepositPageConnector />
             </ProtectedRoute>
           ),
           ErrorBoundary: ErrorFallback,
