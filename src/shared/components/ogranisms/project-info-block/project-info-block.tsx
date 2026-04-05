@@ -5,6 +5,10 @@ import { MarkdownView } from '../../atoms/markdown-view';
 import { Title } from '../../atoms/title';
 import { Video } from '../../atoms/video';
 
+type ImageGridProps = {
+  images: TImage[];
+};
+
 export type Props = {
   title?: string;
   firstColumnMarkdown: string[];
@@ -85,14 +89,9 @@ const ImageItem = ({ image }: { image: TImage }) => (
   />
 );
 
-type ImageGridProps = {
-  images: TImage[];
-};
-
 const ImageGrid = ({ images }: ImageGridProps) => {
   if (!images.length) return null;
 
-  // 1 изображение
   if (images.length === 1) {
     return (
       <div className='grid grid-cols-1'>
@@ -103,7 +102,6 @@ const ImageGrid = ({ images }: ImageGridProps) => {
     );
   }
 
-  // 2 изображения
   if (images.length === 2) {
     return (
       <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
@@ -117,7 +115,6 @@ const ImageGrid = ({ images }: ImageGridProps) => {
     );
   }
 
-  // 3 изображения
   if (images.length === 3) {
     return (
       <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
@@ -135,7 +132,6 @@ const ImageGrid = ({ images }: ImageGridProps) => {
     );
   }
 
-  // 4 изображения
   return (
     <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
       {images.map(img => (
