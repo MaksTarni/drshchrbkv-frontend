@@ -32,7 +32,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
 
       <div className='[grid-area:2/3/3/4] pl-5'>
         <Link
-          to='/stub'
+          to='/auth/companies/sberbank-deposit'
           className='custom-cursor'
         >
           <img
