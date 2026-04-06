@@ -1,7 +1,7 @@
-import type { TAbout } from '../../../entities/about';
+import type { TAboutData } from '../../../entities/about/types';
 import type { TScreenData } from '../types';
 
-export const mapDataToUi = (data?: TAbout): TScreenData => {
+export const mapDataToUi = (data?: TAboutData): TScreenData => {
   if (!data) {
     return {
       content: [],
@@ -10,7 +10,7 @@ export const mapDataToUi = (data?: TAbout): TScreenData => {
   }
 
   return {
-    content: data.data.content,
-    title: data.data.title,
+    content: data.content,
+    title: data.title,
   };
 };

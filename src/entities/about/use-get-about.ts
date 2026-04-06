@@ -1,13 +1,15 @@
 import { useQuery } from 'react-query';
-import type { TAbout } from './types';
+import type { TAboutData } from './types';
 import { QUERY_KEYS } from '../query-keys';
-import { ABOUT_MOCKS } from './__mocks__';
+import { api } from '../../shared/api';
 
 export const useGetAbout = () => {
-  return useQuery<TAbout>({
+  return useQuery<TAboutData>({
     queryKey: [QUERY_KEYS.about],
     queryFn: async () => {
-      return ABOUT_MOCKS;
+      const res = await api.get('/api/about');
+
+      return res.data;
     },
     useErrorBoundary: true,
   });
