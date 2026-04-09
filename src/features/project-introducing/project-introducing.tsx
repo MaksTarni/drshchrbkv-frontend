@@ -1,6 +1,6 @@
 import { Box } from '../../shared/components/atoms/box';
 import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/project-title-with-subtitles';
-import { SubtitleWithAccentText } from '../../shared/components/molecules/subtitle-with-accent-text';
+import { SubtitleWithAccentText } from '../../shared/components/ogranisms/subtitle-with-accent-text';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { getFullUrl } from '../../shared/utils';
 import type { TScreenData } from './types';

@@ -6,7 +6,7 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'home',
-          link: 'https://ya.ru',
+          link: '/',
         },
       ],
     },
@@ -14,7 +14,7 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'about',
-          link: 'https://ya.ru',
+          link: '/about',
         },
       ],
     },
@@ -22,7 +22,7 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'superpowered ux/ui',
-          link: 'https://ya.ru',
+          link: '/stub',
         },
       ],
     },
@@ -31,11 +31,11 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'design system',
-          link: 'https://ya.ru',
+          link: '/auth/companies/emex',
         },
         {
           text: 'seller hub',
-          link: 'https://ya.ru',
+          link: '/auth/companies/emex-seller-hub',
         },
       ],
     },
@@ -44,11 +44,11 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'metal accounts onboarding',
-          link: 'https://ya.ru',
+          link: '/auth/companies/sberbank-metal',
         },
         {
           text: 'deposit box map search',
-          link: 'https://ya.ru',
+          link: '/auth/companies/sberbank-deposit',
         },
       ],
     },
@@ -57,11 +57,11 @@ export const DRAWER_MOCKS: TDrawer = {
       items: [
         {
           text: 'company website',
-          link: 'https://ya.ru',
+          link: '/auth/companies/cloudpayment-website',
         },
         {
           text: 'payment widget',
-          link: 'https://ya.ru',
+          link: 'https://www.behance.net/gallery/159303845/Cloud-Visual-philosophy-as-a-product',
         },
       ],
     },

@@ -16,6 +16,7 @@ import { EmexSellerHubPageConnector } from '../../pages/emex-seller-hub-page/eme
 import { SberbankMetalPageConnector } from '../../pages/sberbank-metal-page';
 import { AboutPageConnector } from '../../pages/about-page';
 import { SberbankDepositPageConnector } from '../../pages/sberbank-deposit-page';
+import { CloudpaymentWebsitePageConnector } from '../../pages/cloudpayment-website-page';
 
 export const Routing = () => {
   const routes: RouteObject[] = [
@@ -74,6 +75,15 @@ export const Routing = () => {
               element: (
                 <ProtectedRoute>
                   <SberbankDepositPageConnector />
+                </ProtectedRoute>
+              ),
+              ErrorBoundary: ErrorFallback,
+            },
+            {
+              path: 'companies/cloudpayment-website',
+              element: (
+                <ProtectedRoute>
+                  <CloudpaymentWebsitePageConnector />
                 </ProtectedRoute>
               ),
               ErrorBoundary: ErrorFallback,

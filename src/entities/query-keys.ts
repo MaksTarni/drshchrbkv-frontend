@@ -12,6 +12,8 @@ export const QUERY_KEYS = {
   sberbankDepositPoints: 'sberbank-deposit-points',
   sberbankMetalIntro: 'sberbank-metal-intro',
   sberbankDepositIntro: 'sberbank-deposit-intro',
+  cloudpaymentWebsiteIntro: 'cloudpayment-website-intro',
+  cloudpaymentWebsitePoints: 'cloudpayment-website-points',
   about: 'about',
   drawer: 'drawer',
 };

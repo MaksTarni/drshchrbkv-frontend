@@ -3,18 +3,20 @@ import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/pro
 import { SubtitleWithAccentText } from '../../shared/components/ogranisms/subtitle-with-accent-text';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { getFullUrl } from '../../shared/utils';
-import type { TImage, TScreenData } from './types';
+import type { TScreenData } from './types';
 
-export type Props = { screenData: TScreenData; image: TImage };
+type Props = {
+  screenData: TScreenData;
+};
 
-export const EmexSellerHubIntroducing = ({ screenData, image }: Props) => {
+export const CloudpaymentWebsiteIntroducing = ({ screenData }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <>
       <img
-        src={getFullUrl(image.url)}
-        alt={image.alt}
+        src={getFullUrl(screenData?.image.url)}
+        alt={screenData?.image.alt}
         className='w-full h-dvh object-cover'
       />
 
@@ -33,11 +35,14 @@ export const EmexSellerHubIntroducing = ({ screenData, image }: Props) => {
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
           <div className='flex flex-col tablet:flex-row gap-5 tablet:gap-4'>
             {screenData?.tags.map((item, index) => {
+              console.log(item);
               return (
                 <div key={index}>
                   <SubtitleWithAccentText
                     accentText={item.title}
                     subtitle={item.subtitle}
+                    accentTextWithArrow={item.accentTextWithArrow}
+                    link={item.accentTextLink}
                   />
                 </div>
               );

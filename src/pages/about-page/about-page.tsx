@@ -2,9 +2,9 @@ import { TextBody } from '../../shared/components/atoms/text-body';
 import { Title } from '../../shared/components/atoms/title';
 import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
+import { LinkButtonWithArrow } from '../../shared/components/molecules/link-button-with-arrow';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import type { TScreenData } from './types';
-import { LinkButton } from './ui';
 
 export type Props = {
   screenData?: TScreenData;
@@ -37,12 +37,10 @@ export const AboutPage = ({ screenData, email, onHome }: Props) => {
                 <TextBody text={item.title} />
                 {item.links?.map(link => {
                   return (
-                    <a
-                      href={link.link}
-                      key={link.text}
-                    >
-                      <LinkButton text={link.text} />
-                    </a>
+                    <LinkButtonWithArrow
+                      text={link.text}
+                      link={link.link}
+                    />
                   );
                 })}
               </div>

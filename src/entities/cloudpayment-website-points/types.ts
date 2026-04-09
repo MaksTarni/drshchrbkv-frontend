@@ -1,4 +1,8 @@
-export type TScreenData = {
+export type TCloudpaymentWebsitePoints = {
+  data: TCloudpaymentWebsitePointsData[];
+};
+
+export type TCloudpaymentWebsitePointsData = {
   title?: string;
   mobileImages: {
     firstImage: TImage;
@@ -20,4 +24,9 @@ export type TScreenData = {
   };
   firstColumnMarkdown: string[];
   secondColumnMarkdown?: string[];
+};
+
+export type TImage = {
+  url: string;
+  alt: string;
 };
