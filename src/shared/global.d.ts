@@ -12,7 +12,6 @@ declare global {
   type TTags = {
     title: string;
     subtitle: string;
-    accentTextWithArrow?: boolean;
     accentTextLink?: string;
   };
 }

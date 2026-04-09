@@ -25,7 +25,6 @@ export const MOCK_CLOUDPAYMENT_WEBSITE_INTRO: TCloudpaymentWebsiteIntroData = {
     {
       title: 'cloudpayments.ru',
       subtitle: 'go to',
-      accentTextWithArrow: true,
       accentTextLink: 'https://ya.ru',
     },
   ],

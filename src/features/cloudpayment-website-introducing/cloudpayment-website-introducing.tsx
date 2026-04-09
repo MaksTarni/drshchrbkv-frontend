@@ -41,7 +41,6 @@ export const CloudpaymentWebsiteIntroducing = ({ screenData }: Props) => {
                   <SubtitleWithAccentText
                     accentText={item.title}
                     subtitle={item.subtitle}
-                    accentTextWithArrow={item.accentTextWithArrow}
                     link={item.accentTextLink}
                   />
                 </div>

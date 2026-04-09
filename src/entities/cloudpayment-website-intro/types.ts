@@ -18,7 +18,6 @@ export type TProjectIntro = {
 export type TTags = {
   title: string;
   subtitle: string;
-  accentTextWithArrow?: boolean;
   accentTextLink?: string;
 };
 

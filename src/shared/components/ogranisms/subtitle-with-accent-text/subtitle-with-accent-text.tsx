@@ -5,7 +5,6 @@ import { LinkButtonWithArrow } from '../../molecules/link-button-with-arrow';
 export type Props = {
   subtitle: string;
   accentText: string;
-  accentTextWithArrow?: boolean;
   link?: string;
 };
 
@@ -13,12 +12,11 @@ export const SubtitleWithAccentText = ({
   accentText,
   subtitle,
   link,
-  accentTextWithArrow,
 }: Props) => {
   return (
     <div className='flex flex-col items-start justify-start'>
       <Subtitle text={subtitle} />
-      {accentTextWithArrow && link ? (
+      {link ? (
         <LinkButtonWithArrow
           link={link}
           text={accentText}
