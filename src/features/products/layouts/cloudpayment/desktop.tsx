@@ -24,7 +24,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
       </div>
 
       <Link
-        to='/stub'
+        to='/auth/companies/cloudpayment-website'
         className='custom-cursor'
       >
         <img

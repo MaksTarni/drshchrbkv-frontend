@@ -21,7 +21,7 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
         />
       </div>
 
-      <Link to='/stub'>
+      <Link to='/auth/companies/cloudpayment-website'>
         <img
           src={getFullUrl(frameA.url)}
           alt={frameB.alt}
