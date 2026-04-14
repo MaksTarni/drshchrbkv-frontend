@@ -8,7 +8,7 @@ export type Props = {
 
 export const TitleWithSubtitle = ({ subtitle, title }: Props) => {
   return (
-    <div className='flex flex-col items-start justify-start gap-0.75'>
+    <div className='flex flex-col items-start justify-start gap-xxs-mobile tablet:gap-xxs-not-mobile'>
       <Title text={title} />
 
       <Subtitle text={subtitle} />

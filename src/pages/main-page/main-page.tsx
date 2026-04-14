@@ -21,7 +21,7 @@ export const MainPage = ({ screenData, isLoading }: Props) => {
 
       <IntroducingConnector accentColor={screenData?.accentColor} />
 
-      <div className='px-4 md:px-5'>
+      <div className='px-s-mobile md:px-s-not-mobile'>
         <ProductsConnector
           projectsTitle={screenData?.projectsTitle}
           projectsSubtitle={screenData?.projectsSubtitle}

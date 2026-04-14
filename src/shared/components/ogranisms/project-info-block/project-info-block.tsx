@@ -1,4 +1,10 @@
 import { useDimensions } from '../../../hooks/dimensions';
+import {
+  M_MOBILE,
+  M_NOT_MOBILE,
+  XL_MOBILE,
+  XL_NOT_MOBILE,
+} from '../../../indents';
 import { getFullUrl } from '../../../utils';
 import { Box } from '../../atoms/box';
 import { MarkdownView } from '../../atoms/markdown-view';
@@ -41,17 +47,17 @@ export const ProjectInfoBlock = ({
   return (
     <div>
       {isVideo ? (
-        <div className='grid grid-cols-1 gap-4 tablet:gap-5'>
+        <div className='grid grid-cols-1 gap-s-mobile tablet:gap-s-not-mobile'>
           <Video src={getFullUrl(firstImage.url)} />
         </div>
       ) : (
         <ImageGrid images={images} />
       )}
 
-      <Box height={isMobile ? 32 : 40} />
+      <Box height={isMobile ? M_MOBILE : M_NOT_MOBILE} />
 
-      <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-x-5'>
-        <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-5'>
+      <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-x-s-mobile tablet:gap-x-s-not-mobile'>
+        <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-x-s-mobile tablet:gap-x-s-not-mobile'>
           <Title text={title} />
 
           {firstColumnMarkdown.map(item => (
@@ -63,8 +69,8 @@ export const ProjectInfoBlock = ({
         </div>
 
         <div
-          className={`tablet:col-start-2 desktop:col-start-4 flex flex-col gap-5 ${
-            isDesktop ? 'pt-17' : ''
+          className={`tablet:col-start-2 desktop:col-start-4 flex flex-col gap-x-s-mobile tablet:gap-x-s-not-mobile ${
+            isDesktop ? 'pt-xl-mobile' : ''
           }`}
         >
           {secondColumnMarkdown?.map(item => (
@@ -76,7 +82,7 @@ export const ProjectInfoBlock = ({
         </div>
       </div>
 
-      {!isLast && <Box height={isMobile ? 68 : 124} />}
+      {!isLast && <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />}
     </div>
   );
 };
@@ -104,7 +110,7 @@ const ImageGrid = ({ images }: ImageGridProps) => {
 
   if (images.length === 2) {
     return (
-      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile'>
         {images.map(img => (
           <ImageItem
             key={img.url}
@@ -117,7 +123,7 @@ const ImageGrid = ({ images }: ImageGridProps) => {
 
   if (images.length === 3) {
     return (
-      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile'>
         <div className='tablet:col-span-2'>
           <ImageItem image={images[0]} />
         </div>
@@ -133,7 +139,7 @@ const ImageGrid = ({ images }: ImageGridProps) => {
   }
 
   return (
-    <div className='grid grid-cols-1 tablet:grid-cols-2 gap-4 tablet:gap-5'>
+    <div className='grid grid-cols-1 tablet:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile'>
       {images.map(img => (
         <ImageItem
           key={img.url}

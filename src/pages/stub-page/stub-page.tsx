@@ -20,7 +20,7 @@ export const StubPage = ({ accentColor, email }: Props) => {
         title='coming soon'
       />
 
-      <div className='px-4 md:px-5'>
+      <div className='px-s-mobile tablet:px-s-not-mobile'>
         <Footer email={email} />
       </div>
     </>

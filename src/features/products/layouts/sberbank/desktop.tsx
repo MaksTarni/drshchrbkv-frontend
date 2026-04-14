@@ -8,8 +8,10 @@ export type Props = {
   tagB: TTag;
   frameA: TImage;
   frameB: TImage;
+  onImageLoad?: () => void;
 };
-export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
+
+export const Desktop = ({ frameA, frameB, tagA, tagB, onImageLoad }: Props) => {
   return (
     <>
       <div className='[grid-area:2/4/3/5]'>
@@ -39,6 +41,8 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
             src={getFullUrl(frameB.url)}
             alt={frameB.alt}
             className='w-full h-full object-cover '
+            onLoad={onImageLoad}
+            onError={onImageLoad}
           />
         </Link>
       </div>
@@ -52,6 +56,8 @@ export const Desktop = ({ frameA, frameB, tagA, tagB }: Props) => {
             src={getFullUrl(frameA.url)}
             alt={frameA.alt}
             className='w-full object-cover'
+            onLoad={onImageLoad}
+            onError={onImageLoad}
           />
         </Link>
       </div>

@@ -11,6 +11,7 @@ export type Props = {
   tagB: TTag;
   frameA: TImage;
   frameB: TImage;
+  onImageLoad?: () => void;
 };
 
 export const ProductsLayoutsFactory = ({
@@ -21,6 +22,7 @@ export const ProductsLayoutsFactory = ({
   frameB,
   tagA,
   tagB,
+  onImageLoad,
 }: Props) => {
   switch (variant) {
     case 'sberbank':
@@ -32,6 +34,7 @@ export const ProductsLayoutsFactory = ({
           tagB={tagB}
           frameA={frameA}
           frameB={frameB}
+          onImageLoad={onImageLoad}
         />
       );
     case 'emex':
@@ -43,6 +46,7 @@ export const ProductsLayoutsFactory = ({
           tagB={tagB}
           frameA={frameA}
           frameB={frameB}
+          onImageLoad={onImageLoad}
         />
       );
 
@@ -55,6 +59,7 @@ export const ProductsLayoutsFactory = ({
           tagB={tagB}
           frameA={frameA}
           frameB={frameB}
+          onImageLoad={onImageLoad}
         />
       );
   }

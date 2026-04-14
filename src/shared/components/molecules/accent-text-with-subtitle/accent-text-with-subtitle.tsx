@@ -20,7 +20,7 @@ export const AccentTextWithSubtitle = ({
 }: Props) => {
   return (
     <div
-      className={`flex ${isNeedFlexEnd ? 'items-end' : 'items-start'} ${isNeedFlexEnd ? 'justify-end' : 'justify-start'} gap-1.25 ${withLine && 'border-t border-border-primary pt-1.25'} ${withLeftPadding && 'pl-5'} ${withRightPadding && 'pr-5'}`}
+      className={`flex ${isNeedFlexEnd ? 'items-end' : 'items-start'} ${isNeedFlexEnd ? 'justify-end' : 'justify-start'} gap-xs-mobile tablet:gap-xs-not-mobile ${withLine && 'border-t border-border-primary pt-1.25'} ${withLeftPadding && 'pl-s-mobile tablet:pl-s-not-mobile'} ${withRightPadding && 'pr-s-mobile tablet:pr-s-not-mobile'}`}
     >
       <AccentText text={title} />
 

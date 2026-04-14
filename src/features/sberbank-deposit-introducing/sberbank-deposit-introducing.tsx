@@ -2,6 +2,12 @@ import { Box } from '../../shared/components/atoms/box';
 import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/project-title-with-subtitles';
 import { SubtitleWithAccentText } from '../../shared/components/ogranisms/subtitle-with-accent-text';
 import { useDimensions } from '../../shared/hooks/dimensions';
+import {
+  S_MOBILE,
+  S_NOT_MOBILE,
+  XL_MOBILE,
+  XL_NOT_MOBILE,
+} from '../../shared/indents';
 import { getFullUrl } from '../../shared/utils';
 import type { TScreenData } from './types';
 
@@ -20,9 +26,9 @@ export const SberbankDepositIntroducing = ({ screenData }: Props) => {
         className='w-full h-dvh object-cover'
       />
 
-      <Box height={isMobile ? 16 : 20} />
+      <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
-      <div className={`${isMobile ? 'px-4' : 'px-5'}`}>
+      <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
         <div className='grid grid-cols-2'>
           <ProjectTitleWithSubtitles
             title={screenData?.projectIntro.title}
@@ -30,10 +36,10 @@ export const SberbankDepositIntroducing = ({ screenData }: Props) => {
           />
         </div>
 
-        <Box height={isMobile ? 68 : 124} />
+        <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
-          <div className='flex flex-col tablet:flex-row gap-5 tablet:gap-4'>
+          <div className='flex flex-col tablet:flex-row gap-s-mobile tablet:gap-s-not-mobile'>
             {screenData?.tags.map((item, index) => {
               return (
                 <div key={index}>
