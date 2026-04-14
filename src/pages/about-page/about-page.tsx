@@ -25,7 +25,7 @@ export const AboutPage = ({ screenData, email, onHome }: Props) => {
 
       <div className={`grid grid-cols-1 desktop:grid-cols-2 h-screen`}>
         <div
-          className={`col-span-1 flex flex-col items-start justify-center ${isMobile ? 'p-4 gap-4' : 'p-5 gap-5'}`}
+          className={`col-span-1 flex flex-col items-start justify-center ${isMobile ? 'p-s-mobile gap-s-mobile' : 'p-s-not-mobile gap-s-not-mobile'}`}
         >
           <Title text={screenData?.title} />
           {screenData?.content.map(item => {
@@ -49,7 +49,7 @@ export const AboutPage = ({ screenData, email, onHome }: Props) => {
         </div>
       </div>
 
-      <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
+      <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}>
         <Footer email={email} />
       </div>
     </>

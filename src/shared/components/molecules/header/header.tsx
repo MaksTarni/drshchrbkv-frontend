@@ -19,7 +19,7 @@ export const Header = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className='fixed top-0 flex justify-between p-5 max-w-420 w-full bg-white'>
+    <header className='fixed top-0 flex justify-between p-s-mobile tablet:p-s-not-mobile max-w-420 w-full bg-white z-1000'>
       <LinkButtonWithText
         to={leftTextLink || '/'}
         onClick={onLeftClick}

@@ -1,4 +1,5 @@
 import { useDimensions } from '../../../hooks/dimensions';
+import { XL_MOBILE, XL_NOT_MOBILE } from '../../../indents';
 import { Box } from '../../atoms/box';
 import { LinkButtonWithText } from '../../atoms/link-button-with-text';
 
@@ -9,7 +10,7 @@ export const Footer = ({ email }: Props) => {
 
   return (
     <div className='flex flex-col items-start justify-start'>
-      <Box height={isMobile ? 64 : 124} />
+      <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
       <div className='flex flex-col items-start justify-start'>
         <LinkButtonWithText to={`mailto:${email}`}>{email}</LinkButtonWithText>
@@ -21,7 +22,7 @@ export const Footer = ({ email }: Props) => {
         </LinkButtonWithText>
       </div>
 
-      <Box height={isMobile ? 64 : 124} />
+      <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
     </div>
   );
 };

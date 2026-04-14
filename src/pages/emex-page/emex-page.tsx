@@ -6,6 +6,7 @@ import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
 
 import { useDimensions } from '../../shared/hooks/dimensions';
+import { XL_MOBILE, XL_NOT_MOBILE } from '../../shared/indents';
 import type { TScreenData } from './types';
 
 export type Props = {
@@ -26,8 +27,8 @@ export const EmexPage = ({ screenData, onHome }: Props) => {
 
       <ProjectIntroducingConnector />
 
-      <div className={`${isMobile ? 'p-4' : 'p-5'}`}>
-        <Box height={isMobile ? 68 : 124} />
+      <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}>
+        <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
         <ProjectInfoConnector />
 

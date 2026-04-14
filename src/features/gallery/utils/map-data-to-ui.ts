@@ -2,13 +2,9 @@ import type { TCraftItems } from '../../../entities/craft-items';
 
 import type { TScreenData } from '../types';
 
-export const mapDataToUI = (data?: TCraftItems): TScreenData => {
+export const mapDataToUI = (data?: TCraftItems): TScreenData | null => {
   if (!data) {
-    return {
-      title: '-',
-      subtitle: '-',
-      gallery: null,
-    };
+    return null;
   }
 
   return {
@@ -20,6 +16,6 @@ export const mapDataToUI = (data?: TCraftItems): TScreenData => {
           url: image.image.url,
           alt: image.alt,
         };
-      }) ?? null,
+      }) ?? [],
   };
 };

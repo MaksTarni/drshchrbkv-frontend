@@ -46,6 +46,23 @@
 
   --breakpoint-tablet: 768px;
   --breakpoint-desktop: 1366px;
+
+  /* MARK: - Gap */
+  --gap-xxs-not-mobile: 3px;
+  --gap-xxs-mobile: 3px;
+  --gap-xs-not-mobile: 5px;
+  --gap-xs-mobile: 5px;
+  --gap-s-not-mobile: 20px;
+  --gap-s-mobile: 16px;
+  --gap-m-not-mobile: 40px;
+  --gap-m-mobile: 32px;
+
+  /* MARK: - Paddings */
+
+  --spacing-s-not-mobile: 20px;
+  --spacing-s-mobile: 16px;
+  --spacing-xl-not-mobile: 124px;
+  --spacing-xl-mobile: 68px;
 }
 
 html {
@@ -119,4 +136,13 @@ html {
 
 .animate-backdrop-blur {
   animation: backdropBlurIn 0.8s ease forwards;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }

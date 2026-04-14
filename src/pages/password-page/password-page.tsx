@@ -28,13 +28,13 @@ export const PasswordPage = ({
 
       <div className='h-dvh flex flex-col'>
         <div
-          className={`w-full h-[50%] items-end justify-items-start  grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-4' : 'p-5'}`}
+          className={`w-full h-[50%] items-end justify-items-start grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}
         >
           <Controller
             name='password'
             render={({ field, fieldState }) => {
               return (
-                <div className='w-full flex desktop:items-center desktop:justify-end flex-col gap-1.25 desktop:flex-row-reverse'>
+                <div className='w-full flex desktop:items-center desktop:justify-end flex-col gap-xs-mobile tablet:gap-xs-not-mobile desktop:flex-row-reverse'>
                   {fieldState.error && (
                     <Subtitle
                       text='wrong password. try again'
@@ -46,7 +46,7 @@ export const PasswordPage = ({
                       fieldState.error
                         ? 'border-border-accent'
                         : 'border-border-primary'
-                    } hover:border-border-secondary focus-within:border-border-dark  h-15 ${isMobile ? 'p-4' : 'p-5'} flex items-center justify-between gap-2 transition-colors duration-200 ease-in-out`}
+                    } hover:border-border-secondary focus-within:border-border-dark h-15 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'} flex items-center justify-between gap-2 transition-colors duration-200 ease-in-out`}
                   >
                     <input
                       {...field}
@@ -75,7 +75,7 @@ export const PasswordPage = ({
         ></div>
       </div>
 
-      <div className={`${isMobile ? 'px-4' : 'px-5'}`}>
+      <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
         <Footer email={email} />
       </div>
     </form>

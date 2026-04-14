@@ -24,14 +24,16 @@ export const Drawer = ({ screenData, onClose }: Props) => {
 
   return createPortal(
     <div
-      className={`w-full h-screen fixed inset-0 z-50 ${isClosing ? 'animate-backdrop-blur-out' : 'animate-backdrop-blur'}`}
+      className={`w-full h-screen fixed inset-0 z-10000 ${isClosing ? 'animate-backdrop-blur-out' : 'animate-backdrop-blur'}`}
       onClick={handleClose}
     >
       <div
-        className={`tablet:w-150 desktop:w-1/2 bg-white absolute top-2.5 right-2.5 left-2.5 tablet:left-auto bottom-2.5  z-100 flex items-start justify-between p-2.5 overflow-hidden scroll-auto ${isClosing ? 'animate-slide-out' : 'animate-slide-in'}`}
+        className={`tablet:w-150 desktop:w-1/2 bg-white absolute top-2.5 right-2.5 left-2.5 tablet:left-auto bottom-2.5 z-100 flex items-start justify-between p-2.5 overflow-y-auto scroll-auto ${isClosing ? 'animate-slide-out' : 'animate-slide-in'} hide-scrollbar`}
         onClick={e => e.stopPropagation()}
       >
-        <div className={`flex flex-col ${isMobile ? 'gap-8' : 'gap-10'}`}>
+        <div
+          className={`flex flex-col ${isMobile ? 'gap-m-mobile' : 'gap-m-not-mobile'}`}
+        >
           {screenData.map(item => {
             return (
               <div className='flex flex-col'>

@@ -8,9 +8,10 @@ export type Props = {
   tagB: TTag;
   frameA: TImage;
   frameB: TImage;
+  onImageLoad?: () => void;
 };
 
-export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
+export const Mobile = ({ frameA, frameB, tagA, tagB, onImageLoad }: Props) => {
   return (
     <>
       <div className='w-full'>
@@ -26,6 +27,8 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
           src={getFullUrl(frameA.url)}
           alt={frameB.alt}
           className='w-full object-cover'
+          onLoad={onImageLoad}
+          onError={onImageLoad}
         />
       </Link>
 
@@ -45,6 +48,8 @@ export const Mobile = ({ frameA, frameB, tagA, tagB }: Props) => {
           src={getFullUrl(frameB.url)}
           alt={frameB.alt}
           className='w-full object-cover'
+          onLoad={onImageLoad}
+          onError={onImageLoad}
         />
       </Link>
     </>
