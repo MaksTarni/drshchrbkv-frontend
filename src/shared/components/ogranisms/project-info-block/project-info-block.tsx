@@ -57,7 +57,7 @@ export const ProjectInfoBlock = ({
       <Box height={isMobile ? M_MOBILE : M_NOT_MOBILE} />
 
       <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-x-s-mobile tablet:gap-x-s-not-mobile'>
-        <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-x-s-mobile tablet:gap-x-s-not-mobile'>
+        <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-s-mobile tablet:gap-s-not-mobile'>
           <Title text={title} />
 
           {firstColumnMarkdown.map(item => (
