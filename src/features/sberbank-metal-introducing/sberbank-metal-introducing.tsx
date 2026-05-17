@@ -23,7 +23,7 @@ export const SberbankMetalIntroducing = ({ screenData }: Props) => {
       <img
         src={getFullUrl(screenData?.image.url)}
         alt={screenData?.image.alt}
-        className='w-full h-dvh object-cover'
+        className='w-full h-dvh object-cover mt-15'
       />
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />

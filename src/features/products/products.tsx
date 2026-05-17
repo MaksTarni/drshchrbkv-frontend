@@ -38,7 +38,6 @@ export const Products = ({
   const { isMobile } = useDimensions();
   const loadedCountRef = useRef(0);
 
-  // 1 course image + 2 images (frameA + frameB) per company layout
   const totalImages = 1 + companiesData.length * 2;
 
   useEffect(() => {

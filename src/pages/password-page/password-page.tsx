@@ -1,22 +1,15 @@
 import { Controller } from 'react-hook-form';
-import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
 import { useDimensions } from '../../shared/hooks/dimensions';
 import { Subtitle } from '../../shared/components/atoms/subtitle';
 
 export type Props = {
   accentColor: string;
-  email: string;
   onClick: VoidFunction;
   onHome: VoidFunction;
 };
 
-export const PasswordPage = ({
-  accentColor,
-  email,
-  onClick,
-  onHome,
-}: Props) => {
+export const PasswordPage = ({ accentColor, onClick, onHome }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
@@ -28,7 +21,7 @@ export const PasswordPage = ({
 
       <div className='h-dvh flex flex-col'>
         <div
-          className={`w-full h-[50%] items-end justify-items-start grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}
+          className={`w-full h-[calc(50%+60px)] items-end justify-items-start grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}
         >
           <Controller
             name='password'
@@ -70,13 +63,9 @@ export const PasswordPage = ({
           />
         </div>
         <div
-          className='w-full h-[50%]'
+          className='w-full h-[calc(50%-60px)]'
           style={{ backgroundColor: accentColor }}
         ></div>
-      </div>
-
-      <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
-        <Footer email={email} />
       </div>
     </form>
   );

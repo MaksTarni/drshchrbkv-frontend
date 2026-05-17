@@ -60,7 +60,6 @@ export const PasswordPageConnector = () => {
     <FormProvider {...formMethod}>
       <PasswordPage
         accentColor={screenData?.accentColor}
-        email={screenData?.email}
         onClick={formMethod.handleSubmit(handleClick)}
         onHome={handleHome}
       />

@@ -8,10 +8,5 @@ export const StubPageConnector = () => {
 
   const screenData = useMemo(() => mapSiteSettings(data), [data]);
 
-  return (
-    <StubPage
-      accentColor={screenData?.accentColor}
-      email={screenData?.contactEmail}
-    />
-  );
+  return <StubPage accentColor={screenData?.accentColor} />;
 };
