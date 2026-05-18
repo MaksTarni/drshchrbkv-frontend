@@ -1,6 +1,5 @@
 import { TextBody } from '../../shared/components/atoms/text-body';
 import { Title } from '../../shared/components/atoms/title';
-import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
 import { LinkButtonWithArrow } from '../../shared/components/molecules/link-button-with-arrow';
 import { useDimensions } from '../../shared/hooks/dimensions';
@@ -8,11 +7,10 @@ import type { TScreenData } from './types';
 
 export type Props = {
   screenData?: TScreenData;
-  email: string;
   onHome?: VoidFunction;
 };
 
-export const AboutPage = ({ screenData, email, onHome }: Props) => {
+export const AboutPage = ({ screenData, onHome }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
@@ -47,10 +45,6 @@ export const AboutPage = ({ screenData, email, onHome }: Props) => {
             );
           })}
         </div>
-      </div>
-
-      <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}>
-        <Footer email={email} />
       </div>
     </>
   );

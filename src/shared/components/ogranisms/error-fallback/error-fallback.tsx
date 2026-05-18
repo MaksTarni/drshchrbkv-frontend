@@ -9,7 +9,7 @@ export const ErrorFallback = () => {
         leftTextLink='/'
       />
       <div className='flex items-center justify-start pl-s-mobile tablet:pl-s-not-mobile h-dvh'>
-        <Title text='Something went wrong' />
+        <Title text='something went wrong' />
       </div>
     </>
   );

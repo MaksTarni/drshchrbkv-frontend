@@ -2,12 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
-import {
-  S_MOBILE,
-  S_NOT_MOBILE,
-  XXL_MOBILE,
-  XXL_NOT_MOBILE,
-} from '../../shared/indents';
+import { S_MOBILE, S_NOT_MOBILE } from '../../shared/indents';
 import { getFullUrl } from '../../shared/utils';
 import type { TScreenData } from './types';
 
@@ -38,7 +33,6 @@ export const Gallery = ({ screenData, onAllImagesLoaded }: Props) => {
 
   return (
     <>
-      <Box height={isMobile ? XXL_MOBILE : XXL_NOT_MOBILE} />
       <div className='gap-s-mobile tablet:gap-s-not-mobile'>
         <AccentTextWithSubtitle
           title={screenData?.title}
