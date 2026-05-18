@@ -9,7 +9,9 @@ export const useSberbankDepositIntro = () => {
   return useQuery<TSberbankDepositIntroData>({
     queryKey: [QUERY_KEYS.sberbankDepositIntro],
     queryFn: async () => {
-      const res = await api.get('/api/project-pages/intro/by-slug/deposit');
+      const res = await api.get(
+        '/api/project-pages/intro/by-slug/sberbank-deposit',
+      );
 
       return res.data;
     },
