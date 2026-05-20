@@ -1,5 +1,7 @@
 export type TScreenData = {
-  image: TImage;
+  desktopImage: TImage;
+  tabletImage: TImage;
+  mobileImage: TImage;
   projectIntro: TProjectIntro;
   tags: TTags[];
 };

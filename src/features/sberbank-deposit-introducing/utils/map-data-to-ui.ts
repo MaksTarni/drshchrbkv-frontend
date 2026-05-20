@@ -5,7 +5,15 @@ import type { TScreenData } from '../types';
 export const mapDataToUI = (data?: TSberbankDepositIntroData): TScreenData => {
   if (!data) {
     return {
-      image: {
+      desktopImage: {
+        alt: '-',
+        url: '-',
+      },
+      tabletImage: {
+        alt: '-',
+        url: '-',
+      },
+      mobileImage: {
         alt: '-',
         url: '-',
       },
@@ -18,7 +26,9 @@ export const mapDataToUI = (data?: TSberbankDepositIntroData): TScreenData => {
   }
 
   return {
-    image: data?.image,
+    desktopImage: data?.image,
+    tabletImage: data?.tabletImage,
+    mobileImage: data?.mobileImage,
     projectIntro: data.projectIntro,
     tags: data.tags,
   };

@@ -13,16 +13,17 @@ import type { TScreenData } from './types';
 
 type Props = {
   screenData: TScreenData;
+  image: TImage;
 };
 
-export const SberbankMetalIntroducing = ({ screenData }: Props) => {
+export const SberbankMetalIntroducing = ({ screenData, image }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <>
       <img
-        src={getFullUrl(screenData?.image.url)}
-        alt={screenData?.image.alt}
+        src={getFullUrl(image.url)}
+        alt={image.alt}
         className='w-full h-dvh object-cover mt-15'
       />
 
