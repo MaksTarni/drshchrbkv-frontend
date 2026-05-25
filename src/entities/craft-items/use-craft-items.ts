@@ -9,7 +9,7 @@ export const useCraftItems = () => {
     queryKey: [QUERY_KEYS.craftItems],
     queryFn: async () => {
       const response = await api.get(
-        '/api/craft?populate[gallery][populate]=image',
+        '/api/craft?populate[gallery][populate]=image&populate[galeryTablet][populate]=image&populate[galleryMobile][populate]=image',
       );
       return response.data;
     },

@@ -12,7 +12,10 @@ export const LinkButtonWithArrow = ({
   const words = text.trim().split(' ');
   const lastWord = words.pop();
   return (
-    <a href={link}>
+    <a
+      href={link}
+      className='inline-block p-0 m-0 leading-none'
+    >
       <span
         className={`font-Inter ${variant === 'accentText' ? 'text-text-primary' : 'text-text-secondary'}  font-normal text-text leading-text tracking-text text-pretty hover:text-text-accent active:text-text-primary transition-colors duration-200 ease-in-out`}
       >

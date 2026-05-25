@@ -6,12 +6,10 @@ type TCourseData = {
   title: string;
   subtitle: string;
   courseFrame: TCourseFrameData;
+  courseFrameTablet?: TCourseFrameData;
+  courseFrameMobile?: TCourseFrameData;
 };
 
 type TCourseFrameData = {
   image: TImage;
-};
-
-type TImage = {
-  url: string;
 };

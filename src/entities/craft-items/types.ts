@@ -6,6 +6,8 @@ type TCraftItemsData = {
   title: string;
   subtitle: string;
   gallery: TImage[] | null;
+  galeryTablet?: TImage[] | null;
+  galleryMobile?: TImage[] | null;
 };
 
 type TImage = {

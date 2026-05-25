@@ -17,5 +17,19 @@ export const mapDataToUI = (data?: TCraftItems): TScreenData | null => {
           alt: image.alt,
         };
       }) ?? [],
+    galleryTablet:
+      data.data.galeryTablet?.map(image => {
+        return {
+          url: image.image.url,
+          alt: image.alt,
+        };
+      }) ?? [],
+    galleryMobile:
+      data.data.galleryMobile?.map(image => {
+        return {
+          url: image.image.url,
+          alt: image.alt,
+        };
+      }) ?? [],
   };
 };

@@ -12,7 +12,7 @@ export type Props = {
 };
 
 export const Gallery = ({ screenData, onAllImagesLoaded }: Props) => {
-  const { isMobile } = useDimensions();
+  const { isMobile, isTablet, isDesktop } = useDimensions();
   const loadedCountRef = useRef(0);
 
   const imageUrls = screenData.gallery.filter(item => item.url);
@@ -42,18 +42,45 @@ export const Gallery = ({ screenData, onAllImagesLoaded }: Props) => {
         <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
         <div className='grid gap-s-mobile tablet:gap-s-not-mobile grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3'>
-          {screenData?.gallery.map(item => {
-            return (
-              <img
-                key={`${item.alt}-${item.url}`}
-                src={getFullUrl(item.url)}
-                alt={item.alt}
-                className='object-cover w-full'
-                onLoad={handleSettle}
-                onError={handleSettle}
-              />
-            );
-          })}
+          {isDesktop &&
+            screenData?.gallery.map(item => {
+              return (
+                <img
+                  key={`${item.alt}-${item.url}`}
+                  src={getFullUrl(item.url)}
+                  alt={item.alt}
+                  className='object-cover w-full'
+                  onLoad={handleSettle}
+                  onError={handleSettle}
+                />
+              );
+            })}
+          {isTablet &&
+            screenData?.galleryTablet.map(item => {
+              return (
+                <img
+                  key={`${item.alt}-${item.url}`}
+                  src={getFullUrl(item.url)}
+                  alt={item.alt}
+                  className='object-cover w-full'
+                  onLoad={handleSettle}
+                  onError={handleSettle}
+                />
+              );
+            })}
+          {isMobile &&
+            screenData?.galleryMobile.map(item => {
+              return (
+                <img
+                  key={`${item.alt}-${item.url}`}
+                  src={getFullUrl(item.url)}
+                  alt={item.alt}
+                  className='object-cover w-full'
+                  onLoad={handleSettle}
+                  onError={handleSettle}
+                />
+              );
+            })}
         </div>
       </div>
     </>

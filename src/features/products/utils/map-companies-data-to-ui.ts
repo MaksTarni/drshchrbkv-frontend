@@ -24,9 +24,25 @@ export const mapCompaniesDataToUI = (data?: TCompanies[]): TCompaniesData[] => {
         url: item.frameA.url,
         alt: item.frameA.alt,
       },
+      frameATablet: {
+        url: item.frameATablet?.url || '-',
+        alt: item.frameATablet?.alt || '-',
+      },
+      frameAMobile: {
+        url: item.frameAMobile?.url || '-',
+        alt: item.frameAMobile?.alt || '-',
+      },
       frameB: {
         url: item.frameB.url,
         alt: item.frameB.alt,
+      },
+      frameBTablet: {
+        url: item.frameBTablet?.url || '-',
+        alt: item.frameBTablet?.alt || '-',
+      },
+      frameBMobile: {
+        url: item.frameBMobile?.url || '-',
+        alt: item.frameBMobile?.alt || '-',
       },
     };
   });

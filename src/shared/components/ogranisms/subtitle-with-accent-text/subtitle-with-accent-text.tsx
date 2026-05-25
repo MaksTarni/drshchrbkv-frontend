@@ -14,7 +14,7 @@ export const SubtitleWithAccentText = ({
   link,
 }: Props) => {
   return (
-    <div className='flex flex-col items-start justify-start'>
+    <div className='flex flex-col items-start justify-start gap-xs-mobile tablet:gap-xs-not-mobile'>
       <Subtitle text={subtitle} />
       {link ? (
         <LinkButtonWithArrow

@@ -4,6 +4,8 @@ import { Products } from './products';
 import { mapCompaniesDataToUI, mapCourseDataToUI } from './utils';
 import { useCompanies } from '../../entities/companies';
 import { Skeleton } from './skeleton';
+import { resolveImageByBreakpoint } from '../../shared/utils';
+import { useDimensions } from '../../shared/hooks/dimensions';
 
 type Props = {
   projectsTitle: string;
@@ -18,6 +20,8 @@ export const ProductsConnector = ({
   projectsMetaLeft,
   projectsMetaRight,
 }: Props) => {
+  const breakpoints = useDimensions();
+
   const [loadedForKey, setLoadedForKey] = useState<string | null>(null);
 
   const { data: courseData, isLoading: isCourseLoading } = useCourse();
@@ -45,6 +49,13 @@ export const ProductsConnector = ({
     return <Skeleton />;
   }
 
+  const resolvedImage = resolveImageByBreakpoint({
+    defaultImage: mappedCourseData.image,
+    mobileImage: mappedCourseData?.imageMobile,
+    tabletImage: mappedCourseData?.imageTablet,
+    breakpoints,
+  });
+
   return (
     <>
       {!allLoaded && <Skeleton />}
@@ -55,6 +66,7 @@ export const ProductsConnector = ({
           projectsMetaRight={projectsMetaRight}
           projectsSubtitle={projectsSubtitle}
           courseData={mappedCourseData}
+          courseImage={resolvedImage}
           companiesData={mappedCompaniesData}
           onAllImagesLoaded={() => setLoadedForKey(dataKey)}
         />
