@@ -39,7 +39,7 @@ export const CloudpaymentWebsiteIntroducing = ({ screenData }: Props) => {
         <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
-          <div className='flex flex-col tablet:flex-row'>
+          <div className='flex flex-col tablet:flex-row gap-s-mobile tablet:gap-s-not-mobile'>
             {screenData?.tags.map((item, index) => {
               return (
                 <SubtitleWithAccentText
