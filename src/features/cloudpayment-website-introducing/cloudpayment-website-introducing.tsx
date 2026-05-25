@@ -29,7 +29,7 @@ export const CloudpaymentWebsiteIntroducing = ({ screenData }: Props) => {
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
       <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-1 tablet:grid-cols-2'>
           <ProjectTitleWithSubtitles
             title={screenData?.projectIntro.title}
             subtitles={screenData?.projectIntro.subtitles}
@@ -39,16 +39,15 @@ export const CloudpaymentWebsiteIntroducing = ({ screenData }: Props) => {
         <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
-          <div className='flex flex-col tablet:flex-row gap-s-mobile tablet:gap-s-not-mobile'>
+          <div className='flex flex-col tablet:flex-row'>
             {screenData?.tags.map((item, index) => {
               return (
-                <div key={index}>
-                  <SubtitleWithAccentText
-                    accentText={item.title}
-                    subtitle={item.subtitle}
-                    link={item.accentTextLink}
-                  />
-                </div>
+                <SubtitleWithAccentText
+                  key={index}
+                  accentText={item.title}
+                  subtitle={item.subtitle}
+                  link={item.accentTextLink}
+                />
               );
             })}
           </div>

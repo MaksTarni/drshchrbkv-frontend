@@ -30,7 +30,7 @@ export const SberbankDepositIntroducing = ({ screenData, image }: Props) => {
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
       <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-1 tablet:grid-cols-2'>
           <ProjectTitleWithSubtitles
             title={screenData?.projectIntro.title}
             subtitles={screenData?.projectIntro.subtitles}

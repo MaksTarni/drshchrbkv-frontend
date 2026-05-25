@@ -5,15 +5,14 @@ export type TCompanies = {
   tagA: TTag;
   tagB: TTag;
   frameA: TImage;
+  frameATablet?: TImage;
+  frameAMobile?: TImage;
   frameB: TImage;
+  frameBTablet?: TImage;
+  frameBMobile?: TImage;
 };
 
 type TVariant = 'emex' | 'cloudpayments' | 'sberbank';
-
-type TImage = {
-  url: string;
-  alt: string;
-};
 
 type TTag = {
   title: string;

@@ -8,7 +8,7 @@ export const useCourse = () => {
     queryKey: [QUERY_KEYS.courses],
     queryFn: async () => {
       const response = await api.get(
-        '/api/course?populate[courseFrame][populate]=image',
+        '/api/course?populate[courseFrame][populate]=image&populate[courseFrameTablet][populate]=image&populate[courseFrameMobile][populate]=image',
       );
       return response.data;
     },

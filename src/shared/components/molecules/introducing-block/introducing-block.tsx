@@ -13,11 +13,11 @@ export const IntroducingBlock = ({
 }: Props) => {
   return (
     <div className='h-dvh'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile items-end p-s-mobile tablet:p-s-not-mobile h-[calc(50%+60px)]'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile items-end p-s-mobile tablet:p-s-not-mobile h-[calc(50%+36px)] pt-0'>
         <Title text={title || ''} />
       </div>
       <div
-        className='grid grid-cols-1 sm:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile items-end p-s-mobile tablet:p-s-not-mobile h-[calc(50%-60px)]'
+        className='grid grid-cols-1 sm:grid-cols-2 gap-s-mobile tablet:gap-s-not-mobile items-end p-s-mobile tablet:p-s-not-mobile h-[calc(50%-36px)]'
         style={{ backgroundColor: accentColor }}
       >
         <Title text={description || ''} />

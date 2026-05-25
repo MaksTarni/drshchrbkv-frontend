@@ -4,7 +4,7 @@ import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-subtitle';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
 import { useDimensions } from '../../shared/hooks/dimensions';
-import { getFullUrl } from '../../shared/utils';
+import { getFullUrl, resolveImageByBreakpoint } from '../../shared/utils';
 import { ProductsLayoutsFactory } from './layouts';
 import type { TCompaniesData, TCourseData } from './types';
 import {
@@ -18,6 +18,8 @@ type Props = {
   courseData: TCourseData;
   companiesData: TCompaniesData[];
 
+  courseImage: TImage;
+
   projectsTitle: string;
   projectsSubtitle: string;
   projectsMetaLeft?: string;
@@ -29,13 +31,14 @@ type Props = {
 export const Products = ({
   courseData,
   companiesData,
+  courseImage,
   projectsSubtitle,
   projectsTitle,
   projectsMetaLeft,
   projectsMetaRight,
   onAllImagesLoaded,
 }: Props) => {
-  const { isMobile } = useDimensions();
+  const breakpoints = useDimensions();
   const loadedCountRef = useRef(0);
 
   const totalImages = 1 + companiesData.length * 2;
@@ -60,29 +63,29 @@ export const Products = ({
         subtitle={projectsMetaRight || ''}
       />
 
-      <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
+      <Box height={breakpoints.isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
       <TitleWithSubtitle
         title={courseData?.title}
         subtitle={courseData?.subtitle}
       />
 
-      <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
+      <Box height={breakpoints.isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
       <Link
         to='/stub'
         className='custom-cursor'
       >
         <img
-          src={getFullUrl(courseData?.image.url)}
-          alt={courseData?.image.alt}
+          src={getFullUrl(courseImage.url)}
+          alt={courseImage.alt}
           className='w-full h-full object-cover'
           onLoad={handleSettle}
           onError={handleSettle}
         />
       </Link>
 
-      <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
+      <Box height={breakpoints.isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
       <AccentTextWithSubtitle
         title={projectsTitle}
@@ -90,19 +93,34 @@ export const Products = ({
         withLine
       />
 
-      {companiesData.map(item => (
-        <ProductsLayoutsFactory
-          key={item.title}
-          variant={item.variant}
-          title={item.title}
-          subtitle={item.subtitle}
-          frameA={item.frameA}
-          frameB={item.frameB}
-          tagA={item.tagA}
-          tagB={item.tagB}
-          onImageLoad={handleSettle}
-        />
-      ))}
+      {companiesData.map(item => {
+        const resolvedImageA = resolveImageByBreakpoint({
+          defaultImage: item.frameA,
+          mobileImage: item.frameAMobile,
+          tabletImage: item.frameATablet,
+          breakpoints,
+        });
+
+        const resolvedImageB = resolveImageByBreakpoint({
+          defaultImage: item.frameA,
+          mobileImage: item.frameBMobile,
+          tabletImage: item.frameBTablet,
+          breakpoints,
+        });
+        return (
+          <ProductsLayoutsFactory
+            key={item.title}
+            variant={item.variant}
+            title={item.title}
+            subtitle={item.subtitle}
+            frameA={resolvedImageA}
+            frameB={resolvedImageB}
+            tagA={item.tagA}
+            tagB={item.tagB}
+            onImageLoad={handleSettle}
+          />
+        );
+      })}
     </div>
   );
 };
