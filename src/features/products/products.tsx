@@ -102,7 +102,7 @@ export const Products = ({
         });
 
         const resolvedImageB = resolveImageByBreakpoint({
-          defaultImage: item.frameA,
+          defaultImage: item.frameB,
           mobileImage: item.frameBMobile,
           tabletImage: item.frameBTablet,
           breakpoints,
