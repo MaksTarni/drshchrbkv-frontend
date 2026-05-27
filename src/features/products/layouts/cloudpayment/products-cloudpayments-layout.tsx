@@ -44,7 +44,7 @@ export const ProductsCloudpaymentsLayout = ({
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
-      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-y-s-mobile tablet:gap-y-s-not-mobile  desktop:grid-cols-4 desktop:[&>*:nth-child(2)]:pr-2.5 desktop:[&>*:nth-child(3)]:pl-2.5'>
+      <div className='grid grid-cols-1 tablet:grid-cols-2 gap-y-s-mobile tablet:gap-y-s-not-mobile tablet:gap-x-s-not-mobile desktop:gap-x-0  desktop:grid-cols-4 desktop:[&>*:nth-child(2)]:pr-2.5 desktop:[&>*:nth-child(3)]:pl-2.5'>
         {isMobile && (
           <Mobile
             tagA={tagA}

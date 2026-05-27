@@ -13,17 +13,18 @@ import type { TScreenData } from './types';
 
 type Props = {
   screenData: TScreenData;
+  image: TImage;
 };
 
-export const ProjectIntroducing = ({ screenData }: Props) => {
+export const ProjectIntroducing = ({ screenData, image }: Props) => {
   const { isMobile } = useDimensions();
 
   return (
     <>
       <img
-        src={getFullUrl(screenData?.image.url)}
-        alt={screenData?.image.alt}
-        className='w-full h-dvh object-cover'
+        src={getFullUrl(image.url)}
+        alt={image.alt}
+        className='w-full object-cover h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-60px)] desktop:h-[calc(100dvh-60px)] mt-13 tablet:mt-15 desktop:mt-15'
       />
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />

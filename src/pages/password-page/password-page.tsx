@@ -21,7 +21,7 @@ export const PasswordPage = ({ accentColor, onClick, onHome }: Props) => {
 
       <div className='h-dvh flex flex-col'>
         <div
-          className={`w-full h-[calc(50%+60px)] items-end justify-items-start grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}
+          className={`w-full h-[calc(50%+36px)] pt-0 items-end justify-items-start grid grid-cols-1 tablet:grid-cols-2 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}
         >
           <Controller
             name='password'
@@ -63,7 +63,7 @@ export const PasswordPage = ({ accentColor, onClick, onHome }: Props) => {
           />
         </div>
         <div
-          className='w-full h-[calc(50%-60px)]'
+          className='w-full h-[calc(50%-36px)]'
           style={{ backgroundColor: accentColor }}
         ></div>
       </div>

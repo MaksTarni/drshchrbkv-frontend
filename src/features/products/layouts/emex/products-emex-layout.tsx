@@ -44,7 +44,7 @@ export const ProductsEmexLayout = ({
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
 
-      <div className='grid grid-cols-1 gap-y-s-mobile tablet:gap-y-s-not-mobile tablet:grid-cols-2 desktop:grid-cols-4 desktop:grid-rows-2 desktop:max-h-172.5 desktop:overflow-hidden'>
+      <div className='grid grid-cols-1 gap-y-s-mobile tablet:gap-y-s-not-mobile tablet:gap-x-s-not-mobile tablet:grid-cols-2 desktop:grid-cols-4 desktop:grid-rows-2 desktop:gap-x-0 desktop:max-h-172.5 desktop:overflow-hidden'>
         {isMobile && (
           <Mobile
             tagA={tagA}

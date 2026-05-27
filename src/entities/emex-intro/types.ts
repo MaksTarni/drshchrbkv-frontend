@@ -4,6 +4,8 @@ export type TEmexIntro = {
 
 export type TEmexIntroData = {
   image: TImage;
+  tabletImage: TImage;
+  mobileImage: TImage;
   projectIntro: TProjectIntro;
   tags: TTags[];
 };
