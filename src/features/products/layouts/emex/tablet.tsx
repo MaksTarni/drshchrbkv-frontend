@@ -24,7 +24,7 @@ export const Tablet = ({ frameA, frameB, tagA, tagB, onImageLoad }: Props) => {
         />
       </Link>
 
-      <div className='w-full'>
+      <div className='w-full -ml-s-not-mobile'>
         <AccentTextWithSubtitle
           title={tagA.title}
           subtitle={tagA.subtitle}
@@ -43,7 +43,7 @@ export const Tablet = ({ frameA, frameB, tagA, tagB, onImageLoad }: Props) => {
         />
       </Link>
 
-      <div className='w-full'>
+      <div className='w-full -ml-s-not-mobile'>
         <AccentTextWithSubtitle
           title={tagB.title}
           subtitle={tagB.subtitle}

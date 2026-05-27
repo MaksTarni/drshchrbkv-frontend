@@ -24,7 +24,7 @@ export const SberbankDepositIntroducing = ({ screenData, image }: Props) => {
       <img
         src={getFullUrl(image.url)}
         alt={image.alt}
-        className='w-full h-dvh object-cover'
+        className='w-full h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-60px)] desktop:h-[calc(100dvh-60px)] object-cover mt-13 tablet:mt-15 desktop:mt-15'
       />
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
