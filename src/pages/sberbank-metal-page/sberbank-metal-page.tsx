@@ -25,7 +25,7 @@ export const SberbankMetalPage = ({ onHome, screenData }: Props) => {
 
       <SberbankMetalIntroducingConnector />
 
-      <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'}`}>
+      <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'} pt-0`}>
         <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
 
         <SberbankMetalInfoConnector />
