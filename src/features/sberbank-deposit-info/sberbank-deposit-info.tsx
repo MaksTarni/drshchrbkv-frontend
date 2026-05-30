@@ -18,14 +18,16 @@ export const SberbankDepositInfo = ({ screenData }: Props) => {
       breakpoints,
     });
 
-    const resolvedSecondImage =
-      item?.desktopImages.secondImage &&
-      resolveImageByBreakpoint({
-        defaultImage: item?.desktopImages.secondImage,
-        mobileImage: item?.mobileImages.secondImage,
-        tabletImage: item?.tabletImages.secondImage,
-        breakpoints,
-      });
+    const resolvedSecondImage = item?.desktopImages.secondImage
+      ? resolveImageByBreakpoint({
+          defaultImage: item?.desktopImages.secondImage,
+          mobileImage: item?.mobileImages.secondImage,
+          tabletImage: item?.tabletImages.secondImage,
+          breakpoints,
+        })
+      : breakpoints.isMobile
+        ? item?.mobileImages.secondImage
+        : undefined;
 
     const resolvedThirdImage =
       item?.desktopImages.thirdImage &&
