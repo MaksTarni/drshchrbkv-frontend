@@ -12,7 +12,12 @@ export const MarkdownView = ({ text }: Props) => {
     <ReactMarkdown
       remarkPlugins={[remarkBreaks]}
       components={{
-        h2: ({ children }) => <Title text={children} />,
+        h2: ({ children }) => (
+          <Title
+            text={children}
+            variant='header2'
+          />
+        ),
         p: ({ children }) => <Subtitle text={children} />,
       }}
     >

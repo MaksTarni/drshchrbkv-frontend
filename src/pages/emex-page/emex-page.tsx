@@ -5,8 +5,8 @@ import { Box } from '../../shared/components/atoms/box';
 import { Footer } from '../../shared/components/molecules/footer';
 import { Header } from '../../shared/components/molecules/header';
 
-import { useDimensions } from '../../shared/hooks/dimensions';
-import { XL_MOBILE, XL_NOT_MOBILE } from '../../shared/indents';
+import { useDimensions, useXL } from '../../shared/hooks/dimensions';
+
 import type { TScreenData } from './types';
 
 export type Props = {
@@ -16,6 +16,8 @@ export type Props = {
 
 export const EmexPage = ({ screenData, onHome }: Props) => {
   const { isMobile } = useDimensions();
+
+  const xl = useXL();
 
   return (
     <>
@@ -28,7 +30,7 @@ export const EmexPage = ({ screenData, onHome }: Props) => {
       <ProjectIntroducingConnector />
 
       <div className={`${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'} pt-0`}>
-        <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
+        <Box height={xl} />
 
         <ProjectInfoConnector />
 
