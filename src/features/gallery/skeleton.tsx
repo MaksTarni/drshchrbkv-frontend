@@ -1,19 +1,16 @@
 import { Box } from '../../shared/components/atoms/box';
 import { SkeletonItem } from '../../shared/components/atoms/skeleton-item';
-import { useDimensions } from '../../shared/hooks/dimensions';
-import {
-  S_MOBILE,
-  S_NOT_MOBILE,
-  XXL_MOBILE,
-  XXL_NOT_MOBILE,
-} from '../../shared/indents';
+import { useDimensions, useXXL } from '../../shared/hooks/dimensions';
+import { S_MOBILE, S_NOT_MOBILE } from '../../shared/indents';
 
 export const Skeleton = () => {
   const { isMobile } = useDimensions();
 
+  const xxl = useXXL();
+
   return (
     <div className='gap-s-mobile tablet:gap-s-not-mobile'>
-      <Box height={isMobile ? XXL_MOBILE : XXL_NOT_MOBILE} />
+      <Box height={xxl} />
 
       <SkeletonItem
         height={20}

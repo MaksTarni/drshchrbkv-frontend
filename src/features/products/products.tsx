@@ -3,16 +3,11 @@ import { Link } from 'react-router-dom';
 import { Box } from '../../shared/components/atoms/box';
 import { AccentTextWithSubtitle } from '../../shared/components/molecules/accent-text-with-subtitle';
 import { TitleWithSubtitle } from '../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
-import { useDimensions } from '../../shared/hooks/dimensions';
+import { useDimensions, useXL } from '../../shared/hooks/dimensions';
 import { getFullUrl, resolveImageByBreakpoint } from '../../shared/utils';
 import { ProductsLayoutsFactory } from './layouts';
 import type { TCompaniesData, TCourseData } from './types';
-import {
-  S_MOBILE,
-  S_NOT_MOBILE,
-  XL_MOBILE,
-  XL_NOT_MOBILE,
-} from '../../shared/indents';
+import { S_MOBILE, S_NOT_MOBILE } from '../../shared/indents';
 
 type Props = {
   courseData: TCourseData;
@@ -41,6 +36,8 @@ export const Products = ({
   const breakpoints = useDimensions();
   const loadedCountRef = useRef(0);
 
+  const xl = useXL();
+
   const totalImages = 1 + companiesData.length * 2;
 
   useEffect(() => {
@@ -63,7 +60,7 @@ export const Products = ({
         subtitle={projectsMetaRight || ''}
       />
 
-      <Box height={breakpoints.isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
+      <Box height={xl} />
 
       <TitleWithSubtitle
         title={courseData?.title}

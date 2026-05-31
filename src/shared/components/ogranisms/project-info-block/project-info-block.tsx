@@ -1,10 +1,5 @@
-import { useDimensions } from '../../../hooks/dimensions';
-import {
-  M_MOBILE,
-  M_NOT_MOBILE,
-  XL_MOBILE,
-  XL_NOT_MOBILE,
-} from '../../../indents';
+import { useDimensions, useXL } from '../../../hooks/dimensions';
+import { M_MOBILE, M_NOT_MOBILE } from '../../../indents';
 import { getFullUrl } from '../../../utils';
 import { Box } from '../../atoms/box';
 import { MarkdownView } from '../../atoms/markdown-view';
@@ -39,6 +34,7 @@ export const ProjectInfoBlock = ({
   isLast,
 }: Props) => {
   const { isMobile, isDesktop } = useDimensions();
+  const xl = useXL();
 
   const images = [firstImage, secondImage, thirdImage, fourthImage].filter(
     Boolean,
@@ -58,7 +54,12 @@ export const ProjectInfoBlock = ({
 
       <div className='grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-s-mobile'>
         <div className='tablet:col-start-2 desktop:col-start-3 flex flex-col gap-s-mobile tablet:gap-s-not-mobile'>
-          {title && <Title text={title} />}
+          {title && (
+            <Title
+              text={title}
+              variant='header2'
+            />
+          )}
 
           {firstColumnMarkdown.map(item => (
             <MarkdownView
@@ -82,7 +83,7 @@ export const ProjectInfoBlock = ({
         </div>
       </div>
 
-      {!isLast && <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />}
+      {!isLast && <Box height={xl} />}
     </div>
   );
 };

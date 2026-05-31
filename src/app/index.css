@@ -26,13 +26,19 @@
   --text-header-desktop: 50px;
   --text-header-tablet: 30px;
   --text-header-mobile: 25px;
+  --text-header2-desktop: 35px;
+  --text-header2-tablet: 30px;
+  --text-header2-mobile: 25px;
   --text-text: 16px;
 
   /* MARK: - Line-height */
 
-  --leading-header-desktop: 48px;
-  --leading-header-tablet: 29px;
-  --leading-header-mobile: 26px;
+  --leading-header-desktop: 50px;
+  --leading-header-tablet: 32px;
+  --leading-header-mobile: 27px;
+  --leading-header2-desktop: 35px;
+  --leading-header2-tablet: 32px;
+  --leading-header2-mobile: 27px;
   --leading-text: 20px;
 
   /* MARK: - Letter-spacing */
@@ -40,6 +46,9 @@
   --tracking-header-desktop: -1px;
   --tracking-header-tablet: -0.8px;
   --tracking-header-mobile: -0.6px;
+  --tracking-header2-desktop: -0.67px;
+  --tracking-header2-tablet: -0.8px;
+  --tracking-header2-mobile: -0.6px;
   --tracking-text: -0.48px;
 
   /* MARK: - Breakpoints */
@@ -52,17 +61,18 @@
   --gap-xxs-mobile: 3px;
   --gap-xs-not-mobile: 5px;
   --gap-xs-mobile: 5px;
-  --gap-s-not-mobile: 20px;
-  --gap-s-mobile: 16px;
+  --gap-s-not-mobile: 15px;
+  --gap-s-mobile: 15px;
   --gap-m-not-mobile: 40px;
-  --gap-m-mobile: 32px;
+  --gap-m-mobile: 30px;
 
   /* MARK: - Paddings */
 
-  --spacing-s-not-mobile: 20px;
-  --spacing-s-mobile: 16px;
-  --spacing-xl-not-mobile: 124px;
-  --spacing-xl-mobile: 68px;
+  --spacing-s-not-mobile: 15px;
+  --spacing-s-mobile: 15px;
+  --spacing-xl-desktop: 80px;
+  --spacing-xl-tablet: 60px;
+  --spacing-xl-mobile: 50px;
 }
 
 html {

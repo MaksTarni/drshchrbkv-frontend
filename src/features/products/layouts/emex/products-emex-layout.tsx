@@ -1,12 +1,7 @@
 import { Box } from '../../../../shared/components/atoms/box';
 import { TitleWithSubtitle } from '../../../../shared/components/molecules/title-with-subtitle/title-with-subtitle';
-import { useDimensions } from '../../../../shared/hooks/dimensions';
-import {
-  S_MOBILE,
-  S_NOT_MOBILE,
-  XL_MOBILE,
-  XL_NOT_MOBILE,
-} from '../../../../shared/indents';
+import { useDimensions, useXL } from '../../../../shared/hooks/dimensions';
+import { S_MOBILE, S_NOT_MOBILE } from '../../../../shared/indents';
 import type { TImage, TTag } from '../../types';
 import { Desktop } from './desktop';
 import { Mobile } from './mobile';
@@ -33,9 +28,11 @@ export const ProductsEmexLayout = ({
 }: Props) => {
   const { isMobile, isTablet, isDesktop } = useDimensions();
 
+  const xl = useXL();
+
   return (
     <div>
-      <Box height={isMobile ? XL_MOBILE : XL_NOT_MOBILE} />
+      <Box height={xl} />
 
       <TitleWithSubtitle
         title={title}
