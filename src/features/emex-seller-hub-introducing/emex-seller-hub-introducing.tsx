@@ -2,7 +2,7 @@ import { Box } from '../../shared/components/atoms/box';
 import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/project-title-with-subtitles';
 import { SubtitleWithAccentText } from '../../shared/components/ogranisms/subtitle-with-accent-text';
 import { useDimensions, useXL } from '../../shared/hooks/dimensions';
-import { S_MOBILE, S_NOT_MOBILE, XL_MOBILE } from '../../shared/indents';
+import { S_MOBILE, S_NOT_MOBILE } from '../../shared/indents';
 import { getFullUrl } from '../../shared/utils';
 import type { TImage, TScreenData } from './types';
 
