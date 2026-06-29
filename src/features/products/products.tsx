@@ -54,7 +54,7 @@ export const Products = ({
   };
 
   return (
-    <div className='pt-30 md:pt-55'>
+    <div className='pt-xxl-mobile tablet:pt-xxl-tablet desktop:pt-xxl-desktop'>
       <AccentTextWithSubtitle
         title={projectsMetaLeft || ''}
         subtitle={projectsMetaRight || ''}
