@@ -73,6 +73,9 @@
   --spacing-xl-desktop: 80px;
   --spacing-xl-tablet: 60px;
   --spacing-xl-mobile: 50px;
+  --spacing-xxl-desktop: 170px;
+  --spacing-xxl-tablet: 130px;
+  --spacing-xxl-mobile: 100px;
 }
 
 html {
