@@ -4,11 +4,12 @@ import { Title } from '../../atoms/title';
 export type Props = {
   title: string;
   subtitles: string[];
+  withGaps?: boolean;
 };
 
-export const ProjectTitleWithSubtitles = ({ subtitles, title }: Props) => {
+export const ProjectTitleWithSubtitles = ({ subtitles, title, withGaps }: Props) => {
   return (
-    <div className='flex flex-col items-start justify-start'>
+    <div className={`flex flex-col items-start justify-start ${withGaps ? 'gap-y-xxs-mobile' : ''}`}>
       <Title text={title} />
 
       {subtitles.map(subtitle => {

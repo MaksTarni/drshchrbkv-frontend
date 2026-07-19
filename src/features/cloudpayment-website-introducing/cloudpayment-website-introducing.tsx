@@ -24,7 +24,7 @@ export const CloudpaymentWebsiteIntroducing = ({
       <img
         src={getFullUrl(image.url)}
         alt={image.alt}
-        className='w-full h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-60px)] desktop:h-[calc(100dvh-60px)] object-cover mt-13 tablet:mt-15 desktop:mt-15'
+        className='w-full h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-48px)] desktop:h-[calc(100dvh-48px)] object-cover mt-13 tablet:mt-12 desktop:mt-12'
       />
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
@@ -32,6 +32,7 @@ export const CloudpaymentWebsiteIntroducing = ({
       <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
           <ProjectTitleWithSubtitles
+            withGaps
             title={screenData?.projectIntro.title}
             subtitles={screenData?.projectIntro.subtitles}
           />

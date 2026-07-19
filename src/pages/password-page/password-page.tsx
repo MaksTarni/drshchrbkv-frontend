@@ -39,13 +39,13 @@ export const PasswordPage = ({ accentColor, onClick, onHome }: Props) => {
                       fieldState.error
                         ? 'border-border-accent'
                         : 'border-border-primary'
-                    } hover:border-border-secondary focus-within:border-border-dark h-15 ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'} flex items-center justify-between gap-2 transition-colors duration-200 ease-in-out`}
+                    } hover:border-border-secondary focus-within:border-border-dark ${isMobile ? 'p-s-mobile' : 'p-s-not-mobile'} flex items-center justify-between gap-2 transition-colors duration-200 ease-in-out`}
                   >
                     <input
                       {...field}
                       type='password'
                       placeholder='enter password to view'
-                      className='w-full outline-none'
+                      className='w-full outline-none leading-text'
                     />
                     {field.value && (
                       <Subtitle

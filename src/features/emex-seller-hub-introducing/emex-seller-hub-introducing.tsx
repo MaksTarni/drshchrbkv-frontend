@@ -2,7 +2,7 @@ import { Box } from '../../shared/components/atoms/box';
 import { ProjectTitleWithSubtitles } from '../../shared/components/molecules/project-title-with-subtitles';
 import { SubtitleWithAccentText } from '../../shared/components/ogranisms/subtitle-with-accent-text';
 import { useDimensions, useXL } from '../../shared/hooks/dimensions';
-import { S_MOBILE, S_NOT_MOBILE, XL_MOBILE } from '../../shared/indents';
+import { S_MOBILE, S_NOT_MOBILE } from '../../shared/indents';
 import { getFullUrl } from '../../shared/utils';
 import type { TImage, TScreenData } from './types';
 
@@ -18,7 +18,7 @@ export const EmexSellerHubIntroducing = ({ screenData, image }: Props) => {
       <img
         src={getFullUrl(image.url)}
         alt={image.alt}
-        className='w-full h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-60px)] desktop:h-[calc(100dvh-60px)] object-cover mt-13 tablet:mt-15 desktop:mt-15'
+        className='w-full h-[calc(100dvh-52px)] tablet:h-[calc(100dvh-48px)] desktop:h-[calc(100dvh-48px)] object-cover mt-13 tablet:mt-12 desktop:mt-12'
       />
 
       <Box height={isMobile ? S_MOBILE : S_NOT_MOBILE} />
@@ -26,6 +26,7 @@ export const EmexSellerHubIntroducing = ({ screenData, image }: Props) => {
       <div className={`${isMobile ? 'px-s-mobile' : 'px-s-not-mobile'}`}>
         <div className='grid grid-cols-1 tablet:grid-cols-2'>
           <ProjectTitleWithSubtitles
+            withGaps
             title={screenData?.projectIntro.title}
             subtitles={screenData?.projectIntro.subtitles}
           />
