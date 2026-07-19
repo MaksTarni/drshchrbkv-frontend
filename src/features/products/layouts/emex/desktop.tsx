@@ -23,7 +23,7 @@ export const Desktop = ({ frameA, frameB, tagA, tagB, onImageLoad }: Props) => {
           withRightPadding
         />
       </div>
-      <div className='[grid-area:1/2/2/3] pr-5'>
+      <div className='[grid-area:1/2/2/3] pr-[15px]'>
         <Link
           to='/auth/companies/emex'
           className='custom-cursor'
