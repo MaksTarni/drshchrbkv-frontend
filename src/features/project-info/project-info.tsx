@@ -29,6 +29,7 @@ export const ProjectInfo = ({ screenData }: Props) => {
 
     return (
       <ProjectInfoBlock
+        withYGap
         key={item.title}
         title={item.title}
         firstColumnMarkdown={item.firstColumnMarkdown}
