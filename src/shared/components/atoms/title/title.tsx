@@ -10,9 +10,9 @@ export type Props = {
 
 const variantClasses: Record<Variant, string> = {
   header:
-    'text-header-mobile leading-header-mobile md:text-header-tablet md:leading-header-tablet lg:text-header-desktop lg:leading-header-desktop tracking-header-mobile md:tracking-header-tablet lg:tracking-header-desktop',
+    'text-header-mobile leading-header-mobile tablet:text-header-tablet tablet:leading-header-tablet desktop:text-header-desktop desktop:leading-header-desktop tracking-header-mobile tablet:tracking-header-tablet desktop:tracking-header-desktop',
   header2:
-    'text-header2-mobile leading-header2-mobile md:text-header2-tablet md:leading-header2-tablet lg:text-header2-desktop lg:leading-header2-desktop tracking-header2-mobile md:tracking-header2-tablet lg:tracking-header2-desktop',
+    'text-header2-mobile leading-header2-mobile tablet:text-header2-tablet tablet:leading-header2-tablet desktop:text-header2-desktop desktop:leading-header2-desktop tracking-header2-mobile tablet:tracking-header2-tablet desktop:tracking-header2-desktop',
 };
 
 export const Title = ({ text, className, variant = 'header' }: Props) => {
