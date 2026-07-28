@@ -36,7 +36,7 @@ export const Drawer = ({ screenData, onClose }: Props) => {
         >
           {screenData.map(item => {
             return (
-              <div className='flex flex-col desktop:gap-xs-mobile'>
+              <div className='flex flex-col gap-xs-mobile'>
                 {item.title && <MenuTitle text={item.title} />}
                 <div className='flex flex-col gap-xs-mobile tablet:gap-xs-not-mobile desktop:gap-xs-mobile'>
                   {item.items?.map(link => {
